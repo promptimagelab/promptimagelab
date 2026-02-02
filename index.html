@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>AI Image Prompts for Profile Pictures, Anime & Avatars | PromptImageLab</title>
+
+<meta name="description" content="PromptImageLab provides proven AI image prompts for profile pictures, anime avatars, Instagram DP, WhatsApp DP, and professional photo-based AI image generation.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://promptimagelab.com/">
+
+<!-- Open Graph -->
+<meta property="og:title" content="AI Image Prompts for Profile Pictures, Anime & Avatars">
+<meta property="og:description" content="Explore AI image prompts for profile pictures, anime avatars, Instagram DP, WhatsApp DP, and photo-based AI image generation.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://promptimagelab.com/">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+
+<style>
+  .prompt-link{
+  display:block;
+  color:inherit;
+}
+.prompt-link:hover{
+  text-decoration:none;
+}
+
+/* =========================
+   BRAND SYSTEM
+========================= */
+:root{
+  --bg:#020617;
+  --surface:#071028;
+  --surface-elevated:#0b1220;
+  --border:rgba(255,255,255,.08);
+
+  --text:#e6eef8;
+  --muted:#9aa8bb;
+
+  --primary:#38bdf8;
+  --secondary:#22c55e;
+
+  --glass:rgba(255,255,255,.06);
+  --shadow-lg:0 25px 60px rgba(0,0,0,.45);
+  --shadow-md:0 12px 28px rgba(0,0,0,.35);
+}
+
+/* =========================
+   RESET
+========================= */
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:Inter,system-ui;
+  background:linear-gradient(180deg,#071028,#020617);
+  color:var(--text);
+  line-height:1.7;
+}
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:0 24px;
+}
+a{text-decoration:none;color:inherit}
+
+/* =========================
+   NAV
+========================= */
+nav{
+  position:sticky;
+  top:0;
+  z-index:100;
+  backdrop-filter:blur(12px);
+  background:rgba(7,16,40,.75);
+  border-bottom:1px solid var(--border);
+}
+.nav-inner{
+  height:72px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.logo{
+  font-weight:800;
+}
+.nav-links{
+  display:flex;
+  gap:28px;
+}
+.nav-links a{
+  color:var(--muted);
+}
+.nav-links a:hover{
+  color:var(--text);
+}
+
+/* =========================
+   HERO
+========================= */
+.hero{
+  padding:120px 0;
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:64px;
+  align-items:center;
+}
+.badge{
+  display:inline-block;
+  padding:6px 14px;
+  border-radius:999px;
+  background:var(--glass);
+  border:1px solid var(--border);
+  font-size:.85rem;
+}
+.hero h1{
+  margin-top:18px;
+  font-size:3rem;
+  line-height:1.1;
+}
+.hero h1 span{
+  color:var(--primary);
+}
+.hero p{
+  margin-top:20px;
+  max-width:560px;
+  color:var(--muted);
+  font-size:1.15rem;
+}
+.hero-cta{
+  display:flex;
+  gap:16px;
+  margin-top:32px;
+}
+.btn{
+  padding:14px 22px;
+  border-radius:12px;
+  font-weight:600;
+  transition:.25s;
+}
+.btn-primary{
+  background:var(--primary);
+  color:#020617;
+}
+.btn-primary:hover{
+  transform:translateY(-2px);
+  box-shadow:var(--shadow-md);
+}
+.btn-ghost{
+  border:1px solid var(--border);
+}
+.btn-ghost:hover{
+  background:var(--glass);
+}
+
+/* =========================
+   MOCKUP
+========================= */
+.mockup{
+  background:var(--surface-elevated);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:18px;
+  box-shadow:var(--shadow-lg);
+}
+.mockup-header{
+  color:var(--primary);
+  font-weight:600;
+}
+.mockup pre{
+  margin-top:10px;
+  font-family:ui-monospace;
+  color:var(--muted);
+  font-size:.9rem;
+}
+
+/* =========================
+   SECTIONS
+========================= */
+section{
+  padding:110px 0;
+  border-top:1px solid var(--border);
+}
+.split{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:64px;
+  align-items:center;
+}
+.muted{color:var(--muted)}
+
+/* =========================
+   PROMPT CARDS
+========================= */
+.prompt-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:28px;
+}
+.prompt-card{
+  background:linear-gradient(180deg,rgba(255,255,255,.04),transparent);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:26px;
+  transition:.3s;
+}
+.prompt-card:hover{
+  transform:translateY(-6px);
+  box-shadow:var(--shadow-lg);
+}
+.prompt-type{
+  font-size:.85rem;
+  color:var(--secondary);
+}
+.prompt-card h3{
+  margin-top:6px;
+}
+.prompt-box{
+  margin-top:14px;
+  background:#020617;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:14px;
+  font-family:ui-monospace;
+  font-size:.9rem;
+  color:var(--muted);
+}
+
+/* =========================
+   SEO LIST
+========================= */
+.seo-list{
+  margin-top:16px;
+  padding-left:18px;
+}
+.seo-list li{
+  margin-bottom:8px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+footer{
+  padding:80px 0 40px;
+  border-top:1px solid var(--border);
+  background:#020617;
+}
+.footer-grid{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr;
+  gap:48px;
+}
+.footer-muted{
+  color:var(--muted);
+  font-size:.95rem;
+}
+.footer-bottom{
+  margin-top:48px;
+  border-top:1px solid var(--border);
+  padding-top:18px;
+  font-size:.9rem;
+  color:var(--muted);
+}
+
+/* =========================
+   ANIMATION
+========================= */
+.fade-up{
+  animation:fadeUp .7s ease both;
+}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(22px)}
+  to{opacity:1;transform:none}
+}
+
+@media(max-width:900px){
+  .hero-grid,.split{grid-template-columns:1fr}
+}
+</style>
+
+<!-- WEBSITE SCHEMA -->
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"WebSite",
+ "name":"PromptImageLab",
+ "url":"https://promptimagelab.com",
+ "description":"Professional AI image prompt standardization platform"
+}
+</script>
+</head>
+
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <div class="logo">PromptImageLab</div>
+    <div class="nav-links">
+      <a href="#prompts">Prompts</a>
+      <a href="anime-avatars.html">Anime Avatars</a>
+      <a href="#about">About</a>
+      <a href="#faq">FAQ</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container hero-grid">
+    <div class="fade-up">
+      <span class="badge">AI Prompt Standardization</span>
+      <h1>Professional AI Image Prompts<br><span>That Actually Work</span></h1>
+      <p>Reusable, predictable prompt frameworks for avatars, anime, portraits, and stylized AI image generation.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#prompts">Explore Library</a>
+        <a class="btn btn-ghost" href="#about">Learn More</a>
+      </div>
+    </div>
+    <div class="mockup fade-up">
+      <div class="mockup-header">Anime Avatar Prompt</div>
+      <pre>
+Convert input photo to anime style,
+soft lighting, expressive eyes,
+identity preserved, studio quality
+      </pre>
+    </div>
+  </div>
+</header>
+
+<section id="prompts">
+  <div class="container">
+    <h2>Premium Prompt Library</h2>
+    <div class="prompt-grid">
+      <div class="prompt-card">
+        <span class="prompt-type">Anime Portrait</span>
+        <h3>Studio Anime Avatar</h3>
+        <div class="prompt-box">
+Create anime avatar from photo,
+soft pastel colors,
+cinematic lighting,
+high detail
+        </div>
+      </div>
+
+      <div class="prompt-card">
+        <span class="prompt-type">Fantasy</span>
+        <h3>Anime Warrior</h3>
+        <div class="prompt-box">
+Transform photo into anime warrior,
+fantasy armor,
+dramatic lighting,
+sharp outlines
+        </div>
+      </div>
+
+      <div class="prompt-card">
+        <span class="prompt-type">Cute / Chibi</span>
+        <h3>Cute Chibi Avatar</h3>
+        <div class="prompt-box">
+Convert photo to chibi style,
+soft lighting,
+pastel background,
+adorable expression
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="categories" style="padding:110px 0;border-top:1px solid var(--border);">
+  <div class="container">
+
+    <h2 style="text-align:center;">Popular AI Image Prompt Categories</h2>
+    <p class="muted" style="text-align:center;max-width:720px;margin:12px auto 40px;">
+      Explore curated AI image prompt categories designed for photo-based AI image generation,
+      avatars, profile pictures, and social media display photos.
+    </p>
+
+    <div style="
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:28px;
+    ">
+
+      <a href="/ai-profile-picture-dp-prompts.html" class="prompt-link">
+        <div class="prompt-card">
+          <span class="prompt-type">AI Profile Photos</span>
+          <h3>AI Profile Picture Prompts</h3>
+          <p class="muted">
+            Structured AI image prompts for generating professional profile pictures
+            from real photos using AI models.
+          </p>
+        </div>
+      </a>
+
+      <a href="/anime-avatars.html" class="prompt-link">
+        <div class="prompt-card">
+          <span class="prompt-type">AI Anime Generation</span>
+          <h3>Anime Avatar AI Prompts</h3>
+          <p class="muted">
+            Photo-based AI prompts to convert real images into anime-style avatars
+            with preserved identity.
+          </p>
+        </div>
+      </a>
+
+      <a href="/instagram-dp-for-boys-ai-prompts.html" class="prompt-link">
+        <div class="prompt-card">
+          <span class="prompt-type">AI Social Media DP</span>
+          <h3>Instagram DP AI Prompts for Boys</h3>
+          <p class="muted">
+            AI image prompts optimized for masculine, cinematic, and stylized
+            Instagram display pictures.
+          </p>
+        </div>
+      </a>
+
+      <a href="/instagram-dp-for-girls-ai-prompts.html" class="prompt-link">
+        <div class="prompt-card">
+          <span class="prompt-type">AI Social Media DP</span>
+          <h3>Instagram DP AI Prompts for Girls</h3>
+          <p class="muted">
+            Aesthetic and portrait-focused AI prompts for generating
+            Instagram display photos from images.
+          </p>
+        </div>
+      </a>
+
+      <a href="/instagram-dp-couple-ai-prompts.html" class="prompt-link">
+        <div class="prompt-card">
+          <span class="prompt-type">AI Couple Portraits</span>
+          <h3>Instagram DP AI Prompts for Couples</h3>
+          <p class="muted">
+            AI image generation prompts for romantic, cinematic,
+            and stylized couple profile pictures.
+          </p>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+<section id="about">
+  <div class="container split">
+    <div>
+      <h2>What is PromptImageLab?</h2>
+      <p class="muted">
+        PromptImageLab is a professional AI image prompt reference platform designed
+        to standardize photo-based AI image generation workflows.
+      </p>
+      <ul class="seo-list">
+        <li>Not an AI image generator</li>
+        <li>Structured prompt standards</li>
+        <li>Photo-first workflows</li>
+        <li>Model-agnostic compatibility</li>
+      </ul>
+    </div>
+    <div class="mockup">
+      <div class="mockup-header">Prompt Structure</div>
+      <pre>
+Subject → Style → Lighting → Detail
+Identity preserved from photo
+      </pre>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="container">
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="prompt-card">
+      <h3>Does PromptImageLab generate images?</h3>
+      <p class="muted">
+        No. PromptImageLab is a reference platform that provides AI image prompts,
+        not image generation tools.
+      </p>
+    </div>
+
+    <div class="prompt-card">
+      <h3>Can I use these prompts with my own photos?</h3>
+      <p class="muted">
+        Yes. All prompts are designed for photo-based AI image generation.
+      </p>
+    </div>
+
+     
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-grid">
+    <div>
+      <h3>PromptImageLab</h3>
+      <p class="footer-muted">
+        AI prompt standardization for creators & professionals.
+      </p>
+    </div>
+    <div class="footer-muted">
+      <p>Prompts</p>
+      <p>Standards</p>
+      <p>FAQ</p>
+    </div>
+    <div class="footer-muted">
+      <p>Contact</p>
+      <p>promptimagelab@gmail.com</p>
+    </div>
+  </div>
+
+  <!-- Add site policy / utility links -->
+  <div class="container" style="margin-top:12px; display:flex; gap:18px; align-items:center;">
+    <a href="/privacy-policy.html">Privacy Policy</a>
+    <a href="anime-avatars.html">Anime Avatars</a>
+    <a href="/about.html">About</a>
+    <a href="/contact.html">Contact</a>
+  </div>
+
+  <div class="container footer-bottom">
+    © 2026 PromptImageLab — Built for professionals
+  </div>
+</footer>
+
+<!-- FAQ SCHEMA -->
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"FAQPage",
+ "mainEntity":[
+  {
+   "@type":"Question",
+   "name":"Does PromptImageLab generate images?",
+   "acceptedAnswer":{"@type":"Answer","text":"No. PromptImageLab provides AI image prompts, not image generation tools."}
+  },
+  {
+   "@type":"Question",
+   "name":"Can I use these prompts with my own photos?",
+   "acceptedAnswer":{"@type":"Answer","text":"Yes. All prompts are designed for photo-based AI image generation."}
+  },
+   
+ ]
+}
+</script>
+
+</body>
+</html>
