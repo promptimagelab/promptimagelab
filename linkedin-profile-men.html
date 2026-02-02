@@ -16,6 +16,14 @@
 <link rel="apple-touch-icon" href="/images/logo.png">
 <meta name="msapplication-TileImage" content="/images/logo.png">
 
+<style>
+.logo{ 
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+</style>
+
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="LinkedIn Profile Picture for Men – AI Prompts">
@@ -127,7 +135,10 @@ footer{
 
 <nav class="navbar navbar-dark fixed-top">
   <div class="container">
-    <a class="navbar-brand fw-bold" href="/">PromptImageLab</a>
+    <a class="navbar-brand logo fw-bold" href="/" aria-label="PromptImageLab Home">
+      <img src="/images/logo.png" alt="PromptImageLab logo" width="38" height="38" style="border-radius:8px; display:block;">
+      <span style="margin-left:10px;">PromptImageLab</span>
+    </a>
   </div>
 </nav>
 
