@@ -12,14 +12,53 @@
 <meta name="author" content="PromptImageLab">
 
 <!-- JSON-LD: single WebSite schema -->
+<!-- JSON-LD: Organization, WebSite, WebPage (valid JSON-LD) -->
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "PromptImageLab",
-  "url": "https://promptimagelab.com",
-  "description": "Reusable, predictable AI image prompt frameworks for avatars, anime, and portrait generation."
-}
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "PromptImageLab",
+    "url": "https://promptimagelab.com",
+    "logo": "https://promptimagelab.com/images/logo.png"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "PromptImageLab",
+    "url": "https://promptimagelab.com",
+    "description": "Reusable, predictable AI image prompt frameworks for avatars, anime, and portrait generation.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "PromptImageLab",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://promptimagelab.com/images/logo.png"
+      }
+    },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://promptimagelab.com/?s={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://promptimagelab.com/",
+    "name": "AI Image Prompts for Profile Pictures, Anime & Avatars | PromptImageLab",
+    "description": "PromptImageLab provides proven AI image prompts for profile pictures, anime avatars, Instagram DP, WhatsApp DP, and professional photo-based AI image generation.",
+    "inLanguage": "en-US",
+    "publisher": {
+      "@type": "Organization",
+      "name": "PromptImageLab",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://promptimagelab.com/images/logo.png"
+      }
+    }
+  }
+]
 </script>
 
 <title>AI Image Prompts for Profile Pictures, Anime & Avatars | PromptImageLab</title>
