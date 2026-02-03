@@ -17,29 +17,22 @@
 
 <meta name="author" content="PromptImageLab">
 
+<!-- Consolidated JSON-LD: single WebSite schema with publisher info -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": "WebSite",
   "name": "PromptImageLab",
   "url": "https://promptimagelab.com",
-  "logo": "https://promptimagelab.com/images/logo.png",
-  "email": "promptimagelab@gmail.com"
-}
-</script>
+  "description": "Reusable, predictable AI image prompt frameworks for avatars, anime, and portrait generation.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "PromptImageLab",
+    <body>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://promptimagelab.com/"
-    }
-  ]
+    <nav>
+      <div class="container nav-inner">
+    <a href="/" class="logo" style="display:flex;align-items:center;gap:10px;">
 }
 </script>
 
@@ -49,16 +42,24 @@
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://promptimagelab.com/">
 
-<!-- Favicon / Site icon -->
-<link rel="icon" href="/images/logo.png" type="image/png">
-<link rel="apple-touch-icon" href="/images/logo.png">
-<meta name="msapplication-TileImage" content="/images/logo.png">
 
-<!-- Open Graph -->
+        <ul class="nav-links" role="navigation" aria-label="Main navigation">
+          <li><a href="#prompts">Prompts</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
 <meta property="og:title" content="AI Image Prompts for Profile Pictures, Anime & Avatars">
 <meta property="og:description" content="Explore AI image prompts for profile pictures, anime avatars, Instagram DP, WhatsApp DP, and photo-based AI image generation.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://promptimagelab.com/">
+    <header id="main" class="hero">
+<meta property="og:image" content="https://promptimagelab.com/images/logo.png">
+<meta property="og:image:alt" content="PromptImageLab logo">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI Image Prompts for Profile Pictures, Anime & Avatars">
+<meta name="twitter:description" content="Reusable, predictable prompt frameworks for avatars, anime, portraits, and stylized AI image generation.">
+<meta name="twitter:image" content="https://promptimagelab.com/images/logo.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -131,6 +132,9 @@ nav{
   font-weight:800;
 }
 .nav-links{
+  list-style:none;
+  padding:0;
+  margin:0;
   display:flex;
   gap:28px;
 }
@@ -352,19 +356,11 @@ footer{
 .social-btn:hover{transform:translateY(-3px);background:rgba(255,255,255,0.05)}
 .footer-bottom{border-top:1px solid rgba(255,255,255,0.03);margin-top:22px;padding-top:14px;text-align:center;font-size:.85rem;opacity:.8}
 </style>
-<!-- WEBSITE SCHEMA -->
-<script type="application/ld+json">
-{
- "@context":"https://schema.org",
- "@type":"WebSite",
- "name":"PromptImageLab",
- "url":"https://promptimagelab.com",
- "description":"Professional AI image prompt standardization platform"
-}
-</script>
 </head>
 
 <body>
+
+<a class="skip-link" href="#main" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">Skip to content</a>
 
 <nav>
   <div class="container nav-inner">
@@ -595,25 +591,7 @@ Identity preserved from photo
 
 
 <!-- FAQ SCHEMA -->
-<script type="application/ld+json">
-{
- "@context":"https://schema.org",
- "@type":"FAQPage",
- "mainEntity":[
-  {
-   "@type":"Question",
-   "name":"Does PromptImageLab generate images?",
-   "acceptedAnswer":{"@type":"Answer","text":"No. PromptImageLab provides AI image prompts, not image generation tools."}
-  },
-  {
-   "@type":"Question",
-   "name":"Can I use these prompts with my own photos?",
-   "acceptedAnswer":{"@type":"Answer","text":"Yes. All prompts are designed for photo-based AI image generation."}
-  },
-   
- ]
-}
-</script>
+<!-- FAQ schema removed from homepage to keep a single appropriate Schema.org type (WebSite). If you have a dedicated FAQ page, add this FAQPage JSON-LD there. -->
 
 </body>
 </html>
