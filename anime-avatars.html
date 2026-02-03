@@ -631,12 +631,11 @@ For related styles and advanced recipes, see our manga prompt examples, and the 
 
       <div class="newsletter">
         <h6>Get updates</h6>
-        <form id="newsletterForm">
-          <input type="email" id="nlEmail" placeholder="Your email" required aria-label="newsletter email">
-          <button type="submit" aria-label="Subscribe to newsletter">Subscribe</button>
-        </form>
-        <div id="nlStatus" role="status" aria-live="polite" style="margin-top:8px;display:none;font-weight:700;color:var(--accent)"></div>
-        <div style="margin-top:8px;font-size:.85rem;opacity:.75">No spam — unsubscribe any time.</div>
+      <form action="mailto:promptimagelab@gmail.com" method="post" enctype="text/plain">
+  <input type="email" name="email" placeholder="Your email" required aria-label="newsletter email">
+  <button type="submit" aria-label="Subscribe to newsletter">Subscribe</button>
+</form>        <div id="nlStatus" role="status" aria-live="polite" style="margin-top:8px;display:none;font-weight:700;color:var(--accent)"></div>
+        <div style="margin-top:8px;font-size:.85rem;opacity:.75">Contact us for any promotional opportunities</div>
       </div>
     </div>
 
