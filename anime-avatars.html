@@ -239,10 +239,10 @@ body{
   margin-bottom:10px;
 }
 
-/* ===== PROMPT BOX ===== */
 .prompt-box{
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.08);
+  /* stronger default contrast so text remains readable on all cards */
+  background:rgba(0,0,0,0.45);
+  border:1px solid rgba(255,255,255,0.08);
   border-radius:16px;
   padding:16px;
   font-size:.95rem;
@@ -739,8 +739,8 @@ For related styles and advanced recipes, see our manga prompt examples, and the 
 
       <div class="newsletter">
         <h6>Get updates</h6>
-      <form action="/contact.html" method="get" aria-label="newsletter signup form">
-  <input type="email" name="email" placeholder="Your email" required aria-label="newsletter email">
+      <form id="newsletterForm" action="/contact.html" method="get" aria-label="newsletter signup form">
+  <input id="nlEmail" type="email" name="email" placeholder="Your email" required aria-label="newsletter email">
   <button type="submit" aria-label="Subscribe to newsletter">Subscribe</button>
 </form>
         <div id="nlStatus" role="status" aria-live="polite" style="margin-top:8px;display:none;font-weight:700;color:var(--accent)"></div>
