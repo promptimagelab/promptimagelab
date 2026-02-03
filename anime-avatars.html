@@ -5,15 +5,9 @@
 <meta http-equiv="content-language" content="en">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
- <!-- Google tag (gtag.js) -->
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-MGTDGLQPSH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-MGTDGLQPSH');
-</script>
+<script async src="/assets/js/gtag.js"></script>
 
 
 <meta name="author" content="PromptImageLab">
@@ -62,6 +56,12 @@
   align-items:center;
   gap:10px;
 }
+</style>
+
+<style>
+/* Skip link accessibility */
+.skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+.skip-link:focus{position:fixed;left:8px;top:8px;width:auto;height:auto;padding:8px;border-radius:6px;background:#ffffff;color:#000000;z-index:9999}
 </style>
 
 <!-- SEO & Social Meta Tags -->
@@ -258,6 +258,7 @@ footer{
 </head>
 
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <!-- ===== NAVBAR ===== -->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top glass-nav">
@@ -268,6 +269,7 @@ footer{
     </a>
   </div>
 </nav>
+<main id="main" role="main">
 
 <!-- ===== HERO ===== -->
 <section class="hero">
@@ -298,7 +300,7 @@ For related styles and advanced recipes, see our manga prompt examples, and the 
       <!-- CARD 1 -->
       <div class="col-md-6 col-lg-4">
         <div class="card p-3 h-100">
-          <img src="images/anime-avatars/anime-girl-studio-portrait.webp" loading="lazy" class="img-fluid" alt="anime ai avatar - studio portrait from photo">
+          <img src="images/anime-avatars/anime-girl-studio-portrait.webp" loading="lazy" class="img-fluid" alt="anime ai avatar - studio portrait from photo" width="800" height="800">
           <h5 style="color:white;">Anime Girl Portrait</h5>
           <small>Soft · Cute · Studio Style</small>
 
@@ -329,7 +331,7 @@ For related styles and advanced recipes, see our manga prompt examples, and the 
       <!-- CARD 2 -->
       <div class="col-md-6 col-lg-4">
         <div class="card p-3 h-100">
-          <img src="images/anime-avatars/anime-warrior-fantasy.webp" loading="lazy" class="img-fluid" alt="anime ai portrait - warrior fantasy from photo">
+          <img src="images/anime-avatars/anime-warrior-fantasy.webp" loading="lazy" class="img-fluid" alt="anime ai portrait - warrior fantasy from photo" width="800" height="800">
           <h5>Anime Warrior</h5>
           <small>Fantasy · Action · Cinematic</small>
 
@@ -360,7 +362,7 @@ For related styles and advanced recipes, see our manga prompt examples, and the 
       <!-- CARD 3 -->
       <div class="col-md-6 col-lg-4">
         <div class="card p-3 h-100">
-          <img src="images/anime-avatars/cute-anime-avatar-chibi.webp" loading="lazy" class="img-fluid" alt="anime ai avatar - cute chibi conversion from photo">
+          <img src="images/anime-avatars/cute-anime-avatar-chibi.webp" loading="lazy" class="img-fluid" alt="anime ai avatar - cute chibi conversion from photo" width="800" height="800">
           <h5>Cute Anime Avatar</h5>
           <small>Chibi · Pastel · Fun</small>
 
@@ -391,7 +393,7 @@ For related styles and advanced recipes, see our manga prompt examples, and the 
       <!-- CARD 4 -->
       <div class="col-md-6 col-lg-4">
         <div class="card p-3 h-100">
-          <img src="images/anime-avatars/cyberpunk-neon-portrait.webp" loading="lazy" class="img-fluid" alt="anime ai portrait - cyberpunk neon from photo">
+          <img src="images/anime-avatars/cyberpunk-neon-portrait.webp" loading="lazy" class="img-fluid" alt="anime ai portrait - cyberpunk neon from photo" width="800" height="800">
           <h5>Cyberpunk Neon</h5>
           <small>Neon · Futuristic · Moody</small>
 
@@ -421,7 +423,7 @@ For related styles and advanced recipes, see our manga prompt examples, and the 
       <!-- CARD 5 -->
       <div class="col-md-6 col-lg-4">
         <div class="card p-3 h-100">
-          <img src="images/anime-avatars/vintage-film-anime.webp" loading="lazy" class="img-fluid" alt="anime ai portrait - vintage film style from photo">
+          <img src="images/anime-avatars/vintage-film-anime.webp" loading="lazy" class="img-fluid" alt="anime ai portrait - vintage film style from photo" width="800" height="800">
           <h5>Vintage Film Style</h5>
           <small>Retro · Warm · Soft Grain</small>
 
@@ -450,7 +452,7 @@ For related styles and advanced recipes, see our manga prompt examples, and the 
       <!-- CARD 6 -->
       <div class="col-md-6 col-lg-4">
         <div class="card p-3 h-100">
-          <img src="images/anime-avatars/fantasy-mage-anime.webp" loading="lazy" class="img-fluid" alt="anime ai portrait - fantasy mage from photo">
+          <img src="images/anime-avatars/fantasy-mage-anime.webp" loading="lazy" class="img-fluid" alt="anime ai portrait - fantasy mage from photo" width="800" height="800">
           <h5>Fantasy Mage</h5>
           <small>Magic · Ethereal · Painterly</small>
 
@@ -479,7 +481,7 @@ For related styles and advanced recipes, see our manga prompt examples, and the 
       <!-- CARD 7 -->
       <div class="col-md-6 col-lg-4">
         <div class="card p-3 h-100">
-          <img src="images/anime-avatars/school-uniform-anime.webp" loading="lazy" class="img-fluid" alt="anime ai avatar - school uniform portrait from photo">
+          <img src="images/anime-avatars/school-uniform-anime.webp" loading="lazy" class="img-fluid" alt="anime ai avatar - school uniform portrait from photo" width="800" height="800">
           <h5>School Uniform</h5>
           <small>Slice of Life · Soft · Cute</small>
 
@@ -508,7 +510,7 @@ For related styles and advanced recipes, see our manga prompt examples, and the 
       <!-- CARD 8 -->
       <div class="col-md-6 col-lg-4">
         <div class="card p-3 h-100">
-          <img src="images/anime-avatars/mecha-pilot-anime.webp" loading="lazy" class="img-fluid" alt="anime ai portrait - mecha pilot style from photo">
+          <img src="images/anime-avatars/mecha-pilot-anime.webp" loading="lazy" class="img-fluid" alt="anime ai portrait - mecha pilot style from photo" width="800" height="800">
           <h5>Mecha Pilot</h5>
           <small>Industrial · Bold · Dynamic</small>
 
@@ -537,7 +539,7 @@ For related styles and advanced recipes, see our manga prompt examples, and the 
       <!-- CARD 9 -->
       <div class="col-md-6 col-lg-4">
         <div class="card p-3 h-100">
-          <img src="images/anime-avatars/romantic-soft-anime.webp" loading="lazy" class="img-fluid" alt="anime ai portrait - romantic soft light from photo">
+          <img src="images/anime-avatars/romantic-soft-anime.webp" loading="lazy" class="img-fluid" alt="anime ai portrait - romantic soft light from photo" width="800" height="800">
           <h5>Romantic Soft Light</h5>
           <small>Romance · Soft · Dreamy</small>
 
@@ -566,7 +568,7 @@ For related styles and advanced recipes, see our manga prompt examples, and the 
       <!-- CARD 10 -->
       <div class="col-md-6 col-lg-4">
         <div class="card p-3 h-100">
-          <img src="images/anime-avatars/heroic-anime-poster.webp" loading="lazy" class="img-fluid" alt="anime ai poster - heroic portrait from photo">
+          <img src="images/anime-avatars/heroic-anime-poster.webp" loading="lazy" class="img-fluid" alt="anime ai poster - heroic portrait from photo" width="1200" height="800">
           <h5>Heroic Poster</h5>
           <small>Epic · Bold · Poster</small>
 
@@ -597,6 +599,7 @@ For related styles and advanced recipes, see our manga prompt examples, and the 
 </section>
 
 <!-- ===== FOOTER ===== -->
+</main>
 <footer>
   <div class="container site-footer">
     <div class="footer-inner">
@@ -631,10 +634,11 @@ For related styles and advanced recipes, see our manga prompt examples, and the 
 
       <div class="newsletter">
         <h6>Get updates</h6>
-      <form action="mailto:promptimagelab@gmail.com" method="post" enctype="text/plain">
+      <form action="/contact.html" method="get" aria-label="newsletter signup form">
   <input type="email" name="email" placeholder="Your email" required aria-label="newsletter email">
   <button type="submit" aria-label="Subscribe to newsletter">Subscribe</button>
-</form>        <div id="nlStatus" role="status" aria-live="polite" style="margin-top:8px;display:none;font-weight:700;color:var(--accent)"></div>
+</form>
+        <div id="nlStatus" role="status" aria-live="polite" style="margin-top:8px;display:none;font-weight:700;color:var(--accent)"></div>
         <div style="margin-top:8px;font-size:.85rem;opacity:.75">Contact us for any promotional opportunities</div>
       </div>
     </div>

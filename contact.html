@@ -4,15 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
- <!-- Google tag (gtag.js) -->
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-MGTDGLQPSH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-MGTDGLQPSH');
-</script>
+<script async src="/assets/js/gtag.js"></script>
 
 
 <meta name="author" content="PromptImageLab">
@@ -70,10 +64,15 @@ body{
 h1{margin-bottom:16px}
 p{color:#9aa8bb;margin-bottom:18px}
 a{color:#38bdf8;text-decoration:none;font-weight:600}
+
+/* Skip link accessibility */
+.skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+.skip-link:focus{position:fixed;left:8px;top:8px;width:auto;height:auto;padding:8px;border-radius:6px;background:#ffffff;color:#000000;z-index:9999}
 </style>
 </head>
 
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <nav>
   <div class="container nav-inner">
     <a href="/" class="logo" aria-label="PromptImageLab Home">
@@ -82,20 +81,20 @@ a{color:#38bdf8;text-decoration:none;font-weight:600}
     </a>
   </div>
 </nav>
+<main id="main" role="main">
 <div class="container">
 <h1>Contact Us</h1>
 
 <p>If you have questions, feedback, or collaboration inquiries, feel free to reach out.</p>
 
-<p>Email us at:</p>
+<p>Email:</p>
 
 <p>
-<a href="mailto:promptimagelab@gmail.com">
 promptimagelab@gmail.com
-</a>
 </p>
 
 <p>We usually respond within <strong>24–48 hours</strong>.</p>
 </div>
+</main>
 </body>
 </html>

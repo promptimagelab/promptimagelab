@@ -4,35 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
- <!-- Google tag (gtag.js) -->
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-MGTDGLQPSH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-MGTDGLQPSH');
-</script>
+<script async src="/assets/js/gtag.js"></script>
 
 
 <meta name="author" content="PromptImageLab">
 
-<!-- Consolidated JSON-LD: single WebSite schema with publisher info -->
+<!-- JSON-LD: single WebSite schema -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "PromptImageLab",
   "url": "https://promptimagelab.com",
-  "description": "Reusable, predictable AI image prompt frameworks for avatars, anime, and portrait generation.",
-  "publisher": {
-    "@type": "Organization",
-    "name": "PromptImageLab",
-    <body>
-
-    <nav>
-      <div class="container nav-inner">
-    <a href="/" class="logo" style="display:flex;align-items:center;gap:10px;">
+  "description": "Reusable, predictable AI image prompt frameworks for avatars, anime, and portrait generation."
 }
 </script>
 
@@ -41,17 +27,11 @@
 <meta name="description" content="PromptImageLab provides proven AI image prompts for profile pictures, anime avatars, Instagram DP, WhatsApp DP, and professional photo-based AI image generation.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://promptimagelab.com/">
-
-
-        <ul class="nav-links" role="navigation" aria-label="Main navigation">
-          <li><a href="#prompts">Prompts</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#faq">FAQ</a></li>
-        </ul>
+<meta property="og:url" content="https://promptimagelab.com/">
 <meta property="og:title" content="AI Image Prompts for Profile Pictures, Anime & Avatars">
 <meta property="og:description" content="Explore AI image prompts for profile pictures, anime avatars, Instagram DP, WhatsApp DP, and photo-based AI image generation.">
 <meta property="og:type" content="website">
-    <header id="main" class="hero">
+    
 <meta property="og:image" content="https://promptimagelab.com/images/logo.png">
 <meta property="og:image:alt" content="PromptImageLab logo">
 
@@ -66,6 +46,10 @@
 
 
 <style>
+  /* Skip link accessibility */
+  .skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+  .skip-link:focus{position:fixed;left:8px;top:8px;width:auto;height:auto;padding:8px;border-radius:6px;background:#ffffff;color:#000000;z-index:9999}
+
   .prompt-link{
   display:block;
   color:inherit;
@@ -360,7 +344,7 @@ footer{
 
 <body>
 
-<a class="skip-link" href="#main" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">Skip to content</a>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <nav>
   <div class="container nav-inner">
@@ -382,6 +366,7 @@ footer{
     </div>
   </div>
 </nav>
+<main id="main" role="main">
 
 <header class="hero">
   <div class="container hero-grid">
@@ -538,6 +523,8 @@ Identity preserved from photo
   </div>
 </section>
 
+</main>
+
 <!-- ===== FOOTER ===== -->
 <footer>
   <div class="container site-footer">
@@ -573,7 +560,7 @@ Identity preserved from photo
 
       <div class="newsletter">
         <h6>Get updates</h6>
-<form action="mailto:promptimagelab@gmail.com" method="post" enctype="text/plain">
+<form action="/contact.html" method="get" aria-label="newsletter signup form">
   <input type="email" name="email" placeholder="Your email" required aria-label="newsletter email">
   <button type="submit" aria-label="Subscribe to newsletter">Subscribe</button>
 </form>

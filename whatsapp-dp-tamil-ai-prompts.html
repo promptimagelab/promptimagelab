@@ -1,19 +1,14 @@
 <!DOCTYPE html>
 <html lang="ta">
-<head>
-<meta charset="UTF-8">
-<meta http-equiv="content-language" content="ta">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+ </head>
 
- <!-- Google tag (gtag.js) -->
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top glass-nav">
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-MGTDGLQPSH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-MGTDGLQPSH');
-</script>
+<script async src="/assets/js/gtag.js"></script>
 
 
 <meta name="author" content="PromptImageLab">
@@ -61,6 +56,12 @@
   align-items:center;
   gap:10px;
 }
+</style>
+
+<style>
+/* Skip link accessibility */
+.skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+.skip-link:focus{position:fixed;left:8px;top:8px;width:auto;height:auto;padding:8px;border-radius:6px;background:#ffffff;color:#000000;z-index:9999}
 </style>
 
 <!-- Open Graph -->
@@ -195,7 +196,8 @@ footer{
       <span style="margin-left:10px;">PromptImageLab</span>
     </a>
   </div>
-</nav>
+ </nav>
+ <main id="main" role="main">
 
 <section class="hero">
   <div class="container">
@@ -350,7 +352,9 @@ footer{
 
     </div>
   </div>
-</section>
+ </section>
+
+</main>
 
 <footer>
   © 2026 PromptImageLab · WhatsApp DP Tamil

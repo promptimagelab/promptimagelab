@@ -5,15 +5,9 @@
 <meta http-equiv="content-language" content="en">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
- <!-- Google tag (gtag.js) -->
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-MGTDGLQPSH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-MGTDGLQPSH');
-</script>
+<script async src="/assets/js/gtag.js"></script>
 
 
 <meta name="author" content="PromptImageLab">
@@ -61,6 +55,12 @@
   align-items:center;
   gap:10px;
 }
+</style>
+
+<style>
+/* Skip link accessibility */
+.skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+.skip-link:focus{position:fixed;left:8px;top:8px;width:auto;height:auto;padding:8px;border-radius:6px;background:#ffffff;color:#000000;z-index:9999}
 </style>
 
 <!-- Open Graph -->
@@ -187,15 +187,17 @@ footer{
 </head>
 
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <nav class="navbar navbar-dark fixed-top glass-nav">
   <div class="container">
     <a class="navbar-brand logo fw-bold" href="/" aria-label="PromptImageLab Home">
-      <img src="/images/logo.png" alt="PromptImageLab logo" width="38" height="38" style="border-radius:8px; display:block;">
+    <img src="/images/logo.png" alt="PromptImageLab logo" width="38" height="38" style="border-radius:8px; display:block;">
       <span style="margin-left:10px;">PromptImageLab</span>
     </a>
   </div>
 </nav>
+<main id="main" role="main">
 
 <section class="hero">
   <div class="container">
@@ -216,7 +218,7 @@ footer{
       <!-- 1 -->
       <div class="col-md-6 col-lg-4">
         <div class="card">
-          <img src="images/instagram-dp/instagram-dp-studio.webp" class="img-fluid" alt="instagram dp ai studio">
+           <img src="images/instagram-dp/instagram-dp-studio.webp" class="img-fluid" alt="instagram dp ai studio" width="800" height="800">
           <h5>Studio Instagram DP</h5>
           <small>Clean · Professional</small>
           <div class="prompt-box" id="p1">
@@ -231,7 +233,7 @@ footer{
       <!-- 2 -->
       <div class="col-md-6 col-lg-4">
         <div class="card">
-          <img src="images/instagram-dp/aesthetic-instagram-dp.webp" class="img-fluid" alt="aesthetic instagram dp ai">
+           <img src="images/instagram-dp/aesthetic-instagram-dp.webp" class="img-fluid" alt="aesthetic instagram dp ai" width="800" height="800">
           <h5>Aesthetic Instagram DP</h5>
           <small>Soft · Trendy</small>
           <div class="prompt-box" id="p2">
@@ -246,7 +248,7 @@ footer{
       <!-- 3 -->
       <div class="col-md-6 col-lg-4">
         <div class="card">
-          <img src="images/instagram-dp/candid-instagram-dp.webp" class="img-fluid" alt="candid instagram dp ai">
+           <img src="images/instagram-dp/candid-instagram-dp.webp" class="img-fluid" alt="candid instagram dp ai" width="800" height="800">
           <h5>Candid Look DP</h5>
           <small>Natural · Real</small>
           <div class="prompt-box" id="p3">
@@ -261,7 +263,7 @@ footer{
       <!-- 4 -->
       <div class="col-md-6 col-lg-4">
         <div class="card">
-          <img src="images/instagram-dp/cinematic-instagram-dp.webp" class="img-fluid" alt="cinematic instagram dp ai">
+           <img src="images/instagram-dp/cinematic-instagram-dp.webp" class="img-fluid" alt="cinematic instagram dp ai" width="1200" height="800">
           <h5>Cinematic DP</h5>
           <small>Moody · Dramatic</small>
           <div class="prompt-box" id="p4">
@@ -276,7 +278,7 @@ footer{
       <!-- 5 -->
       <div class="col-md-6 col-lg-4">
         <div class="card">
-          <img src="images/instagram-dp/black-white-instagram-dp.webp" class="img-fluid" alt="black and white instagram dp ai">
+           <img src="images/instagram-dp/black-white-instagram-dp.webp" class="img-fluid" alt="black and white instagram dp ai" width="800" height="800">
           <h5>Black & White DP</h5>
           <small>Classic · Bold</small>
           <div class="prompt-box" id="p5">
@@ -291,7 +293,7 @@ footer{
       <!-- 6 -->
       <div class="col-md-6 col-lg-4">
         <div class="card">
-          <img src="images/instagram-dp/cartoon-instagram-dp.webp" class="img-fluid" alt="cartoon instagram dp ai">
+           <img src="images/instagram-dp/cartoon-instagram-dp.webp" class="img-fluid" alt="cartoon instagram dp ai" width="800" height="800">
           <h5>Cartoon Instagram DP</h5>
           <small>Fun · Illustrated</small>
           <div class="prompt-box" id="p6">
@@ -306,7 +308,7 @@ footer{
       <!-- 7 -->
       <div class="col-md-6 col-lg-4">
         <div class="card">
-          <img src="images/instagram-dp/minimal-instagram-dp.webp" class="img-fluid" alt="minimal instagram dp ai">
+           <img src="images/instagram-dp/minimal-instagram-dp.webp" class="img-fluid" alt="minimal instagram dp ai" width="800" height="800">
           <h5>Minimal Clean DP</h5>
           <small>Simple · Modern</small>
           <div class="prompt-box" id="p7">
@@ -321,7 +323,7 @@ footer{
       <!-- 8 -->
       <div class="col-md-6 col-lg-4">
         <div class="card">
-          <img src="images/instagram-dp/anime-instagram-dp.webp" class="img-fluid" alt="anime instagram dp ai">
+           <img src="images/instagram-dp/anime-instagram-dp.webp" class="img-fluid" alt="anime instagram dp ai" width="800" height="800">
           <h5>Anime Style DP</h5>
           <small>Stylized · Creative</small>
           <div class="prompt-box" id="p8">
@@ -336,7 +338,7 @@ footer{
       <!-- 9 -->
       <div class="col-md-6 col-lg-4">
         <div class="card">
-          <img src="images/instagram-dp/soft-portrait-instagram-dp.webp" class="img-fluid" alt="soft portrait instagram dp ai">
+           <img src="images/instagram-dp/soft-portrait-instagram-dp.webp" class="img-fluid" alt="soft portrait instagram dp ai" width="800" height="800">
           <h5>Soft Portrait DP</h5>
           <small>Calm · Aesthetic</small>
           <div class="prompt-box" id="p9">
@@ -351,6 +353,8 @@ footer{
     </div>
   </div>
 </section>
+
+</main>
 
 <footer>
   © 2026 PromptImageLab · Instagram DP AI Prompts

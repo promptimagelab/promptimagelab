@@ -1,18 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+ </head>
 
- <!-- Google tag (gtag.js) -->
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<main id="main" role="main">
+<div class="container">
+
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-MGTDGLQPSH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-MGTDGLQPSH');
-</script>
+<script async src="/assets/js/gtag.js"></script>
 
 
 <meta name="author" content="PromptImageLab">
@@ -71,23 +68,27 @@ h1,h2{margin-bottom:14px}
 p{color:#9aa8bb;margin-bottom:18px}
 a{color:#38bdf8;text-decoration:none}
 </style>
-</head>
+<style>
+.logo{ 
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+body{
+  font-family:Inter,system-ui;
+  background:#020617;
+  color:#e6eef8;
+  line-height:1.8;
+  padding:80px 24px;
+}
+.container{max-width:900px;margin:auto}
+h1{margin-bottom:16px}
+p{color:#9aa8bb;margin-bottom:18px}
 
-<body>
-<nav>
-  <div class="container nav-inner">
-    <a href="/" class="logo" aria-label="PromptImageLab Home">
-      <img src="/images/logo.png" alt="PromptImageLab logo" width="38" height="38" style="border-radius:8px; display:block;">
-      <span style="margin-left:10px;font-weight:800;">PromptImageLab</span>
-    </a>
-  </div>
-</nav>
-<div class="container">
-<h1>Privacy Policy</h1>
-
-<p>At <strong>PromptImageLab</strong>, your privacy is important to us. This Privacy Policy explains how information is collected and used when you visit our website.</p>
-
-<h2>Information We Collect</h2>
+/* Skip link accessibility */
+.skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+.skip-link:focus{position:fixed;left:8px;top:8px;width:auto;height:auto;padding:8px;border-radius:6px;background:#ffffff;color:#000000;z-index:9999}
+</style>
 <p>We do not collect personal information unless you voluntarily provide it, such as by contacting us via email.</p>
 
 <p>Non-personal data may be collected automatically, including browser type, device information, and pages visited. This data is used for analytics and improving website performance.</p>
@@ -108,10 +109,11 @@ a{color:#38bdf8;text-decoration:none}
 <p>By using our website, you consent to this Privacy Policy.</p>
 
 <h2>Contact</h2>
-<p>If you have any questions, contact us at  
-<a href="mailto:hello@promptimagelab.com">hello@promptimagelab.com</a></p>
+<p>If you have any questions, contact us at
+hello@promptimagelab.com</p>
 
 <p><em>Last updated: 2026</em></p>
 </div>
+</main>
 </body>
 </html>
