@@ -45,6 +45,12 @@ def ensure_linked_theme(text: str) -> str:
         link = '<link rel="stylesheet" href="/assets/css/theme.css">\n'
         if m:
             text = text[:m.start()] + link + text[m.start():]
+    # ensure image handler script is linked
+    if 'assets/js/image-handler.js' not in text:
+        m = re.search(r'</head>', text, flags=re.IGNORECASE)
+        script = '<script src="/assets/js/image-handler.js" defer></script>\n'
+        if m:
+            text = text[:m.start()] + script + text[m.start():]
     return text
 
 def ensure_basic_meta(text: str, filename: str) -> str:
