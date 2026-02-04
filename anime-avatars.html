@@ -160,6 +160,9 @@
   <meta property="og:url" content="https://promptimagelab.com/anime-avatars.html">
   <meta property="og:image" content="https://promptimagelab.com/images/anime-avatars/anime-girl-studio-portrait.webp">
 
+  <!-- Preload Critical LCP Image -->
+  <link rel="preload" as="image" href="/images/anime-avatars/anime-girl-studio-portrait.webp">
+
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Anime AI Image Prompts - Turn Your Photo Into Anime, Manga, Cartoon Portraits">
@@ -561,8 +564,8 @@
           <!-- CARD 1 -->
           <div class="col-md-6 col-lg-4">
             <div class="card p-3 h-100">
-              <img src="images/anime-avatars/anime-girl-studio-portrait.webp" loading="lazy" class="img-fluid"
-                alt="anime ai avatar - studio portrait from photo" width="800" height="800">
+              <img src="images/anime-avatars/anime-girl-studio-portrait.webp" class="img-fluid"
+                alt="anime ai avatar - studio portrait from photo" width="800" height="800" fetchpriority="high">
               <h5 style="color:var(--text-strong);">Anime Girl Portrait</h5>
               <small>Soft · Cute · Studio Style</small>
 
