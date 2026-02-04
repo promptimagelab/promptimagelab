@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset
       xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+      xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 <!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
 
 
@@ -11,6 +9,10 @@
   <loc>https://promptimagelab.com/</loc>
   <lastmod>2026-02-04T16:42:29+00:00</lastmod>
   <priority>1.00</priority>
+  <image:image>
+    <image:loc>https://promptimagelab.com/images/logo.png</image:loc>
+    <image:title>PromptImageLab Logo</image:title>
+  </image:image>
 </url>
 <url>
   <loc>https://promptimagelab.com/about.html</loc>
@@ -31,11 +33,83 @@
   <loc>https://promptimagelab.com/ai-profile-picture-dp-prompts.html</loc>
   <lastmod>2026-02-04T16:42:29+00:00</lastmod>
   <priority>0.80</priority>
+  <image:image>
+    <image:loc>https://promptimagelab.com/images/profile-pictures/ai-profile-studio.webp</image:loc>
+    <image:title>Professional Studio AI Profile Picture</image:title>
+  </image:image>
+  <image:image>
+    <image:loc>https://promptimagelab.com/images/profile-pictures/ai-instagram-dp.webp</image:loc>
+    <image:title>Stylish Instagram DP AI</image:title>
+  </image:image>
+  <image:image>
+    <image:loc>https://promptimagelab.com/images/profile-pictures/ai-whatsapp-dp.webp</image:loc>
+    <image:title>Friendly WhatsApp DP AI</image:title>
+  </image:image>
+  <image:image>
+    <image:loc>https://promptimagelab.com/images/profile-pictures/ai-cartoon-profile.webp</image:loc>
+    <image:title>Cartoon Style Profile Picture AI</image:title>
+  </image:image>
+  <image:image>
+    <image:loc>https://promptimagelab.com/images/profile-pictures/ai-anime-dp.webp</image:loc>
+    <image:title>Anime Style Profile Picture AI</image:title>
+  </image:image>
+  <image:image>
+    <image:loc>https://promptimagelab.com/images/profile-pictures/ai-cinematic-profile.webp</image:loc>
+    <image:title>Cinematic Portrait AI Profile</image:title>
+  </image:image>
+  <image:image>
+    <image:loc>https://promptimagelab.com/images/profile-pictures/ai-minimal-dp.webp</image:loc>
+    <image:title>Minimalist Clean AI Profile Picture</image:title>
+  </image:image>
+  <image:image>
+    <image:loc>https://promptimagelab.com/images/profile-pictures/ai-artistic-profile.webp</image:loc>
+    <image:title>Artistic Creative AI Profile Picture</image:title>
+  </image:image>
+  <image:image>
+    <image:loc>https://promptimagelab.com/images/profile-pictures/ai-soft-portrait.webp</image:loc>
+    <image:title>Soft Portrait AI Profile</image:title>
+  </image:image>
 </url>
 <url>
   <loc>https://promptimagelab.com/instagram-dp-ai-prompts.html</loc>
   <lastmod>2026-02-04T16:42:29+00:00</lastmod>
   <priority>0.80</priority>
+  <image:image>
+    <image:loc>https://promptimagelab.com/images/instagram-dp/instagram-dp-studio.webp</image:loc>
+    <image:title>Studio Quality Instagram DP AI</image:title>
+  </image:image>
+  <image:image>
+    <image:loc>https://promptimagelab.com/images/instagram-dp/aesthetic-instagram-dp.webp</image:loc>
+    <image:title>Aesthetic Soft Instagram DP AI</image:title>
+  </image:image>
+  <image:image>
+    <image:loc>https://promptimagelab.com/images/instagram-dp/candid-instagram-dp.webp</image:loc>
+    <image:title>Candid Natural Instagram DP AI</image:title>
+  </image:image>
+  <image:image>
+    <image:loc>https://promptimagelab.com/images/instagram-dp/cinematic-instagram-dp.webp</image:loc>
+    <image:title>Cinematic Dramatic Instagram DP AI</image:title>
+  </image:image>
+  <image:image>
+    <image:loc>https://promptimagelab.com/images/instagram-dp/black-white-instagram-dp.webp</image:loc>
+    <image:title>Black and White Classy Instagram DP AI</image:title>
+  </image:image>
+  <image:image>
+    <image:loc>https://promptimagelab.com/images/instagram-dp/cartoon-instagram-dp.webp</image:loc>
+    <image:title>Cartoon Style Illustrated Instagram DP AI</image:title>
+  </image:image>
+  <image:image>
+    <image:loc>https://promptimagelab.com/images/instagram-dp/minimal-instagram-dp.webp</image:loc>
+    <image:title>Minimalist Modern Instagram DP AI</image:title>
+  </image:image>
+  <image:image>
+    <image:loc>https://promptimagelab.com/images/instagram-dp/anime-instagram-dp.webp</image:loc>
+    <image:title>Anime Style Creative Instagram DP AI</image:title>
+  </image:image>
+  <image:image>
+    <image:loc>https://promptimagelab.com/images/instagram-dp/soft-portrait-instagram-dp.webp</image:loc>
+    <image:title>Soft Portrait Aesthetic Instagram DP AI</image:title>
+  </image:image>
 </url>
 <url>
   <loc>https://promptimagelab.com/instagram-dp-for-girls-ai-prompts.html</loc>
@@ -76,6 +150,42 @@
   <loc>https://promptimagelab.com/whatsapp-dp-ai-prompts.html</loc>
   <lastmod>2026-02-04T16:42:29+00:00</lastmod>
   <priority>0.80</priority>
+  <image:image>
+    <image:loc>https://promptimagelab.com/images/whatsapp-dp/whatsapp-dp-clean.webp</image:loc>
+    <image:title>Clean Clear WhatsApp DP AI</image:title>
+  </image:image>
+  <image:image>
+    <image:loc>https://promptimagelab.com/images/whatsapp-dp/whatsapp-dp-soft.webp</image:loc>
+    <image:title>Soft Warm WhatsApp DP AI</image:title>
+  </image:image>
+  <image:image>
+    <image:loc>https://promptimagelab.com/images/whatsapp-dp/whatsapp-dp-candid.webp</image:loc>
+    <image:title>Candid Natural WhatsApp DP AI</image:title>
+  </image:image>
+  <image:image>
+    <image:loc>https://promptimagelab.com/images/whatsapp-dp/whatsapp-dp-black-white.webp</image:loc>
+    <image:title>Black and White Classy WhatsApp DP AI</image:title>
+  </image:image>
+  <image:image>
+    <image:loc>https://promptimagelab.com/images/whatsapp-dp/whatsapp-dp-cartoon.webp</image:loc>
+    <image:title>Cartoon Style WhatsApp DP AI</image:title>
+  </image:image>
+  <image:image>
+    <image:loc>https://promptimagelab.com/images/whatsapp-dp/whatsapp-dp-professional.webp</image:loc>
+    <image:title>Professional Confident WhatsApp DP AI</image:title>
+  </image:image>
+  <image:image>
+    <image:loc>https://promptimagelab.com/images/whatsapp-dp/whatsapp-dp-minimal.webp</image:loc>
+    <image:title>Minimalist Modern WhatsApp DP AI</image:title>
+  </image:image>
+  <image:image>
+    <image:loc>https://promptimagelab.com/images/whatsapp-dp/whatsapp-dp-anime.webp</image:loc>
+    <image:title>Anime Style WhatsApp DP AI</image:title>
+  </image:image>
+  <image:image>
+    <image:loc>https://promptimagelab.com/images/whatsapp-dp/whatsapp-dp-soft-light.webp</image:loc>
+    <image:title>Soft Light Pleasant WhatsApp DP AI</image:title>
+  </image:image>
 </url>
 <url>
   <loc>https://promptimagelab.com/whatsapp-dp-for-boys-ai-prompts.html</loc>

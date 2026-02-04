@@ -58,6 +58,9 @@
     content="Turn your photos into professional and creative profile pictures using AI profile picture prompts.">
   <meta property="og:image" content="https://promptimagelab.com/images/profile-pictures/ai-profile-studio.webp">
 
+  <!-- Preload Critical LCP Image -->
+  <link rel="preload" as="image" href="/images/profile-pictures/ai-profile-studio.webp">
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <style>
@@ -243,7 +246,18 @@
       "url": "https://promptimagelab.com/ai-profile-picture-dp-prompts.html",
       "name": "AI Profile Picture Prompts – Create Stunning DP Photos with AI",
       "description": "Copy proven AI profile picture prompts to convert your photo into stunning profile pictures for Instagram, WhatsApp, LinkedIn, and social media.",
-      "inLanguage": "en-US"
+      "inLanguage": "en-US",
+      "image": [
+        "https://promptimagelab.com/images/profile-pictures/ai-profile-studio.webp",
+        "https://promptimagelab.com/images/profile-pictures/ai-instagram-dp.webp",
+        "https://promptimagelab.com/images/profile-pictures/ai-whatsapp-dp.webp",
+        "https://promptimagelab.com/images/profile-pictures/ai-cartoon-profile.webp",
+        "https://promptimagelab.com/images/profile-pictures/ai-anime-dp.webp",
+        "https://promptimagelab.com/images/profile-pictures/ai-cinematic-profile.webp",
+        "https://promptimagelab.com/images/profile-pictures/ai-minimal-dp.webp",
+        "https://promptimagelab.com/images/profile-pictures/ai-artistic-profile.webp",
+        "https://promptimagelab.com/images/profile-pictures/ai-soft-portrait.webp"
+      ]
     }
   ]
 }
@@ -295,7 +309,8 @@
           <div class="col-md-6 col-lg-4">
             <div class="card">
               <img src="images/profile-pictures/ai-profile-studio.webp" class="img-fluid"
-                alt="professional ai profile picture" width="800" height="800">
+                alt="Professional studio AI profile picture for LinkedIn and business" width="800" height="800"
+                fetchpriority="high">
               <h5>Professional Studio DP</h5>
               <small>LinkedIn · Clean · Sharp</small>
               <div class="prompt-box" id="p1">
@@ -310,8 +325,9 @@
           <!-- 2 -->
           <div class="col-md-6 col-lg-4">
             <div class="card">
-              <img src="images/profile-pictures/ai-instagram-dp.webp" class="img-fluid" alt="instagram dp ai"
-                width="800" height="800">
+              <img src="images/profile-pictures/ai-instagram-dp.webp" class="img-fluid"
+                alt="Stylish Instagram DP generated with AI, aesthetic lighting" width="800" height="800"
+                loading="lazy">
               <h5>Instagram DP</h5>
               <small>Trendy · Stylish</small>
               <div class="prompt-box" id="p2">
@@ -326,8 +342,8 @@
           <!-- 3 -->
           <div class="col-md-6 col-lg-4">
             <div class="card">
-              <img src="images/profile-pictures/ai-whatsapp-dp.webp" class="img-fluid" alt="whatsapp dp ai" width="800"
-                height="800">
+              <img src="images/profile-pictures/ai-whatsapp-dp.webp" class="img-fluid"
+                alt="Friendly WhatsApp DP generated with AI, warm tones" width="800" height="800" loading="lazy">
               <h5>WhatsApp DP</h5>
               <small>Natural · Friendly</small>
               <div class="prompt-box" id="p3">
