@@ -10,9 +10,10 @@
 }
 
 body {
+  margin: 0;
   background: var(--bg);
   color: var(--text);
-  padding-top: 80px;
+  padding-top: 70px;
   font-family: system-ui, -apple-system, Segoe UI, Roboto;
   line-height: 1.65;
 }
@@ -23,10 +24,22 @@ body {
   top: 0;
   left: 0;
   right: 0;
+  width: 100%;
+  height: 70px;
   z-index: 1000;
   backdrop-filter: blur(16px);
   background: rgba(15, 23, 42, .75);
   border-bottom: 1px solid rgba(255, 255, 255, .08);
+  padding: 0;
+  margin: 0;
+}
+
+.nav-inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
 }
 
 .logo {
@@ -40,7 +53,30 @@ body {
 .logo-img {
   width: 32px;
   height: 32px;
+  max-width: 32px;
+  max-height: 32px;
   object-fit: contain;
+  display: block;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 28px;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+.nav-links a {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: var(--text-strong);
 }
 
 .glass-nav {
