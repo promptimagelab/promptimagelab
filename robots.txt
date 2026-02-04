@@ -1,4 +1,11 @@
 User-agent: *
 Allow: /
+Disallow: /assets/
+Disallow: /*.py$
+Disallow: /about.original.html
 
+# Crawl-delay for polite crawling
+Crawl-delay: 1
+
+# Sitemap location
 Sitemap: https://promptimagelab.com/sitemap.xml
