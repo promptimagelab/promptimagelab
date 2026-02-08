@@ -4,120 +4,166 @@
   <!-- HOME -->
   <url>
     <loc>https://promptimagelab.com/</loc>
+    <lastmod>2026-02-08</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
-  <!-- TOP MONEY PAGES (CRAWL FIRST) -->
+  <!-- TOP MONEY PAGES -->
   <url>
     <loc>https://promptimagelab.com/ai-profile-picture-dp-prompts.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://promptimagelab.com/instagram-dp-ai-prompts.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://promptimagelab.com/anime-avatars.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://promptimagelab.com/whatsapp-dp-ai-prompts.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://promptimagelab.com/valentine-ai-image-prompts.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <!-- SUPPORTING CONTENT -->
   <url>
     <loc>https://promptimagelab.com/instagram-dp-for-girls-ai-prompts.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://promptimagelab.com/instagram-dp-for-boys-ai-prompts.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://promptimagelab.com/instagram-dp-black-white-ai-prompts.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://promptimagelab.com/instagram-dp-couple-ai-prompts.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://promptimagelab.com/whatsapp-dp-for-boys-ai-prompts.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://promptimagelab.com/whatsapp-dp-for-girls-ai-prompts.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://promptimagelab.com/whatsapp-dp-tamil-ai-prompts.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://promptimagelab.com/romantic-anime-prompts.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <!-- VALENTINE SEASONAL -->
   <url>
     <loc>https://promptimagelab.com/valentine-couple-photo-prompts.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://promptimagelab.com/valentine-instagram-caption-prompts.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://promptimagelab.com/valentine-love-letter-prompts.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://promptimagelab.com/valentine-whatsapp-messages.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://promptimagelab.com/valentine-dp-prompts.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://promptimagelab.com/valentine-gift-message-prompts.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- LOW PRIORITY (LEGAL / INFO) -->
   <url>
     <loc>https://promptimagelab.com/about.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>
 
   <url>
     <loc>https://promptimagelab.com/contact.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>
 
   <url>
     <loc>https://promptimagelab.com/privacy-policy.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>
 
