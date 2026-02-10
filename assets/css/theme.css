@@ -1,0 +1,152 @@
+/* Shared site theme for PromptImageLab */
+:root {
+  --bg: #020617;
+  --surface: #071028;
+  --surface-elevated: #0b1220;
+  --border: rgba(255, 255, 255, .08);
+
+  --text: #e6eef8;
+  --muted: #9aa8bb;
+
+  --primary: #38bdf8;
+  --secondary: #22c55e;
+
+  --on-accent: #000000;
+
+  --glass: rgba(255, 255, 255, .06);
+}
+
+html,
+body {
+  height: 100%
+}
+
+body {
+  font-family: Inter, system-ui, Segoe UI, Roboto, Helvetica, Arial !important;
+  background: linear-gradient(180deg, var(--surface), var(--bg)) !important;
+  color: var(--text) !important;
+  margin: 0 !important;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 24px
+}
+
+/* NAV */
+nav.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(7, 16, 40, .75);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border)
+}
+
+.site-nav .nav-inner {
+  height: 72px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.site-nav .logo {
+  font-weight: 800;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 12px
+}
+
+.site-nav .logo img {
+  height: 32px;
+  width: auto;
+  border-radius: 6px
+}
+
+.site-nav .nav-links {
+  list-style: none;
+  display: flex;
+  gap: 18px;
+  margin: 0;
+  padding: 0
+}
+
+.site-nav .nav-links a {
+  color: var(--muted)
+}
+
+.site-nav .nav-links a:hover {
+  color: var(--text)
+}
+
+/* FOOTER */
+footer.site-footer {
+  padding: 28px 0;
+  border-top: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted)
+}
+
+.site-footer .footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center
+}
+
+/* Accessibility skip link */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden
+}
+
+.skip-link:focus {
+  position: fixed;
+  left: 8px;
+  top: 8px;
+  width: auto;
+  height: auto;
+  padding: 8px;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #000000;
+  z-index: 9999
+}
+
+/* Utilities */
+a {
+  color: inherit;
+  text-decoration: none
+}
+
+.muted {
+  color: var(--muted)
+}
+
+.img-hidden {
+  display: none !important
+}
+
+/* Fix for text readability in Bootstrap cards */
+.card {
+  color: var(--text) !important;
+}
+
+.card h1,
+.card h2,
+.card h3,
+.card h4,
+.card h5,
+.card h6 {
+  color: var(--text) !important;
+}
+
+.prompt-box {
+  color: var(--text) !important;
+  background: rgba(2, 6, 23, 0.95);
+}
