@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://promptimagelab.com/sitemap.xml
