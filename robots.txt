@@ -1,4 +1,33 @@
+# robots.txt - PromptImageLab
+# Last updated: 2026-02-10
+
 User-agent: *
 Allow: /
 
+# Block crawling of asset files (not content)
+Disallow: /assets/js/
+Disallow: /.update-progress.ps1
+
+# Allow CSS for rendering
+Allow: /assets/css/
+
+# Allow all image files for Google Images indexing
+Allow: /images/
+
+# Sitemap location
 Sitemap: https://promptimagelab.com/sitemap.xml
+
+# Crawl delay (optional, be kind to server)
+Crawl-delay: 1
+
+# Specific bot rules for faster indexing
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Googlebot-Image
+Allow: /images/
