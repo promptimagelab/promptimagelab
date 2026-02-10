@@ -13,6 +13,37 @@
     <meta name="robots" content="index, follow, max-image-preview:large">
     <link rel="canonical" href="https://promptimagelab.com/valentine-gift-message-prompts.html">
 
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MGTDGLQPSH"></script>
+    <script async src="/assets/js/gtag.js"></script>
+
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://promptimagelab.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Categories",
+          "item": "https://promptimagelab.com/#categories"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Valentine Gift Message Prompts",
+          "item": "https://promptimagelab.com/valentine-gift-message-prompts.html"
+        }
+      ]
+    }
+    </script>
 
     <!-- Schema.org Image Objects -->
     <script type="application/ld+json">
@@ -41,6 +72,7 @@
     <meta property="og:image" content="https://promptimagelab.com/images/valentine/gift-flowers.webp">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/theme.css">
 
     <style>
         :root {
@@ -162,14 +194,134 @@
             color: var(--text-soft);
             text-align: center;
         }
+
+        /* BREADCRUMB */
+        .breadcrumb-nav {
+            padding: 12px 0;
+            background: rgba(15, 23, 42, .3);
+            border-bottom: 1px solid rgba(255, 255, 255, .05);
+        }
+
+        .breadcrumb {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            font-size: .9rem;
+        }
+
+        .breadcrumb li {
+            display: flex;
+            align-items: center;
+        }
+
+        .breadcrumb li+li:before {
+            content: "/";
+            padding: 0 8px;
+            color: rgba(255, 255, 255, .4);
+        }
+
+        .breadcrumb a {
+            color: var(--text-soft);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--accent);
+        }
+
+        .breadcrumb li[aria-current] {
+            color: var(--text);
+        }
+
+        /* RELATED SECTION */
+        .related-section {
+            margin-top: 60px;
+            padding: 40px;
+            background: linear-gradient(180deg, rgba(236, 72, 153, 0.05), transparent);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .related-section h2 {
+            font-size: 1.75rem;
+            margin-bottom: 20px;
+        }
+
+        .related-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .related-link {
+            display: block;
+            padding: 16px 20px;
+            background: rgba(15, 23, 42, .6);
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 12px;
+            color: var(--text);
+            text-decoration: none;
+            transition: all .3s;
+        }
+
+        .related-link:hover {
+            background: rgba(236, 72, 153, .15);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .related-link strong {
+            display: block;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+
+        .back-to-categories {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            color: #000;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            transition: transform .3s;
+        }
+
+        .back-to-categories:hover {
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 
 <body>
 
-    <nav class="navbar navbar-dark fixed-top glass-nav">
+    <nav class="site-nav" role="navigation" aria-label="Main navigation">
+        <div class="nav-inner container">
+            <a class="logo" href="/">
+                <img src="/images/logo.png" alt="PromptImageLab Logo" width="40" height="40">
+                PromptImageLab
+            </a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/#categories">Categories</a></li>
+                <li><a href="/about.html">About</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+                <li><a href="/privacy-policy.html">Privacy</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <nav aria-label="Breadcrumb" class="breadcrumb-nav">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="/">PromptImageLab</a>
+            <ol class="breadcrumb">
+                <li><a href="/">Home</a></li>
+                <li><a href="/#categories">Categories</a></li>
+                <li aria-current="page">Valentine Gift Message Prompts</li>
+            </ol>
         </div>
     </nav>
 
@@ -347,11 +499,79 @@
                 </div>
 
             </div>
+
+            <!-- Related Valentine Pages -->
+            <div class="related-section">
+                <h2>More Valentine AI Prompts</h2>
+                <p>Create the perfect Valentine's Day experience with these creative AI prompts:</p>
+                <div class="related-links">
+                    <a href="/valentine-ai-image-prompts.html" class="related-link">
+                        <strong>Valentine AI Images</strong>
+                        <span>Romantic visual content</span>
+                    </a>
+                    <a href="/valentine-dp-prompts.html" class="related-link">
+                        <strong>Valentine DP Prompts</strong>
+                        <span>Profile picture ideas</span>
+                    </a>
+                    <a href="/valentine-love-letter-prompts.html" class="related-link">
+                        <strong>Love Letters</strong>
+                        <span>Heartfelt messages</span>
+                    </a>
+                    <a href="/valentine-couple-photo-prompts.html" class="related-link">
+                        <strong>Couple Photos</strong>
+                        <span>Romantic couple images</span>
+                    </a>
+                    <a href="/valentine-instagram-caption-prompts.html" class="related-link">
+                        <strong>Instagram Captions</strong>
+                        <span>Perfect social media captions</span>
+                    </a>
+                    <a href="/valentine-whatsapp-messages.html" class="related-link">
+                        <strong>WhatsApp Messages</strong>
+                        <span>Quick sweet messages</span>
+                    </a>
+                </div>
+                <a href="/#categories" class="back-to-categories">← Back to All Categories</a>
+            </div>
         </div>
     </section>
 
-    <footer>
-        © 2026 PromptImageLab · Gift Messages
+    <footer class="site-footer" role="contentinfo">
+        <div class="footer-inner container">
+            <div class="footer-brand">
+                <div class="brand">PromptImageLab</div>
+                <p class="footer-desc">
+                    Professional AI image prompt frameworks for profile pictures,
+                    anime avatars, and portrait generation.
+                </p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h6>Quick Links</h6>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/#categories">Categories</a></li>
+                        <li><a href="/about.html">About</a></li>
+                        <li><a href="/contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h6>Popular Categories</h6>
+                    <ul>
+                        <li><a href="/instagram-dp-ai-prompts.html">Instagram DP</a></li>
+                        <li><a href="/whatsapp-dp-ai-prompts.html">WhatsApp DP</a></li>
+                        <li><a href="/linkedin-profile-picture-prompts.html">LinkedIn</a></li>
+                        <li><a href="/anime-avatars.html">Anime Avatars</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                © 2026 PromptImageLab · Valentine Gift Messages ·
+                <a href="/privacy-policy.html">Privacy</a> ·
+                <a href="/sitemap.xml">Sitemap</a>
+            </div>
+        </div>
     </footer>
 
     <script>
