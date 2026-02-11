@@ -3,7 +3,7 @@
 
 <head>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6771008610152378"
-         crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta http-equiv="content-language" content="en">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -155,7 +155,7 @@
                             <h5>Job Application Headshot</h5>
                             <div class="prompt-box" id="p3">
                                 A professional job application headshot of a candidate dressed in formal business attire
-                                — a well-fitted charcoal suit jacket with a subtle pinstripe pattern and a crisp white
+                                ï¿½ a well-fitted charcoal suit jacket with a subtle pinstripe pattern and a crisp white
                                 collared shirt. The subject looks directly into the camera with a warm, approachable yet
                                 confident expression. The background is a clean, solid light grey with no distracting
                                 elements. Studio lighting with a softbox provides even, flattering illumination across
@@ -194,7 +194,7 @@
                                 alt="corporate resume profile picture ai" width="800" height="800" loading="lazy">
                             <h5>Corporate Resume Portrait</h5>
                             <div class="prompt-box" id="p5">
-                                A corporate-grade resume photograph featuring a professional in sharp business attire —
+                                A corporate-grade resume photograph featuring a professional in sharp business attire ï¿½
                                 a tailored dark suit with a silk tie and a neatly pressed white shirt. The subject
                                 displays a confident, self-assured expression with a slight natural smile that conveys
                                 competence and warmth. The background is a gradient from medium grey to darker grey,
@@ -246,7 +246,7 @@
 
     <footer class="site-footer">
         <div class="footer-inner container">
-            <div class="muted">© PromptImageLab — Resume Photo Prompts</div>
+            <div class="muted">ï¿½ PromptImageLab ï¿½ Resume Photo Prompts</div>
         </div>
     </footer>
 
@@ -255,6 +255,15 @@
             navigator.clipboard.writeText(document.getElementById(id).innerText);
             alert("Prompt copied!");
         }
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll("img").forEach(function (img) {
+                img.addEventListener("error", function () {
+                    this.style.display = "none";
+                });
+            });
+        });
     </script>
 
 </body>
