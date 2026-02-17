@@ -1,0 +1,39 @@
+# Netlify / Cloudflare Pages style redirects (path from -> to status)
+# Use these if you deploy to Cloudflare Pages or Netlify. They are explicit mappings
+# Homepage: ensure /index.html -> /
+/index.html / 301
+
+# Explicit clean -> .html redirects (generated from sitemap.xml)
+/about /about.html 301
+/ai-profile-picture-dp-prompts /ai-profile-picture-dp-prompts.html 301
+/anime-avatars /anime-avatars.html 301
+/ceo-style-portrait-prompts /ceo-style-portrait-prompts.html 301
+/corporate-portrait-prompts /corporate-portrait-prompts.html 301
+/contact /contact.html 301
+/instagram-dp-ai-prompts /instagram-dp-ai-prompts.html 301
+/instagram-dp-for-girls-ai-prompts /instagram-dp-for-girls-ai-prompts.html 301
+/instagram-dp-for-boys-ai-prompts /instagram-dp-for-boys-ai-prompts.html 301
+/instagram-dp-black-white-ai-prompts /instagram-dp-black-white-ai-prompts.html 301
+/instagram-dp-couple-ai-prompts /instagram-dp-couple-ai-prompts.html 301
+/linkedin-profile-picture-prompts /linkedin-profile-picture-prompts.html 301
+/linkedin-profile-men /linkedin-profile-men.html 301
+/linkedin-profile-women /linkedin-profile-women.html 301
+/professional-ai-headshot-prompts /professional-ai-headshot-prompts.html 301
+/resume-photo-prompts /resume-photo-prompts.html 301
+/realistic-ai-portrait-prompts /realistic-ai-portrait-prompts.html 301
+/studio-lighting-portrait-prompts /studio-lighting-portrait-prompts.html 301
+/whatsapp-dp-ai-prompts /whatsapp-dp-ai-prompts.html 301
+/whatsapp-dp-for-boys-ai-prompts /whatsapp-dp-for-boys-ai-prompts.html 301
+/whatsapp-dp-for-girls-ai-prompts /whatsapp-dp-for-girls-ai-prompts.html 301
+/whatsapp-dp-tamil-ai-prompts /whatsapp-dp-tamil-ai-prompts.html 301
+/romantic-anime-prompts /romantic-anime-prompts.html 301
+/valentine-ai-image-prompts /valentine-ai-image-prompts.html 301
+/valentine-couple-photo-prompts /valentine-couple-photo-prompts.html 301
+/valentine-instagram-caption-prompts /valentine-instagram-caption-prompts.html 301
+/valentine-love-letter-prompts /valentine-love-letter-prompts.html 301
+/valentine-whatsapp-messages /valentine-whatsapp-messages.html 301
+/valentine-dp-prompts /valentine-dp-prompts.html 301
+/valentine-gift-message-prompts /valentine-gift-message-prompts.html 301
+/privacy-policy /privacy-policy.html 301
+
+# End of _redirects
