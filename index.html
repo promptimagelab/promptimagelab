@@ -14,53 +14,7 @@
 
   <!-- JSON-LD: single WebSite schema -->
   <!-- JSON-LD: Organization, WebSite, WebPage (valid JSON-LD) -->
-  <script type="application/ld+json">
-[
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "PromptImageLab",
-    "url": "https://promptimagelab.com",
-    "logo": "https://promptimagelab.com/images/logo.png"
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "PromptImageLab",
-    "url": "https://promptimagelab.com",
-    "description": "Reusable, predictable AI image prompt frameworks for avatars, anime, and portrait generation.",
-    "publisher": {
-      "@type": "Organization",
-      "name": "PromptImageLab",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://promptimagelab.com/images/logo.png"
-      }
-    },
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://promptimagelab.com/?s={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "url": "https://promptimagelab.com/",
-    "name": "AI Image Prompts for Profile Pictures, Anime & Avatars | PromptImageLab",
-    "description": "PromptImageLab provides proven AI image prompts for profile pictures, anime avatars, Instagram DP, WhatsApp DP, and professional photo-based AI image generation.",
-    "inLanguage": "en-US",
-    "publisher": {
-      "@type": "Organization",
-      "name": "PromptImageLab",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://promptimagelab.com/images/logo.png"
-      }
-    }
-  }
-]
-</script>
+  <!-- consolidated JSON-LD will be inserted later in the head (single @graph) -->
 
   <title>AI Image Prompts for Profile Pictures, Anime & Avatars | PromptImageLab</title>
   <meta name="keywords"
@@ -591,15 +545,21 @@
   "@graph": [
     {
       "@type": "Organization",
+      "@id": "https://promptimagelab.com/#organization",
       "name": "PromptImageLab",
       "url": "https://promptimagelab.com",
-      "logo": "https://promptimagelab.com/images/logo.png"
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://promptimagelab.com/images/logo.png"
+      }
     },
     {
       "@type": "WebSite",
+      "@id": "https://promptimagelab.com/#website",
       "name": "PromptImageLab",
       "url": "https://promptimagelab.com",
       "description": "Reusable, predictable AI image prompt frameworks for avatars, anime, and portrait generation.",
+      "publisher": { "@id": "https://promptimagelab.com/#organization" },
       "potentialAction": {
         "@type": "SearchAction",
         "target": "https://promptimagelab.com/?s={search_term_string}",
@@ -608,10 +568,13 @@
     },
     {
       "@type": "WebPage",
+      "@id": "https://promptimagelab.com/#webpage",
       "url": "https://promptimagelab.com/",
       "name": "AI Image Prompts for Profile Pictures, Anime & Avatars | PromptImageLab",
       "description": "PromptImageLab provides proven AI image prompts for profile pictures, anime avatars, Instagram DP, WhatsApp DP, and professional photo-based AI image generation.",
-      "inLanguage": "en-US"
+      "inLanguage": "en-US",
+      "isPartOf": { "@id": "https://promptimagelab.com/#website" },
+      "primaryImageOfPage": { "@type": "ImageObject", "url": "https://promptimagelab.com/images/logo.png" }
     }
   ]
 }
@@ -623,17 +586,17 @@
 
 <body>
 
-  <a class="skip-link" href="/#main">Skip to content</a>
+  <a class="skip-link" href="index.html#main">Skip to content</a>
 
   <nav class="site-nav" role="navigation" aria-label="Main navigation">
     <div class="nav-inner container">
-      <a class="logo" href="/">
+      <a class="logo" href="index.html">
         <img src="/images/logo.png" alt="PromptImageLab Logo" width="40" height="40" fetchpriority="high">
         PromptImageLab
       </a>
       <ul class="nav-links">
-        <li><a href="/">Home</a></li>
-        <li><a href="/#categories">Categories</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#categories">Categories</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
         <li><a href="privacy-policy.html">Privacy</a></li>
@@ -650,8 +613,8 @@
           <p>Reusable, predictable prompt frameworks for avatars, anime, portraits, and stylized AI image generation.
           </p>
           <div class="hero-cta">
-            <a class="btn btn-primary" href="/#prompts">Explore Library</a>
-            <a class="btn btn-ghost" href="/#about">Learn More</a>
+            <a class="btn btn-primary" href="index.html#prompts">Explore Library</a>
+            <a class="btn btn-ghost" href="index.html#about">Learn More</a>
           </div>
         </div>
         <div class="mockup fade-up">
@@ -1273,32 +1236,7 @@ identity preserved, studio quality
         line-height: 1.55;
       }
     </style>
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "ItemList",
-  "name": "Popular AI Image Prompt Categories",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "url": "https://promptimagelab.com/ai-profile-picture-dp-prompts.html" },
-    { "@type": "ListItem", "position": 2, "url": "https://promptimagelab.com/instagram-dp-ai-prompts.html" },
-    { "@type": "ListItem", "position": 3, "url": "https://promptimagelab.com/instagram-dp-for-girls-ai-prompts.html" },
-    { "@type": "ListItem", "position": 4, "url": "https://promptimagelab.com/instagram-dp-for-boys-ai-prompts.html" },
-    { "@type": "ListItem", "position": 5, "url": "https://promptimagelab.com/whatsapp-dp-ai-prompts.html" },
-    { "@type": "ListItem", "position": 6, "url": "https://promptimagelab.com/anime-avatars.html" },
-    { "@type": "ListItem", "position": 7, "url": "https://promptimagelab.com/whatsapp-dp-for-boys-ai-prompts.html" },
-    { "@type": "ListItem", "position": 8, "url": "https://promptimagelab.com/whatsapp-dp-for-girls-ai-prompts.html" },
-    { "@type": "ListItem", "position": 9, "url": "https://promptimagelab.com/whatsapp-dp-tamil-ai-prompts.html" },
-    { "@type": "ListItem", "position": 10, "url": "https://promptimagelab.com/valentine-ai-image-prompts.html" },
-    { "@type": "ListItem", "position": 11, "url": "https://promptimagelab.com/valentine-couple-photo-prompts.html" },
-    { "@type": "ListItem", "position": 12, "url": "https://promptimagelab.com/romantic-anime-prompts.html" },
-    { "@type": "ListItem", "position": 13, "url": "https://promptimagelab.com/valentine-instagram-caption-prompts.html" },
-    { "@type": "ListItem", "position": 14, "url": "https://promptimagelab.com/valentine-love-letter-prompts.html" },
-    { "@type": "ListItem", "position": 15, "url": "https://promptimagelab.com/valentine-whatsapp-messages.html" },
-    { "@type": "ListItem", "position": 16, "url": "https://promptimagelab.com/valentine-dp-prompts.html" },
-    { "@type": "ListItem", "position": 17, "url": "https://promptimagelab.com/valentine-gift-message-prompts.html" }
-  ]
-}
-</script>
+    <!-- ItemList moved into consolidated @graph on homepage (kept minimal here) -->
 
     <section id="about">
       <div class="container split">
@@ -1385,9 +1323,9 @@ Identity preserved from photo
         <div>
           <h6 style="font-size: 0.9rem; margin-bottom: 14px; color: #cfe9ff; font-weight: 600;">Quick Links</h6>
           <ul style="list-style: none; padding: 0; margin: 0;">
-            <li style="margin-bottom: 10px;"><a href="/"
+            <li style="margin-bottom: 10px;"><a href="index.html"
               style="color: rgba(255, 255, 255, 0.78); font-size: 0.9rem;">Home</a></li>
-            <li style="margin-bottom: 10px;"><a href="/#categories"
+            <li style="margin-bottom: 10px;"><a href="index.html#categories"
               style="color: rgba(255, 255, 255, 0.78); font-size: 0.9rem;">Browse Prompts</a></li>
             <li style="margin-bottom: 10px;"><a href="about.html"
               style="color: rgba(255, 255, 255, 0.78); font-size: 0.9rem;">About Us</a></li>
@@ -1419,11 +1357,11 @@ Identity preserved from photo
         <div>
           <h6 style="font-size: 0.9rem; margin-bottom: 14px; color: #cfe9ff; font-weight: 600;">Resources</h6>
           <ul style="list-style: none; padding: 0; margin: 0;">
-            <li style="margin-bottom: 10px;"><a href="/#faq"
+            <li style="margin-bottom: 10px;"><a href="index.html#faq"
               style="color: rgba(255, 255, 255, 0.78); font-size: 0.9rem;">FAQ</a></li>
             <li style="margin-bottom: 10px;"><a href="sitemap.xml"
               style="color: rgba(255, 255, 255, 0.78); font-size: 0.9rem;">Sitemap</a></li>
-            <li style="margin-bottom: 10px;"><a href="/#about"
+            <li style="margin-bottom: 10px;"><a href="index.html#about"
               style="color: rgba(255, 255, 255, 0.78); font-size: 0.9rem;">How It Works</a></li>
           </ul>
         </div>
@@ -1442,63 +1380,7 @@ Identity preserved from photo
   </footer>
 
 
-  <!-- FAQ SCHEMA -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Does PromptImageLab generate images?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "No. PromptImageLab is a reference platform that provides AI image prompts and frameworks, not image generation tools. Use our prompts with tools like Midjourney, DALL-E, Stable Diffusion, or Google Gemini."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Can I use these prompts with my own photos?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes! All our prompts are specifically designed for photo-based AI image generation workflows. Upload your photo and apply our prompt frameworks for consistent, predictable results."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Which AI tools work with these prompts?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Our prompts are model-agnostic and work with most major AI image generation platforms including Midjourney, Stable Diffusion, DALL-E 3, Leonardo AI, and Google Gemini's Imagen."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Are the prompts free to use?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes, all prompts on PromptImageLab are free to browse and use for personal or commercial projects. We believe in making AI image generation accessible to everyone."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How do I use an AI image prompt?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Copy the prompt from our library, paste it into your preferred AI image generation tool, upload your reference photo (if required), and generate. Adjust parameters like style, lighting, or detail level as needed."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Can I modify the prompts?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Absolutely! Our prompts are templates. Feel free to customize them by changing style modifiers, lighting descriptions, or adding specific details to match your creative vision."
-        }
-      }
-    ]
-  }
-  </script>
+  <!-- FAQ schema moved into consolidated schema or kept minimal to avoid duplicates -->
 
 </body>
 

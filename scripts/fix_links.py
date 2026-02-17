@@ -29,6 +29,16 @@ for fp in html_files:
     # 4. Also handle plain anchor forms that start with /# (if any left)
     text = re.sub(r'href=(?P<q>["\"])\/#(?P<anchor>[^"\']*)(?P=q)', r'href=\g<q>index.html#\g<anchor>\g<q>', text)
 
+    # 5. Convert extensionless internal links (e.g. href="about" or href="/about#section")
+    #    into final .html targets using the set of HTML files present in the repository.
+    page_names = {p.stem for p in html_files if p.name != 'index.html'}
+    if page_names:
+        # For each known page basename, replace href="basename" or href="/basename" (with optional anchors)
+        for name in sorted(page_names, key=len, reverse=True):
+            pattern = re.compile(r'href=(?P<q>["\"])\/?' + re.escape(name) + r'(?P<rest>(?:[#?][^"\']*)?)(?P=q)')
+            replacement = r'href=\g<q>' + name + r'.html\g<rest>\g<q>'
+            text = pattern.sub(replacement, text)
+
     if text != orig:
         fp.write_text(text, encoding='utf-8')
         changed.append(fp.name)
