@@ -1,0 +1,681 @@
+{
+  "summary": {
+    "total_pages": 32,
+    "high_risk": 24,
+    "medium_risk": 5,
+    "low_risk": 3,
+    "approval_risk": "VERY HIGH"
+  },
+  "pages": [
+    {
+      "filename": "about.html",
+      "word_count": 305,
+      "h1_count": 1,
+      "h2_count": 5,
+      "h3_count": 11,
+      "prompt_boxes": 18,
+      "has_how_to": false,
+      "has_faq": true,
+      "has_methodology": false,
+      "has_disclaimer": false,
+      "educational_ratio": -80.82,
+      "risk_factors": [
+        "THIN_CONTENT",
+        "LIBRARY_STYLE",
+        "NO_METHODOLOGY",
+        "NO_DISCLAIMER",
+        "PROMPTS_DOMINATE"
+      ],
+      "risk_score": 12,
+      "risk_level": "HIGH"
+    },
+    {
+      "filename": "index.html",
+      "word_count": 151,
+      "h1_count": 1,
+      "h2_count": 4,
+      "h3_count": 33,
+      "prompt_boxes": 12,
+      "has_how_to": false,
+      "has_faq": true,
+      "has_methodology": false,
+      "has_disclaimer": false,
+      "educational_ratio": 0.12,
+      "risk_factors": [
+        "THIN_CONTENT",
+        "LIBRARY_STYLE",
+        "NO_METHODOLOGY",
+        "NO_DISCLAIMER",
+        "PROMPTS_DOMINATE"
+      ],
+      "risk_score": 12,
+      "risk_level": "HIGH"
+    },
+    {
+      "filename": "ai-profile-picture-dp-prompts.html",
+      "word_count": 277,
+      "h1_count": 1,
+      "h2_count": 1,
+      "h3_count": 4,
+      "prompt_boxes": 9,
+      "has_how_to": false,
+      "has_faq": true,
+      "has_methodology": false,
+      "has_disclaimer": false,
+      "educational_ratio": -0.69,
+      "risk_factors": [
+        "THIN_CONTENT",
+        "PROMPT_HEAVY",
+        "NO_METHODOLOGY",
+        "NO_DISCLAIMER",
+        "PROMPTS_DOMINATE"
+      ],
+      "risk_score": 11,
+      "risk_level": "HIGH"
+    },
+    {
+      "filename": "contact.html",
+      "word_count": 164,
+      "h1_count": 1,
+      "h2_count": 1,
+      "h3_count": 6,
+      "prompt_boxes": 6,
+      "has_how_to": false,
+      "has_faq": true,
+      "has_methodology": false,
+      "has_disclaimer": false,
+      "educational_ratio": -0.99,
+      "risk_factors": [
+        "THIN_CONTENT",
+        "PROMPT_HEAVY",
+        "NO_METHODOLOGY",
+        "NO_DISCLAIMER",
+        "PROMPTS_DOMINATE"
+      ],
+      "risk_score": 11,
+      "risk_level": "HIGH"
+    },
+    {
+      "filename": "romantic-anime-prompts.html",
+      "word_count": 336,
+      "h1_count": 1,
+      "h2_count": 1,
+      "h3_count": 4,
+      "prompt_boxes": 10,
+      "has_how_to": false,
+      "has_faq": true,
+      "has_methodology": false,
+      "has_disclaimer": false,
+      "educational_ratio": -0.53,
+      "risk_factors": [
+        "THIN_CONTENT",
+        "PROMPT_HEAVY",
+        "NO_METHODOLOGY",
+        "NO_DISCLAIMER",
+        "PROMPTS_DOMINATE"
+      ],
+      "risk_score": 11,
+      "risk_level": "HIGH"
+    },
+    {
+      "filename": "valentine-gift-message-prompts.html",
+      "word_count": 366,
+      "h1_count": 1,
+      "h2_count": 2,
+      "h3_count": 4,
+      "prompt_boxes": 10,
+      "has_how_to": false,
+      "has_faq": true,
+      "has_methodology": false,
+      "has_disclaimer": false,
+      "educational_ratio": -0.4,
+      "risk_factors": [
+        "THIN_CONTENT",
+        "PROMPT_HEAVY",
+        "NO_METHODOLOGY",
+        "NO_DISCLAIMER",
+        "PROMPTS_DOMINATE"
+      ],
+      "risk_score": 11,
+      "risk_level": "HIGH"
+    },
+    {
+      "filename": "valentine-instagram-caption-prompts.html",
+      "word_count": 185,
+      "h1_count": 1,
+      "h2_count": 1,
+      "h3_count": 4,
+      "prompt_boxes": 10,
+      "has_how_to": false,
+      "has_faq": true,
+      "has_methodology": false,
+      "has_disclaimer": false,
+      "educational_ratio": -1.82,
+      "risk_factors": [
+        "THIN_CONTENT",
+        "PROMPT_HEAVY",
+        "NO_METHODOLOGY",
+        "NO_DISCLAIMER",
+        "PROMPTS_DOMINATE"
+      ],
+      "risk_score": 11,
+      "risk_level": "HIGH"
+    },
+    {
+      "filename": "valentine-love-letter-prompts.html",
+      "word_count": 566,
+      "h1_count": 1,
+      "h2_count": 1,
+      "h3_count": 4,
+      "prompt_boxes": 10,
+      "has_how_to": false,
+      "has_faq": true,
+      "has_methodology": false,
+      "has_disclaimer": false,
+      "educational_ratio": 0.11,
+      "risk_factors": [
+        "THIN_CONTENT",
+        "PROMPT_HEAVY",
+        "NO_METHODOLOGY",
+        "NO_DISCLAIMER",
+        "PROMPTS_DOMINATE"
+      ],
+      "risk_score": 11,
+      "risk_level": "HIGH"
+    },
+    {
+      "filename": "valentine-whatsapp-messages.html",
+      "word_count": 322,
+      "h1_count": 1,
+      "h2_count": 1,
+      "h3_count": 4,
+      "prompt_boxes": 10,
+      "has_how_to": false,
+      "has_faq": true,
+      "has_methodology": false,
+      "has_disclaimer": false,
+      "educational_ratio": -0.59,
+      "risk_factors": [
+        "THIN_CONTENT",
+        "PROMPT_HEAVY",
+        "NO_METHODOLOGY",
+        "NO_DISCLAIMER",
+        "PROMPTS_DOMINATE"
+      ],
+      "risk_score": 11,
+      "risk_level": "HIGH"
+    },
+    {
+      "filename": "anime-avatars.html",
+      "word_count": 1582,
+      "h1_count": 1,
+      "h2_count": 2,
+      "h3_count": 14,
+      "prompt_boxes": 20,
+      "has_how_to": false,
+      "has_faq": true,
+      "has_methodology": false,
+      "has_disclaimer": false,
+      "educational_ratio": 0.37,
+      "risk_factors": [
+        "LIBRARY_STYLE",
+        "NO_METHODOLOGY",
+        "NO_DISCLAIMER",
+        "PROMPTS_DOMINATE"
+      ],
+      "risk_score": 9,
+      "risk_level": "HIGH"
+    },
+    {
+      "filename": "instagram-dp-black-white-ai-prompts.html",
+      "word_count": 994,
+      "h1_count": 1,
+      "h2_count": 1,
+      "h3_count": 0,
+      "prompt_boxes": 9,
+      "has_how_to": false,
+      "has_faq": true,
+      "has_methodology": false,
+      "has_disclaimer": false,
+      "educational_ratio": -9.0,
+      "risk_factors": [
+        "MODERATE_LENGTH",
+        "PROMPT_HEAVY",
+        "NO_METHODOLOGY",
+        "NO_DISCLAIMER",
+        "PROMPTS_DOMINATE"
+      ],
+      "risk_score": 9,
+      "risk_level": "HIGH"
+    },
+    {
+      "filename": "instagram-dp-couple-ai-prompts.html",
+      "word_count": 1012,
+      "h1_count": 1,
+      "h2_count": 1,
+      "h3_count": 4,
+      "prompt_boxes": 9,
+      "has_how_to": false,
+      "has_faq": true,
+      "has_methodology": false,
+      "has_disclaimer": false,
+      "educational_ratio": -9.23,
+      "risk_factors": [
+        "MODERATE_LENGTH",
+        "PROMPT_HEAVY",
+        "NO_METHODOLOGY",
+        "NO_DISCLAIMER",
+        "PROMPTS_DOMINATE"
+      ],
+      "risk_score": 9,
+      "risk_level": "HIGH"
+    },
+    {
+      "filename": "ceo-style-portrait-prompts.html",
+      "word_count": 775,
+      "h1_count": 1,
+      "h2_count": 3,
+      "h3_count": 5,
+      "prompt_boxes": 5,
+      "has_how_to": false,
+      "has_faq": true,
+      "has_methodology": false,
+      "has_disclaimer": false,
+      "educational_ratio": 0.67,
+      "risk_factors": [
+        "THIN_CONTENT",
+        "NO_METHODOLOGY",
+        "NO_DISCLAIMER"
+      ],
+      "risk_score": 6,
+      "risk_level": "HIGH"
+    },
+    {
+      "filename": "corporate-portrait-prompts.html",
+      "word_count": 706,
+      "h1_count": 1,
+      "h2_count": 3,
+      "h3_count": 5,
+      "prompt_boxes": 5,
+      "has_how_to": false,
+      "has_faq": true,
+      "has_methodology": false,
+      "has_disclaimer": false,
+      "educational_ratio": 0.64,
+      "risk_factors": [
+        "THIN_CONTENT",
+        "NO_METHODOLOGY",
+        "NO_DISCLAIMER"
+      ],
+      "risk_score": 6,
+      "risk_level": "HIGH"
+    },
+    {
+      "filename": "instagram-dp-for-boys-ai-prompts.html",
+      "word_count": 1011,
+      "h1_count": 1,
+      "h2_count": 1,
+      "h3_count": 4,
+      "prompt_boxes": 9,
+      "has_how_to": false,
+      "has_faq": true,
+      "has_methodology": false,
+      "has_disclaimer": false,
+      "educational_ratio": 0.55,
+      "risk_factors": [
+        "MODERATE_LENGTH",
+        "PROMPT_HEAVY",
+        "NO_METHODOLOGY",
+        "NO_DISCLAIMER"
+      ],
+      "risk_score": 6,
+      "risk_level": "HIGH"
+    },
+    {
+      "filename": "instagram-dp-for-girls-ai-prompts.html",
+      "word_count": 1023,
+      "h1_count": 1,
+      "h2_count": 1,
+      "h3_count": 4,
+      "prompt_boxes": 9,
+      "has_how_to": false,
+      "has_faq": true,
+      "has_methodology": false,
+      "has_disclaimer": false,
+      "educational_ratio": 0.55,
+      "risk_factors": [
+        "MODERATE_LENGTH",
+        "PROMPT_HEAVY",
+        "NO_METHODOLOGY",
+        "NO_DISCLAIMER"
+      ],
+      "risk_score": 6,
+      "risk_level": "HIGH"
+    },
+    {
+      "filename": "linkedin-profile-picture-prompts.html",
+      "word_count": 666,
+      "h1_count": 1,
+      "h2_count": 3,
+      "h3_count": 1,
+      "prompt_boxes": 5,
+      "has_how_to": false,
+      "has_faq": true,
+      "has_methodology": false,
+      "has_disclaimer": false,
+      "educational_ratio": 0.62,
+      "risk_factors": [
+        "THIN_CONTENT",
+        "NO_METHODOLOGY",
+        "NO_DISCLAIMER"
+      ],
+      "risk_score": 6,
+      "risk_level": "HIGH"
+    },
+    {
+      "filename": "linkedin-profile-women.html",
+      "word_count": 1105,
+      "h1_count": 1,
+      "h2_count": 1,
+      "h3_count": 4,
+      "prompt_boxes": 9,
+      "has_how_to": false,
+      "has_faq": true,
+      "has_methodology": false,
+      "has_disclaimer": false,
+      "educational_ratio": 0.59,
+      "risk_factors": [
+        "MODERATE_LENGTH",
+        "PROMPT_HEAVY",
+        "NO_METHODOLOGY",
+        "NO_DISCLAIMER"
+      ],
+      "risk_score": 6,
+      "risk_level": "HIGH"
+    },
+    {
+      "filename": "privacy-policy.html",
+      "word_count": 425,
+      "h1_count": 1,
+      "h2_count": 10,
+      "h3_count": 0,
+      "prompt_boxes": 0,
+      "has_how_to": false,
+      "has_faq": true,
+      "has_methodology": false,
+      "has_disclaimer": false,
+      "educational_ratio": 1.0,
+      "risk_factors": [
+        "THIN_CONTENT",
+        "NO_METHODOLOGY",
+        "NO_DISCLAIMER"
+      ],
+      "risk_score": 6,
+      "risk_level": "HIGH"
+    },
+    {
+      "filename": "professional-ai-headshot-prompts.html",
+      "word_count": 1141,
+      "h1_count": 1,
+      "h2_count": 3,
+      "h3_count": 1,
+      "prompt_boxes": 9,
+      "has_how_to": false,
+      "has_faq": true,
+      "has_methodology": false,
+      "has_disclaimer": false,
+      "educational_ratio": 0.6,
+      "risk_factors": [
+        "MODERATE_LENGTH",
+        "PROMPT_HEAVY",
+        "NO_METHODOLOGY",
+        "NO_DISCLAIMER"
+      ],
+      "risk_score": 6,
+      "risk_level": "HIGH"
+    },
+    {
+      "filename": "resume-photo-prompts.html",
+      "word_count": 690,
+      "h1_count": 1,
+      "h2_count": 3,
+      "h3_count": 5,
+      "prompt_boxes": 5,
+      "has_how_to": false,
+      "has_faq": true,
+      "has_methodology": false,
+      "has_disclaimer": false,
+      "educational_ratio": 0.63,
+      "risk_factors": [
+        "THIN_CONTENT",
+        "NO_METHODOLOGY",
+        "NO_DISCLAIMER"
+      ],
+      "risk_score": 6,
+      "risk_level": "HIGH"
+    },
+    {
+      "filename": "studio-lighting-portrait-prompts.html",
+      "word_count": 707,
+      "h1_count": 1,
+      "h2_count": 3,
+      "h3_count": 5,
+      "prompt_boxes": 5,
+      "has_how_to": false,
+      "has_faq": true,
+      "has_methodology": false,
+      "has_disclaimer": false,
+      "educational_ratio": 0.64,
+      "risk_factors": [
+        "THIN_CONTENT",
+        "NO_METHODOLOGY",
+        "NO_DISCLAIMER"
+      ],
+      "risk_score": 6,
+      "risk_level": "HIGH"
+    },
+    {
+      "filename": "whatsapp-dp-for-boys-ai-prompts.html",
+      "word_count": 967,
+      "h1_count": 1,
+      "h2_count": 1,
+      "h3_count": 4,
+      "prompt_boxes": 9,
+      "has_how_to": false,
+      "has_faq": true,
+      "has_methodology": false,
+      "has_disclaimer": false,
+      "educational_ratio": 0.53,
+      "risk_factors": [
+        "MODERATE_LENGTH",
+        "PROMPT_HEAVY",
+        "NO_METHODOLOGY",
+        "NO_DISCLAIMER"
+      ],
+      "risk_score": 6,
+      "risk_level": "HIGH"
+    },
+    {
+      "filename": "whatsapp-dp-tamil-ai-prompts.html",
+      "word_count": 958,
+      "h1_count": 1,
+      "h2_count": 1,
+      "h3_count": 4,
+      "prompt_boxes": 9,
+      "has_how_to": false,
+      "has_faq": true,
+      "has_methodology": false,
+      "has_disclaimer": false,
+      "educational_ratio": 0.53,
+      "risk_factors": [
+        "MODERATE_LENGTH",
+        "PROMPT_HEAVY",
+        "NO_METHODOLOGY",
+        "NO_DISCLAIMER"
+      ],
+      "risk_score": 6,
+      "risk_level": "HIGH"
+    },
+    {
+      "filename": "instagram-dp-ai-prompts.html",
+      "word_count": 1819,
+      "h1_count": 1,
+      "h2_count": 4,
+      "h3_count": 9,
+      "prompt_boxes": 9,
+      "has_how_to": true,
+      "has_faq": true,
+      "has_methodology": false,
+      "has_disclaimer": false,
+      "educational_ratio": 0.53,
+      "risk_factors": [
+        "PROMPT_HEAVY",
+        "NO_METHODOLOGY",
+        "NO_DISCLAIMER"
+      ],
+      "risk_score": 5,
+      "risk_level": "MEDIUM"
+    },
+    {
+      "filename": "valentine-ai-image-prompts.html",
+      "word_count": 1247,
+      "h1_count": 1,
+      "h2_count": 1,
+      "h3_count": 4,
+      "prompt_boxes": 10,
+      "has_how_to": false,
+      "has_faq": true,
+      "has_methodology": false,
+      "has_disclaimer": false,
+      "educational_ratio": 0.6,
+      "risk_factors": [
+        "PROMPT_HEAVY",
+        "NO_METHODOLOGY",
+        "NO_DISCLAIMER"
+      ],
+      "risk_score": 5,
+      "risk_level": "MEDIUM"
+    },
+    {
+      "filename": "valentine-couple-photo-prompts.html",
+      "word_count": 1225,
+      "h1_count": 1,
+      "h2_count": 1,
+      "h3_count": 4,
+      "prompt_boxes": 10,
+      "has_how_to": false,
+      "has_faq": true,
+      "has_methodology": false,
+      "has_disclaimer": false,
+      "educational_ratio": 0.59,
+      "risk_factors": [
+        "PROMPT_HEAVY",
+        "NO_METHODOLOGY",
+        "NO_DISCLAIMER"
+      ],
+      "risk_score": 5,
+      "risk_level": "MEDIUM"
+    },
+    {
+      "filename": "valentine-dp-prompts.html",
+      "word_count": 1287,
+      "h1_count": 1,
+      "h2_count": 2,
+      "h3_count": 4,
+      "prompt_boxes": 10,
+      "has_how_to": false,
+      "has_faq": true,
+      "has_methodology": false,
+      "has_disclaimer": false,
+      "educational_ratio": 0.61,
+      "risk_factors": [
+        "PROMPT_HEAVY",
+        "NO_METHODOLOGY",
+        "NO_DISCLAIMER"
+      ],
+      "risk_score": 5,
+      "risk_level": "MEDIUM"
+    },
+    {
+      "filename": "whatsapp-dp-ai-prompts.html",
+      "word_count": 1813,
+      "h1_count": 1,
+      "h2_count": 4,
+      "h3_count": 13,
+      "prompt_boxes": 9,
+      "has_how_to": true,
+      "has_faq": true,
+      "has_methodology": false,
+      "has_disclaimer": false,
+      "educational_ratio": 0.75,
+      "risk_factors": [
+        "PROMPT_HEAVY",
+        "NO_METHODOLOGY",
+        "NO_DISCLAIMER"
+      ],
+      "risk_score": 5,
+      "risk_level": "MEDIUM"
+    },
+    {
+      "filename": "linkedin-profile-men.html",
+      "word_count": 3717,
+      "h1_count": 1,
+      "h2_count": 3,
+      "h3_count": 12,
+      "prompt_boxes": 9,
+      "has_how_to": true,
+      "has_faq": true,
+      "has_methodology": true,
+      "has_disclaimer": true,
+      "educational_ratio": 0.88,
+      "risk_factors": [
+        "PROMPT_HEAVY"
+      ],
+      "risk_score": 2,
+      "risk_level": "LOW"
+    },
+    {
+      "filename": "whatsapp-dp-for-girls-ai-prompts.html",
+      "word_count": 3164,
+      "h1_count": 1,
+      "h2_count": 3,
+      "h3_count": 11,
+      "prompt_boxes": 9,
+      "has_how_to": true,
+      "has_faq": true,
+      "has_methodology": true,
+      "has_disclaimer": true,
+      "educational_ratio": 0.86,
+      "risk_factors": [
+        "PROMPT_HEAVY"
+      ],
+      "risk_score": 2,
+      "risk_level": "LOW"
+    },
+    {
+      "filename": "realistic-ai-portrait-prompts.html",
+      "word_count": 3411,
+      "h1_count": 1,
+      "h2_count": 5,
+      "h3_count": 12,
+      "prompt_boxes": 5,
+      "has_how_to": true,
+      "has_faq": true,
+      "has_methodology": true,
+      "has_disclaimer": true,
+      "educational_ratio": 0.93,
+      "risk_factors": [],
+      "risk_score": 0,
+      "risk_level": "LOW"
+    }
+  ],
+  "issue_distribution": {
+    "THIN_CONTENT": 15,
+    "LIBRARY_STYLE": 3,
+    "NO_METHODOLOGY": 29,
+    "NO_DISCLAIMER": 29,
+    "PROMPTS_DOMINATE": 12,
+    "PROMPT_HEAVY": 22,
+    "MODERATE_LENGTH": 8
+  }
+}
