@@ -17,19 +17,29 @@ def remove_adsense_code(filepath):
 
         # 2. Remove Ad Units (ins tags)
         # Matches: <ins class="adsbygoogle" ... ></ins>
-        # We need to be careful to match the full tag content across lines
         ad_unit_pattern = r'<ins class="adsbygoogle"[\s\S]*?</ins>\s*'
         content = re.sub(ad_unit_pattern, '', content)
 
         # 3. Remove Ad Push Scripts
         # Matches: <script> (adsbygoogle = window.adsbygoogle || []).push({}); </script>
-        # Allowing for some whitespace variations
         push_script_pattern = r'<script>\s*\(adsbygoogle\s*=\s*window\.adsbygoogle\s*\|\|\s*\[\]\)\.push\({}\);\s*</script>\s*'
         content = re.sub(push_script_pattern, '', content)
         
-        # 4. Remove any other Google Syndication links if they exist in script tags (catch-all for safety)
-        # regex to find src="...googlesyndication..."
-        # This is a bit risky if not precise, so rely on the specific patterns first.
+        # 4. Remove Preconnect/DNS-prefetch links
+        # <link rel="preconnect" href="https://pagead2.googlesyndication.com">
+        preconnect_pattern = r'<link rel="preconnect" href="https://pagead2\.googlesyndication\.com">\s*'
+        content = re.sub(preconnect_pattern, '', content)
+        
+        # <link rel="dns-prefetch" href="https://adservice.google.com">
+        dns_prefetch_pattern = r'<link rel="dns-prefetch" href="https://adservice\.google\.com">\s*'
+        content = re.sub(dns_prefetch_pattern, '', content)
+        
+        # Catch-all for any other googlesyndication links
+        # regex to find any script/link with googlesyndication
+        # <script ... googlesyndication ... ></script>
+        generic_script_pattern = r'<script[^>]*googlesyndication[^>]*>.*?</script>\s*'
+        content = re.sub(generic_script_pattern, '', content, flags=re.DOTALL)
+        
         
         if content != original_content:
             with open(filepath, 'w', encoding='utf-8') as f:
@@ -44,7 +54,7 @@ def remove_adsense_code(filepath):
         return False
 
 def main():
-    print("Starting AdSense Removal...")
+    print("Starting AdSense Removal (Round 2)...")
     count = 0
     for root, dirs, files in os.walk(WEBSITE_ROOT):
         for file in files:
@@ -61,7 +71,7 @@ def main():
         os.remove(ads_txt_path)
         print("Removed ads.txt")
     else:
-        print("ads.txt not found.")
+        print("ads.txt not found (already removed).")
 
 if __name__ == "__main__":
     main()
