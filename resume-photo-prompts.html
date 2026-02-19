@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -26,6 +26,7 @@
     <meta name="robots" content="index, follow, max-image-preview:large">
 
     <link rel="canonical" href="https://promptimagelab.com/resume-photo-prompts.html">
+  <meta property="og:url" content="https://promptimagelab.com/resume-photo-prompts.html">
 
   <!-- Preconnect for performance -->
   <!-- Additional SEO Meta Tags -->
@@ -87,22 +88,54 @@
     <script src="/assets/js/image-handler.js" defer></script>
 
   <!-- Breadcrumb Schema -->
-  <script type="application/ld+json">
+  
+  <style>
+    /* Related Prompts */
+    .related-prompts-section{padding:2.5rem 0;background:rgba(255,255,255,0.02);margin-top:2rem;border-top:1px solid rgba(255,255,255,0.06)}
+    .related-prompts-section h2{font-size:1.5rem;margin-bottom:1.2rem;color:#f8fafc}
+    .related-list{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:.75rem}
+    .related-list li a{display:inline-block;padding:.5rem 1.2rem;border-radius:30px;border:1px solid rgba(255,255,255,.15);color:#cbd5e1;text-decoration:none;font-size:.95rem;transition:border-color .2s,color .2s}
+    .related-list li a:hover{border-color:#60a5fa;color:#60a5fa}
+    /* Breadcrumb */
+    .breadcrumb-nav{padding:10px 0;font-size:.9rem}
+    .breadcrumb-nav ol{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:6px;color:#94a3b8}
+    .breadcrumb-nav li:not(:last-child)::after{content:"/";margin-left:6px;color:#475569}
+    .breadcrumb-nav a{color:#94a3b8;text-decoration:none}
+    .breadcrumb-nav a:hover{color:#60a5fa}
+    .breadcrumb-nav li:last-child span{color:#e2e8f0}
+  </style>
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
+  "@graph": [
     {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://promptimagelab.com/"
+      "@type": "WebPage",
+      "@id": "https://promptimagelab.com/resume-photo-prompts.html#webpage",
+      "url": "https://promptimagelab.com/resume-photo-prompts.html",
+      "name": "Resume Photo Prompts",
+      "description": "Create the perfect resume or CV photo using AI prompts. Professional, clean, and confident portrait ideas for job applications.",
+      "inLanguage": "en-US",
+      "isPartOf": { "@id": "https://promptimagelab.com/#website" }
     },
     {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Resume Photo AI Prompts (Professional CV & Job Profile Pictures)",
-      "item": "https://promptimagelab.com/resume-photo-prompts.html"
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://promptimagelab.com/"},
+        {"@type":"ListItem","position":2,"name":"Professional AI Headshot Prompts","item":"https://promptimagelab.com/professional-ai-headshot-prompts.html"},
+        {"@type":"ListItem","position":3,"name":"Resume Photo Prompts","item":"https://promptimagelab.com/resume-photo-prompts.html"}
+      ]
+    },
+    {
+      "@type": "Article",
+      "headline": "Resume Photo Prompts",
+      "description": "Create the perfect resume or CV photo using AI prompts. Professional, clean, and confident portrait ideas for job applications.",
+      "image": "https://promptimagelab.com/images/resume/resume-hero.webp",
+      "author":    { "@type": "Organization", "@id": "https://promptimagelab.com/#organization" },
+      "publisher": { "@id": "https://promptimagelab.com/#organization" },
+      "datePublished": "2026-02-17",
+      "dateModified":  "2026-02-19",
+      "mainEntityOfPage": { "@id": "https://promptimagelab.com/resume-photo-prompts.html#webpage" },
+      "inLanguage": "en-US"
     }
   ]
 }
@@ -113,13 +146,13 @@
 
     <nav class="site-nav">
         <div class="nav-inner container">
-            <a class="logo" href="index.html">
+            <a class="logo" href="/">
                 <img src="/images/logo.png" alt="PromptImageLab Logo" width="40" height="40">
                 PromptImageLab
             </a>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#categories">Categories</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/#categories">Categories</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
@@ -127,12 +160,20 @@
     </nav>
 
     
-  <!-- Breadcrumb Navigation -->
-  <div class="container" style="padding-top: 90px;">
+    <nav class="breadcrumb-nav" aria-label="breadcrumb">
+    <div class="container">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li><a href="professional-ai-headshot-prompts.html">Professional AI Headshot Prompts</a></li>
+        <li><span>Resume Photo Prompts</span></li>
+      </ol>
+    </div>
+  </nav>
+<div class="container" style="padding-top: 90px;">
     <nav aria-label="Breadcrumb" class="breadcrumb-nav">
       <ol itemscope itemtype="https://schema.org/BreadcrumbList">
         <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-          <a itemprop="item" href="index.html">
+          <a itemprop="item" href="/">
             <span itemprop="name">Home</span>
           </a>
           <meta itemprop="position" content="1" />

@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /about.original.html
 
 # Sitemap
 Sitemap: https://promptimagelab.com/sitemap.xml
