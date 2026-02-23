@@ -1,0 +1,5 @@
+# Redirect top-level .html pages to clean URLs (301 permanent)
+RewriteEngine On
+# Only redirect requests that end with .html
+RewriteCond %{REQUEST_URI} \.html$ [NC]
+RewriteRule ^(.*)\.html$ https://promptimagelab.com/$1 [R=301,L]

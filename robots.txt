@@ -4,3 +4,5 @@ Disallow: /about.original.html
 
 # Sitemap
 Sitemap: https://promptimagelab.com/sitemap.xml
+
+# Note: server should return 301 redirects for any .html URLs to their clean equivalents

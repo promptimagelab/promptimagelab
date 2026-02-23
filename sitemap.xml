@@ -1,214 +1,131 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <!-- Homepage -->
+  <url>
+    <loc>https://promptimagelab.com/about</loc>
+    <lastmod>2026-02-23</lastmod>
+  </url>
+  <url>
+    <loc>https://promptimagelab.com/ai-profile-picture-dp-prompts</loc>
+    <lastmod>2026-02-23</lastmod>
+  </url>
+  <url>
+    <loc>https://promptimagelab.com/anime-avatars</loc>
+    <lastmod>2026-02-23</lastmod>
+  </url>
+  <url>
+    <loc>https://promptimagelab.com/ceo-style-portrait-prompts</loc>
+    <lastmod>2026-02-23</lastmod>
+  </url>
+  <url>
+    <loc>https://promptimagelab.com/contact</loc>
+    <lastmod>2026-02-23</lastmod>
+  </url>
+  <url>
+    <loc>https://promptimagelab.com/corporate-portrait-prompts</loc>
+    <lastmod>2026-02-23</lastmod>
+  </url>
   <url>
     <loc>https://promptimagelab.com/</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <!-- ── PROFILE PICTURE HUBS ── -->
-  <url>
-    <loc>https://promptimagelab.com/ai-profile-picture-dp-prompts.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-02-23</lastmod>
   </url>
   <url>
-    <loc>https://promptimagelab.com/instagram-dp-ai-prompts.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://promptimagelab.com/instagram-dp-ai-prompts</loc>
+    <lastmod>2026-02-23</lastmod>
   </url>
   <url>
-    <loc>https://promptimagelab.com/whatsapp-dp-ai-prompts.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- ── INSTAGRAM SUB-PAGES ── -->
-  <url>
-    <loc>https://promptimagelab.com/instagram-dp-for-girls-ai-prompts.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://promptimagelab.com/instagram-dp-black-white-ai-prompts</loc>
+    <lastmod>2026-02-23</lastmod>
   </url>
   <url>
-    <loc>https://promptimagelab.com/instagram-dp-for-boys-ai-prompts.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://promptimagelab.com/instagram-dp-couple-ai-prompts</loc>
+    <lastmod>2026-02-23</lastmod>
   </url>
   <url>
-    <loc>https://promptimagelab.com/instagram-dp-black-white-ai-prompts.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://promptimagelab.com/instagram-dp-for-boys-ai-prompts</loc>
+    <lastmod>2026-02-23</lastmod>
   </url>
   <url>
-    <loc>https://promptimagelab.com/instagram-dp-couple-ai-prompts.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
-  <!-- ── WHATSAPP SUB-PAGES ── -->
-  <url>
-    <loc>https://promptimagelab.com/whatsapp-dp-for-girls-ai-prompts.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://promptimagelab.com/instagram-dp-for-girls-ai-prompts</loc>
+    <lastmod>2026-02-23</lastmod>
   </url>
   <url>
-    <loc>https://promptimagelab.com/whatsapp-dp-for-boys-ai-prompts.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://promptimagelab.com/linkedin-profile-men</loc>
+    <lastmod>2026-02-23</lastmod>
   </url>
   <url>
-    <loc>https://promptimagelab.com/whatsapp-dp-tamil-ai-prompts.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
-  <!-- ── ANIME & AVATARS ── -->
-  <url>
-    <loc>https://promptimagelab.com/anime-avatars.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://promptimagelab.com/linkedin-profile-picture-prompts</loc>
+    <lastmod>2026-02-23</lastmod>
   </url>
   <url>
-    <loc>https://promptimagelab.com/romantic-anime-prompts.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
-  <!-- ── PROFESSIONAL / HEADSHOT HUBS ── -->
-  <url>
-    <loc>https://promptimagelab.com/professional-ai-headshot-prompts.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://promptimagelab.com/linkedin-profile-women</loc>
+    <lastmod>2026-02-23</lastmod>
   </url>
   <url>
-    <loc>https://promptimagelab.com/linkedin-profile-picture-prompts.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- ── PROFESSIONAL SUB-PAGES ── -->
-  <url>
-    <loc>https://promptimagelab.com/linkedin-profile-men.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://promptimagelab.com/privacy-policy</loc>
+    <lastmod>2026-02-23</lastmod>
   </url>
   <url>
-    <loc>https://promptimagelab.com/linkedin-profile-women.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://promptimagelab.com/professional-ai-headshot-prompts</loc>
+    <lastmod>2026-02-23</lastmod>
   </url>
   <url>
-    <loc>https://promptimagelab.com/ceo-style-portrait-prompts.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://promptimagelab.com/realistic-ai-portrait-prompts</loc>
+    <lastmod>2026-02-23</lastmod>
   </url>
   <url>
-    <loc>https://promptimagelab.com/corporate-portrait-prompts.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://promptimagelab.com/resume-photo-prompts</loc>
+    <lastmod>2026-02-23</lastmod>
   </url>
   <url>
-    <loc>https://promptimagelab.com/studio-lighting-portrait-prompts.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://promptimagelab.com/romantic-anime-prompts</loc>
+    <lastmod>2026-02-23</lastmod>
   </url>
   <url>
-    <loc>https://promptimagelab.com/resume-photo-prompts.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://promptimagelab.com/studio-lighting-portrait-prompts</loc>
+    <lastmod>2026-02-23</lastmod>
   </url>
   <url>
-    <loc>https://promptimagelab.com/realistic-ai-portrait-prompts.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
-  <!-- ── VALENTINE (SEASONAL) ── -->
-  <url>
-    <loc>https://promptimagelab.com/valentine-ai-image-prompts.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://promptimagelab.com/valentine-ai-image-prompts</loc>
+    <lastmod>2026-02-23</lastmod>
   </url>
   <url>
-    <loc>https://promptimagelab.com/valentine-couple-photo-prompts.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://promptimagelab.com/valentine-couple-photo-prompts</loc>
+    <lastmod>2026-02-23</lastmod>
   </url>
   <url>
-    <loc>https://promptimagelab.com/valentine-dp-prompts.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://promptimagelab.com/valentine-dp-prompts</loc>
+    <lastmod>2026-02-23</lastmod>
   </url>
   <url>
-    <loc>https://promptimagelab.com/valentine-gift-message-prompts.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://promptimagelab.com/valentine-gift-message-prompts</loc>
+    <lastmod>2026-02-23</lastmod>
   </url>
   <url>
-    <loc>https://promptimagelab.com/valentine-instagram-caption-prompts.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://promptimagelab.com/valentine-instagram-caption-prompts</loc>
+    <lastmod>2026-02-23</lastmod>
   </url>
   <url>
-    <loc>https://promptimagelab.com/valentine-love-letter-prompts.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://promptimagelab.com/valentine-love-letter-prompts</loc>
+    <lastmod>2026-02-23</lastmod>
   </url>
   <url>
-    <loc>https://promptimagelab.com/valentine-whatsapp-messages.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-
-  <!-- ── UTILITY ── -->
-  <url>
-    <loc>https://promptimagelab.com/about.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <loc>https://promptimagelab.com/valentine-whatsapp-messages</loc>
+    <lastmod>2026-02-23</lastmod>
   </url>
   <url>
-    <loc>https://promptimagelab.com/contact.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <loc>https://promptimagelab.com/whatsapp-dp-ai-prompts</loc>
+    <lastmod>2026-02-23</lastmod>
   </url>
   <url>
-    <loc>https://promptimagelab.com/privacy-policy.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.2</priority>
+    <loc>https://promptimagelab.com/whatsapp-dp-for-boys-ai-prompts</loc>
+    <lastmod>2026-02-23</lastmod>
   </url>
-
+  <url>
+    <loc>https://promptimagelab.com/whatsapp-dp-for-girls-ai-prompts</loc>
+    <lastmod>2026-02-23</lastmod>
+  </url>
+  <url>
+    <loc>https://promptimagelab.com/whatsapp-dp-tamil-ai-prompts</loc>
+    <lastmod>2026-02-23</lastmod>
+  </url>
 </urlset>
