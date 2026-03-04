@@ -1,2 +1,34 @@
-/*/*.html  /:splat  301
-/:splat.html  /:splat  301
+# PromptImageLab – Netlify / Cloudflare Pages redirect rules
+/instagram-dp-ai-prompts.html  /instagram-dp-ai-prompts  301
+/whatsapp-dp-ai-prompts.html  /whatsapp-dp-ai-prompts  301
+/ai-profile-picture-dp-prompts.html  /ai-profile-picture-dp-prompts  301
+/anime-avatars.html  /anime-avatars  301
+/linkedin-profile-picture-prompts.html  /linkedin-profile-picture-prompts  301
+/linkedin-profile-men.html  /linkedin-profile-men  301
+/linkedin-profile-women.html  /linkedin-profile-women  301
+/professional-ai-headshot-prompts.html  /professional-ai-headshot-prompts  301
+/realistic-ai-portrait-prompts.html  /realistic-ai-portrait-prompts  301
+/corporate-portrait-prompts.html  /corporate-portrait-prompts  301
+/ceo-style-portrait-prompts.html  /ceo-style-portrait-prompts  301
+/studio-lighting-portrait-prompts.html  /studio-lighting-portrait-prompts  301
+/resume-photo-prompts.html  /resume-photo-prompts  301
+/romantic-anime-prompts.html  /romantic-anime-prompts  301
+/instagram-dp-black-white-ai-prompts.html  /instagram-dp-black-white-ai-prompts  301
+/instagram-dp-couple-ai-prompts.html  /instagram-dp-couple-ai-prompts  301
+/instagram-dp-for-boys-ai-prompts.html  /instagram-dp-for-boys-ai-prompts  301
+/instagram-dp-for-girls-ai-prompts.html  /instagram-dp-for-girls-ai-prompts  301
+/whatsapp-dp-for-boys-ai-prompts.html  /whatsapp-dp-for-boys-ai-prompts  301
+/whatsapp-dp-for-girls-ai-prompts.html  /whatsapp-dp-for-girls-ai-prompts  301
+/whatsapp-dp-tamil-ai-prompts.html  /whatsapp-dp-tamil-ai-prompts  301
+/valentine-ai-image-prompts.html  /valentine-ai-image-prompts  301
+/valentine-couple-photo-prompts.html  /valentine-couple-photo-prompts  301
+/valentine-dp-prompts.html  /valentine-dp-prompts  301
+/valentine-gift-message-prompts.html  /valentine-gift-message-prompts  301
+/valentine-instagram-caption-prompts.html  /valentine-instagram-caption-prompts  301
+/valentine-love-letter-prompts.html  /valentine-love-letter-prompts  301
+/valentine-whatsapp-messages.html  /valentine-whatsapp-messages  301
+/about.html  /about  301
+/contact.html  /contact  301
+/privacy-policy.html  /privacy-policy  301
+# Catch-all trailing .html
+/*.html  /:splat  301
