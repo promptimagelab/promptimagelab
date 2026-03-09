@@ -1,19 +1,16 @@
 User-agent: *
 Allow: /
-Allow: /assets/
-Allow: /images/
 
-# Block sensitive files
-Disallow: /tools/
-Disallow: /includes/
-Disallow: /admin_pass.hash
-Disallow: /db.php
+Disallow: /admin/
+Disallow: /admin.html
 Disallow: /migrate.php
-Disallow: /sitemapgenerator.php
+Disallow: /a.php
 
-# Optional crawl speed control
-Crawl-delay: 1
+# Block bad bots
+User-agent: AhrefsBot
+Crawl-delay: 10
 
-# Sitemaps
+User-agent: SemrushBot
+Crawl-delay: 10
+
 Sitemap: https://promptimagelab.com/sitemap.xml
-Sitemap: https://promptimagelab.com/images-sitemap.xml

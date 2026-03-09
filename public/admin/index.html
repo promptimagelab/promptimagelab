@@ -314,6 +314,7 @@ tr:hover td { background: rgba(124,109,250,.04); }
     <div class="nav-item" onclick="showPanel('prompts')"><span class="nav-icon">✨</span> Prompts</div>
     <div class="nav-item" onclick="showPanel('faqs')"><span class="nav-icon">❓</span> FAQs</div>
     <div class="nav-section">System</div>
+    <div class="nav-item" onclick="showPanel('sql')"><span class="nav-icon">🗄️</span> SQL Import</div>
     <div class="nav-item" onclick="showPanel('export')"><span class="nav-icon">💾</span> Export Data</div>
     <div class="nav-item" onclick="doLogout()" style="margin-top:auto;"><span class="nav-icon">🚪</span> Logout</div>
   </div>
@@ -406,6 +407,92 @@ tr:hover td { background: rgba(124,109,250,.04); }
           <thead><tr><th>Page</th><th>Question</th><th>Answer</th><th>Actions</th></tr></thead>
           <tbody id="faqs-table"></tbody>
         </table>
+      </div>
+    </div>
+
+    <!-- SQL IMPORT -->
+    <div class="panel" id="panel-sql">
+      <div class="panel-header">
+        <div><h1>SQL Import</h1><p>Paste your MySQL dump to import all pages, prompts and FAQs instantly</p></div>
+      </div>
+
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:28px;margin-bottom:24px;">
+        <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;flex-wrap:wrap;">
+          <div style="background:rgba(124,109,250,.15);border-radius:10px;padding:12px 20px;flex:1;min-width:200px;">
+            <div style="font-size:.8rem;color:var(--muted);margin-bottom:6px;font-family:'JetBrains Mono',monospace;">SUPPORTED TABLES</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <span class="badge badge-purple">pages</span>
+              <span class="badge badge-green">prompts</span>
+              <span class="badge badge-pink">prompt_sets</span>
+              <span class="badge badge-purple">faqs</span>
+              <span class="badge badge-green">related_pages</span>
+            </div>
+          </div>
+          <div style="background:rgba(74,250,154,.1);border-radius:10px;padding:12px 20px;">
+            <div style="font-size:.8rem;color:var(--muted);margin-bottom:6px;">IMPORT MODE</div>
+            <div style="display:flex;gap:12px;">
+              <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:.9rem;">
+                <input type="radio" name="import-mode" value="merge" checked> Merge with existing
+              </label>
+              <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:.9rem;">
+                <input type="radio" name="import-mode" value="replace"> Replace all
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Paste full SQL dump here (phpMyAdmin export format supported)</label>
+          <textarea id="sql-input" rows="18" style="font-family:'JetBrains Mono',monospace;font-size:.82rem;line-height:1.6;background:#0a0a0f;border-color:var(--border);" placeholder="-- Paste your SQL dump here...
+-- Supports INSERT INTO for: pages, prompts, prompt_sets, faqs, related_pages
+
+INSERT INTO \`pages\` (\`id\`, \`slug\`, \`title\`, \`seo_title\`, \`seo_description\`, \`intro_text\`, ...) VALUES
+(1, 'home', 'PromptImageLab', '...', '...', '...');
+
+INSERT INTO \`prompt_sets\` (\`id\`, \`page_id\`, \`set_title\`) VALUES
+(1, 1, 'Portrait Prompts');
+
+INSERT INTO \`prompts\` (\`id\`, \`set_id\`, \`prompt_text\`) VALUES
+(1, 1, 'cinematic portrait, soft studio lighting...');
+
+INSERT INTO \`faqs\` (\`id\`, \`page_id\`, \`question\`, \`answer\`) VALUES
+(1, 1, 'What is this?', 'This is...');"></textarea>
+        </div>
+
+        <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+          <button class="btn btn-primary" onclick="importSQL()" style="font-size:1rem;padding:14px 32px;">
+            🚀 Import SQL
+          </button>
+          <button class="btn btn-ghost" onclick="document.getElementById('sql-input').value='';document.getElementById('sql-results').style.display='none'">
+            Clear
+          </button>
+          <span id="sql-status" style="font-size:.9rem;color:var(--muted);font-family:'JetBrains Mono',monospace;"></span>
+        </div>
+      </div>
+
+      <div id="sql-results" style="display:none;">
+        <div style="background:var(--surface);border:1px solid var(--green);border-radius:14px;padding:24px;margin-bottom:16px;">
+          <h3 style="color:var(--green);margin-bottom:16px;font-size:1.1rem;">✅ Import Successful</h3>
+          <div id="sql-results-content" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;"></div>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;">
+          <div style="padding:16px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
+            <h3>Imported Pages Preview</h3>
+            <button class="btn btn-success btn-sm" onclick="showPanel('export')">Export data.json →</button>
+          </div>
+          <table style="width:100%;border-collapse:collapse;">
+            <thead style="background:var(--surface2);">
+              <tr>
+                <th style="padding:10px 16px;text-align:left;font-size:.78rem;color:var(--muted);font-family:'JetBrains Mono',monospace;">SLUG</th>
+                <th style="padding:10px 16px;text-align:left;font-size:.78rem;color:var(--muted);font-family:'JetBrains Mono',monospace;">TITLE</th>
+                <th style="padding:10px 16px;text-align:left;font-size:.78rem;color:var(--muted);font-family:'JetBrains Mono',monospace;">PROMPT SETS</th>
+                <th style="padding:10px 16px;text-align:left;font-size:.78rem;color:var(--muted);font-family:'JetBrains Mono',monospace;">PROMPTS</th>
+                <th style="padding:10px 16px;text-align:left;font-size:.78rem;color:var(--muted);font-family:'JetBrains Mono',monospace;">FAQS</th>
+              </tr>
+            </thead>
+            <tbody id="sql-preview-table"></tbody>
+          </table>
+        </div>
       </div>
     </div>
 
@@ -936,6 +1023,183 @@ function showToast(msg) {
 function esc(str) {
   if (!str) return '';
   return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+
+// ============================================================
+// SQL IMPORT
+// ============================================================
+function importSQL() {
+  const sql = document.getElementById('sql-input').value.trim();
+  const mode = document.querySelector('input[name="import-mode"]:checked').value;
+  const status = document.getElementById('sql-status');
+
+  if (!sql) { status.textContent = '⚠️ Paste SQL first'; return; }
+  status.textContent = 'Parsing...';
+
+  try {
+    const parsed = parseSQL(sql);
+
+    if (mode === 'replace') {
+      DB.pages = parsed.pages;
+      DB.faqs = parsed.faqs;
+      DB.prompts = parsed.prompts;
+      DB.prompt_sets = parsed.prompt_sets;
+      DB.related_pages = parsed.related_pages;
+    } else {
+      // Merge — add new, skip duplicates by id
+      const mergeById = (existing, incoming) => {
+        const ids = new Set(existing.map(r => r.id));
+        return [...existing, ...incoming.filter(r => !ids.has(r.id))];
+      };
+      DB.pages = mergeById(DB.pages, parsed.pages);
+      DB.faqs = mergeById(DB.faqs, parsed.faqs);
+      DB.prompts = mergeById(DB.prompts, parsed.prompts);
+      DB.prompt_sets = mergeById(DB.prompt_sets, parsed.prompt_sets);
+      DB.related_pages = mergeById(DB.related_pages, parsed.related_pages);
+    }
+
+    saveToSession();
+    renderAll();
+    showImportResults(parsed);
+    status.textContent = '✅ Done!';
+    showToast('🚀 SQL imported successfully!');
+  } catch(e) {
+    status.textContent = '❌ Parse error: ' + e.message;
+    console.error(e);
+  }
+}
+
+function parseSQL(sql) {
+  const result = { pages: [], faqs: [], prompts: [], prompt_sets: [], related_pages: [] };
+
+  // Extract all INSERT INTO blocks
+  const insertRegex = /INSERT INTO `?(\w+)`?\s*\(([^)]+)\)\s*VALUES\s*([\s\S]+?)(?=;\s*(?:--|INSERT|CREATE|ALTER|DROP|SET|COMMIT|$))/gi;
+  let match;
+
+  while ((match = insertRegex.exec(sql)) !== null) {
+    const table = match[1].toLowerCase();
+    const colsRaw = match[2];
+    const valsRaw = match[3];
+
+    if (!result[table]) continue;
+
+    const cols = colsRaw.split(',').map(c => c.trim().replace(/`/g,'').replace(/'/g,''));
+    const rows = parseSQLRows(valsRaw);
+
+    rows.forEach(row => {
+      if (row.length !== cols.length) return;
+      const obj = {};
+      cols.forEach((col, i) => { obj[col] = row[i]; });
+      // Convert numeric fields
+      if (obj.id) obj.id = parseInt(obj.id) || obj.id;
+      if (obj.page_id) obj.page_id = parseInt(obj.page_id) || null;
+      if (obj.set_id) obj.set_id = parseInt(obj.set_id) || null;
+      if (obj.word_count) obj.word_count = parseInt(obj.word_count) || 0;
+      result[table].push(obj);
+    });
+  }
+
+  return result;
+}
+
+function parseSQLRows(valsRaw) {
+  const rows = [];
+  // State machine parser for SQL value tuples
+  let i = 0;
+  while (i < valsRaw.length) {
+    // Skip whitespace, commas between rows
+    while (i < valsRaw.length && (valsRaw[i] === ',' || valsRaw[i] === '\n' || valsRaw[i] === '\r' || valsRaw[i] === ' ' || valsRaw[i] === '\t')) i++;
+    if (i >= valsRaw.length) break;
+    if (valsRaw[i] !== '(') { i++; continue; }
+    i++; // skip (
+
+    const row = [];
+    while (i < valsRaw.length && valsRaw[i] !== ')') {
+      // Skip whitespace
+      while (i < valsRaw.length && (valsRaw[i] === ' ' || valsRaw[i] === '\t')) i++;
+      if (valsRaw[i] === ')') break;
+
+      if (valsRaw[i] === "'") {
+        // String value
+        i++;
+        let val = '';
+        while (i < valsRaw.length) {
+          if (valsRaw[i] === '\\') {
+            i++;
+            const esc = valsRaw[i];
+            if (esc === 'n') val += '\n';
+            else if (esc === 't') val += '\t';
+            else if (esc === 'r') val += '\r';
+            else val += esc;
+            i++;
+          } else if (valsRaw[i] === "'") {
+            // Check for escaped quote ''
+            if (valsRaw[i+1] === "'") { val += "'"; i += 2; }
+            else { i++; break; }
+          } else {
+            val += valsRaw[i++];
+          }
+        }
+        row.push(val);
+      } else if (valsRaw.substr(i, 4).toUpperCase() === 'NULL') {
+        row.push(null);
+        i += 4;
+      } else {
+        // Number
+        let num = '';
+        while (i < valsRaw.length && valsRaw[i] !== ',' && valsRaw[i] !== ')') {
+          num += valsRaw[i++];
+        }
+        row.push(num.trim());
+      }
+      // Skip comma between values
+      while (i < valsRaw.length && (valsRaw[i] === ' ' || valsRaw[i] === '\t')) i++;
+      if (valsRaw[i] === ',') i++;
+    }
+    if (valsRaw[i] === ')') i++; // skip )
+    if (row.length > 0) rows.push(row);
+  }
+  return rows;
+}
+
+function showImportResults(parsed) {
+  const resultsEl = document.getElementById('sql-results');
+  const contentEl = document.getElementById('sql-results-content');
+  const previewEl = document.getElementById('sql-preview-table');
+
+  resultsEl.style.display = 'block';
+
+  // Stat cards
+  const stats = [
+    { label: 'Pages', count: parsed.pages.length, cls: 'badge-purple' },
+    { label: 'Prompt Sets', count: parsed.prompt_sets.length, cls: 'badge-green' },
+    { label: 'Prompts', count: parsed.prompts.length, cls: 'badge-pink' },
+    { label: 'FAQs', count: parsed.faqs.length, cls: 'badge-purple' },
+    { label: 'Related', count: parsed.related_pages.length, cls: 'badge-green' },
+  ];
+  contentEl.innerHTML = stats.map(s => `
+    <div style="background:var(--surface2);border-radius:10px;padding:16px;text-align:center;">
+      <div style="font-size:1.8rem;font-weight:800;font-family:'JetBrains Mono',monospace;">${s.count}</div>
+      <div style="font-size:.8rem;color:var(--muted);margin-top:4px;">${s.label}</div>
+    </div>`).join('');
+
+  // Preview table
+  previewEl.innerHTML = DB.pages.map(p => {
+    const setIds = DB.prompt_sets.filter(s => s.page_id === p.id).map(s => s.id);
+    const promptCount = DB.prompts.filter(pr => setIds.includes(pr.set_id)).length;
+    const faqCount = DB.faqs.filter(f => f.page_id === p.id).length;
+    const setCount = setIds.length;
+    return `<tr>
+      <td style="padding:11px 16px;border-top:1px solid var(--border);"><span class="badge badge-purple">${esc(p.slug)}</span></td>
+      <td style="padding:11px 16px;border-top:1px solid var(--border);font-size:.9rem;">${esc(p.title)}</td>
+      <td style="padding:11px 16px;border-top:1px solid var(--border);"><span class="badge badge-green">${setCount}</span></td>
+      <td style="padding:11px 16px;border-top:1px solid var(--border);"><span class="badge badge-pink">${promptCount}</span></td>
+      <td style="padding:11px 16px;border-top:1px solid var(--border);"><span class="badge badge-purple">${faqCount}</span></td>
+    </tr>`;
+  }).join('');
+
+  resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 // Close modals on overlay click

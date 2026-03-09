@@ -1,10 +1,10 @@
 {
   "name": "promptimagelab",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "PromptImageLab — AI Image Prompt Library on Cloudflare Pages",
   "scripts": {
-    "dev": "npx wrangler pages dev public --compatibility-date=2024-01-01",
-    "deploy": "npx wrangler pages deploy public"
+    "dev": "npx wrangler pages dev public --compatibility-date=2024-09-23",
+    "deploy": "npx wrangler pages deploy public --project-name=promptimagelab"
   },
   "devDependencies": {
     "wrangler": "^3.0.0"
