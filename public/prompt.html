@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6771008610152378" crossorigin="anonymous"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MGTDGLQPSH"></script>
+<script src="/assets/js/gtag.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title id="pt">Loading... | PromptImageLab</title>
+<meta id="md" name="description" content="">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<meta name="author" content="PromptImageLab">
+<link id="can" rel="canonical" href="https://promptimagelab.com/">
+<meta id="ogType" property="og:type" content="article">
+<meta id="ogUrl" property="og:url" content="">
+<meta id="ogTitle" property="og:title" content="">
+<meta id="ogDesc" property="og:description" content="">
+<meta id="ogImg" property="og:image" content="https://promptimagelab.com/images/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta id="twTitle" name="twitter:title" content="">
+<meta id="twDesc" name="twitter:description" content="">
+<meta id="twImg" name="twitter:image" content="https://promptimagelab.com/images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/main.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<nav class="site-nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="/" class="logo">Prompt<span>Image</span>Lab</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/">Home</a></li>
+        <li><a href="/#prompts">Prompts</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">&#9776;</button>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+  <div id="content">
+    <section class="prompt-hero">
+      <div class="container" style="max-width:840px">
+        <div class="skeleton" style="height:12px;width:220px;margin-bottom:16px"></div>
+        <div class="skeleton" style="height:38px;width:72%;margin-bottom:14px"></div>
+        <div class="skeleton" style="height:12px;width:180px"></div>
+      </div>
+    </section>
+    <div style="padding:0 0 72px">
+      <div class="container" style="max-width:840px">
+        <div class="skeleton" style="height:280px;border-radius:12px;margin-bottom:26px"></div>
+        <div class="skeleton" style="height:14px;margin-bottom:9px"></div>
+        <div class="skeleton" style="height:14px;width:88%;margin-bottom:9px"></div>
+        <div class="skeleton" style="height:14px;width:76%"></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">Prompt<span style="color:var(--primary)">Image</span>Lab</div>
+        <p class="footer-desc">Professional AI image prompt frameworks for avatars, anime, portraits, and stylized image generation.</p>
+      </div>
+      <div>
+        <div class="footer-head">Quick Links</div>
+        <ul class="footer-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/#prompts">Browse Prompts</a></li>
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 PromptImageLab. All rights reserved. &nbsp;|&nbsp;
+        <a href="/privacy-policy.html">Privacy Policy</a> &middot; <a href="/sitemap.xml">Sitemap</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script>
+var ICON={instagram:'📸',anime:'🎨',professional:'💼',general:'✨'};
+
+document.getElementById('navToggle').onclick=function(){document.getElementById('navLinks').classList.toggle('open');};
+
+function fmtDate(d){if(!d)return'';return new Date(d).toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'});}
+
+function slug(){
+  var parts=window.location.pathname.replace(/\/+$/,'').split('/');
+  return parts[parts.length-1]||'';
+}
+
+function setMeta(p){
+  var title=p.title+' | PromptImageLab';
+  var desc=p.meta_desc||p.title;
+  var url='https://promptimagelab.com/prompts/'+p.slug;
+  var img=p.image||'https://promptimagelab.com/images/logo.png';
+  document.title=title;
+  document.getElementById('pt').textContent=title;
+  document.getElementById('md').setAttribute('content',desc);
+  document.getElementById('can').setAttribute('href',url);
+  document.getElementById('ogUrl').setAttribute('content',url);
+  document.getElementById('ogTitle').setAttribute('content',title);
+  document.getElementById('ogDesc').setAttribute('content',desc);
+  document.getElementById('ogImg').setAttribute('content',img);
+  document.getElementById('twTitle').setAttribute('content',title);
+  document.getElementById('twDesc').setAttribute('content',desc);
+  document.getElementById('twImg').setAttribute('content',img);
+  // Article schema
+  var s=document.createElement('script');
+  s.type='application/ld+json';
+  s.textContent=JSON.stringify({"@context":"https://schema.org","@type":"Article","headline":p.title,"description":desc,"url":url,"datePublished":p.created_at,"dateModified":p.updated_at||p.created_at,"image":img,"author":{"@type":"Organization","name":"PromptImageLab"},"publisher":{"@type":"Organization","name":"PromptImageLab","logo":{"@type":"ImageObject","url":"https://promptimagelab.com/images/logo.png"}}});
+  document.head.appendChild(s);
+}
+
+function render(p,related){
+  var fi=p.image?'<img class="prompt-feat-img" src="'+p.image+'" alt="'+p.title+'" width="840" height="420" loading="eager">':'';
+
+  var relHtml='';
+  if(related&&related.length>0){
+    relHtml='<section class="section section-border"><div class="container" style="max-width:840px"><h2 style="font-size:1.25rem;font-weight:700;margin-bottom:4px">Related Prompts</h2><div class="related-grid">'+
+    related.map(function(r){
+      return '<article class="prompt-card" onclick="location.href=\'/prompts/'+r.slug+'\'">'+'<div class="card-placeholder">'+(ICON[r.category]||'✨')+'</div><div class="card-body"><div class="card-cat">'+r.category+'</div><h3 class="card-title">'+r.title+'</h3></div></article>';
+    }).join('')+
+    '</div></div></section>';
+  }
+
+  document.getElementById('content').innerHTML=
+    '<section class="prompt-hero">'+
+      '<div class="container" style="max-width:840px">'+
+        '<ul class="breadcrumb"><li><a href="/">Home</a></li><li class="breadcrumb-sep">›</li><li><a href="/#prompts">Prompts</a></li><li class="breadcrumb-sep">›</li><li>'+p.title+'</li></ul>'+
+        '<h1>'+p.title+'</h1>'+
+        '<div class="prompt-meta"><span class="cat-badge">'+p.category+'</span><span>'+fmtDate(p.created_at)+'</span></div>'+
+      '</div>'+
+    '</section>'+
+    '<div style="padding:0 0 56px"><div class="container" style="max-width:840px">'+
+      fi+
+      '<div style="text-align:center;margin-bottom:24px"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6771008610152378" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins></div>'+
+      '<div class="prose">'+p.content+'</div>'+
+      '<div style="text-align:center;margin-top:24px"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6771008610152378" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins></div>'+
+    '</div></div>'+
+    relHtml;
+
+  // Activate AdSense
+  try{(adsbygoogle=window.adsbygoogle||[]).push({});}catch(e){}
+  try{(adsbygoogle=window.adsbygoogle||[]).push({});}catch(e){}
+}
+
+var s=slug();
+if(!s){
+  document.getElementById('content').innerHTML='<div class="empty-state" style="padding:110px 20px"><div class="empty-icon">&#10060;</div><p>Prompt not found.</p><a href="/" class="btn btn-primary" style="margin-top:18px;display:inline-flex">Back Home</a></div>';
+}else{
+  fetch('/api/get-prompt-by-slug?slug='+encodeURIComponent(s))
+  .then(function(r){if(!r.ok)throw new Error('not found');return r.json();})
+  .then(function(d){
+    setMeta(d.prompt);
+    render(d.prompt,d.related);
+  })
+  .catch(function(){
+    document.getElementById('content').innerHTML='<div class="empty-state" style="padding:110px 20px"><div class="empty-icon">&#10060;</div><p>Prompt not found or failed to load.</p><a href="/" class="btn btn-primary" style="margin-top:18px;display:inline-flex">Back Home</a></div>';
+  });
+}
+</script>
+</body>
+</html>

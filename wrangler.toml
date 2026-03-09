@@ -1,0 +1,12 @@
+name = "promptimagelab"
+compatibility_date = "2024-09-23"
+pages_build_output_dir = "public"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "promptimagelab-db"
+database_id = "9a6bd273-0e19-4025-9329-979f38653184"
+
+[vars]
+SITE_URL = "https://promptimagelab.com"
+ADMIN_USERNAME = "admin"

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin | PromptImageLab</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/main.css">
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="loginWrap" class="login-wrap">
+  <div class="login-card">
+    <div class="login-logo">Prompt<span>Image</span>Lab</div>
+    <p class="login-sub">Admin Dashboard</p>
+    <div id="loginAlert"></div>
+    <div class="form-group">
+      <label for="lu">Username</label>
+      <input id="lu" type="text" class="form-ctrl" placeholder="admin" autocomplete="username">
+    </div>
+    <div class="form-group">
+      <label for="lp">Password</label>
+      <input id="lp" type="password" class="form-ctrl" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" autocomplete="current-password">
+    </div>
+    <button class="btn btn-primary" style="width:100%;justify-content:center" id="loginBtn" onclick="doLogin()">Sign In</button>
+  </div>
+</div>
+
+<!-- ADMIN LAYOUT -->
+<div id="adminWrap" class="admin-layout" style="display:none">
+
+  <aside class="admin-sidebar">
+    <div class="sidebar-logo">Prompt<span>Image</span>Lab</div>
+    <ul class="sidebar-nav">
+      <li><a href="#" id="sNav0" onclick="return goView('dashboard')">&#128202; Dashboard</a></li>
+      <li><a href="#" id="sNav1" onclick="return goView('list')">&#128218; All Prompts</a></li>
+      <li><a href="#" id="sNav2" onclick="return goView('form')">&#43; New Prompt</a></li>
+      <li><a href="/" target="_blank">&#127968; View Site</a></li>
+      <li><a href="#" onclick="doLogout();return false;" style="color:#ef4444!important">&#128682; Logout</a></li>
+    </ul>
+  </aside>
+
+  <main class="admin-main">
+
+    <!-- DASHBOARD -->
+    <div id="vDashboard">
+      <div class="admin-topbar"><h2>Dashboard</h2></div>
+      <div class="stat-grid">
+        <div class="stat-card"><div class="stat-val" id="sTot">—</div><div class="stat-lbl">Total Prompts</div></div>
+        <div class="stat-card"><div class="stat-val" id="sIg" style="color:#f06292">—</div><div class="stat-lbl">Instagram</div></div>
+        <div class="stat-card"><div class="stat-val" id="sAn" style="color:#a78bfa">—</div><div class="stat-lbl">Anime</div></div>
+        <div class="stat-card"><div class="stat-val" id="sPr" style="color:#38bdf8">—</div><div class="stat-lbl">Professional</div></div>
+      </div>
+      <div class="admin-card">
+        <h3 style="font-size:.97rem;font-weight:700;margin-bottom:18px">Recent Prompts</h3>
+        <div id="dRecent"><div class="spinner"></div></div>
+      </div>
+    </div>
+
+    <!-- LIST -->
+    <div id="vList" style="display:none">
+      <div class="admin-topbar">
+        <h2>All Prompts</h2>
+        <button class="btn btn-primary btn-sm" onclick="goView('form');resetForm();">+ New Prompt</button>
+      </div>
+      <div class="admin-card">
+        <div id="listAlert"></div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>Title</th><th>Slug</th><th>Category</th><th>Created</th><th>Actions</th></tr></thead>
+            <tbody id="listBody"><tr><td colspan="5"><div class="spinner"></div></td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- FORM -->
+    <div id="vForm" style="display:none">
+      <div class="admin-topbar">
+        <h2 id="formHead">New Prompt</h2>
+        <button class="btn btn-outline btn-sm" onclick="goView('list')">&#8592; Back</button>
+      </div>
+      <div class="admin-card">
+        <div id="formAlert"></div>
+        <input type="hidden" id="fId">
+        <div class="form-group">
+          <label for="fTitle">Title *</label>
+          <input id="fTitle" type="text" class="form-ctrl" placeholder="e.g. Instagram DP AI Prompts" oninput="autoSlug()">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fSlug">Slug *</label>
+            <input id="fSlug" type="text" class="form-ctrl" placeholder="instagram-dp-ai-prompts" oninput="updateSlugPreview()">
+            <div class="form-hint">URL: /prompts/<span id="slugPrev">your-slug</span></div>
+          </div>
+          <div class="form-group">
+            <label for="fCat">Category *</label>
+            <select id="fCat" class="form-ctrl">
+              <option value="general">&#10024; General</option>
+              <option value="instagram">&#128248; Instagram</option>
+              <option value="anime">&#127912; Anime</option>
+              <option value="professional">&#128188; Professional</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="fMeta">Meta Description (SEO)</label>
+          <input id="fMeta" type="text" class="form-ctrl" placeholder="150-160 char SEO description" maxlength="160">
+        </div>
+        <div class="form-group">
+          <label for="fImg">Featured Image URL</label>
+          <input id="fImg" type="text" class="form-ctrl" placeholder="https://...">
+          <img id="imgPrev" style="display:none;max-width:180px;border-radius:8px;border:1px solid var(--border);margin-top:10px" alt="preview">
+        </div>
+        <div class="form-group">
+          <label for="fContent">Content * <span style="font-weight:400;text-transform:none;font-size:.75rem">(HTML supported)</span></label>
+          <textarea id="fContent" class="form-ctrl" rows="14" placeholder="&lt;h2&gt;Title&lt;/h2&gt;&#10;&lt;p&gt;Intro...&lt;/p&gt;&#10;&lt;h3&gt;Prompts&lt;/h3&gt;&#10;&lt;ul&gt;&lt;li&gt;Prompt 1&lt;/li&gt;&lt;/ul&gt;"></textarea>
+        </div>
+        <div style="display:flex;gap:11px;justify-content:flex-end">
+          <button class="btn btn-outline" onclick="resetForm()">Clear</button>
+          <button class="btn btn-primary" id="saveBtn" onclick="savePrompt()">&#128190; Save Prompt</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- DELETE MODAL -->
+<div class="modal-bg" id="delModal">
+  <div class="modal" style="max-width:420px">
+    <div class="modal-head">
+      <h3>Delete Prompt</h3>
+      <button class="modal-x" onclick="closeDelModal()">&#215;</button>
+    </div>
+    <p class="muted" style="margin-bottom:22px">Delete <strong id="delTitle"></strong>? This cannot be undone.</p>
+    <div style="display:flex;gap:10px;justify-content:flex-end">
+      <button class="btn btn-outline" onclick="closeDelModal()">Cancel</button>
+      <button class="btn btn-danger" onclick="confirmDel()">Delete</button>
+    </div>
+  </div>
+</div>
+
+<script>
+var TOKEN=sessionStorage.getItem('pil_tok')||'';
+var DEL_ID=null;
+
+function authH(){return{'Content-Type':'application/json','Authorization':'Bearer '+TOKEN};}
+
+window.onload=function(){
+  if(TOKEN){showAdmin();}
+};
+
+document.addEventListener('keydown',function(e){
+  if(e.key==='Enter'&&document.getElementById('loginWrap').style.display!=='none')doLogin();
+});
+
+// Watch image URL field for preview
+document.getElementById('fImg').addEventListener('input',function(){
+  var v=this.value.trim();
+  var p=document.getElementById('imgPrev');
+  if(v){p.src=v;p.style.display='block';}else{p.style.display='none';}
+});
+
+function showAdmin(){
+  document.getElementById('loginWrap').style.display='none';
+  document.getElementById('adminWrap').style.display='flex';
+  goView('dashboard');
+}
+
+function doLogin(){
+  var u=document.getElementById('lu').value.trim();
+  var p=document.getElementById('lp').value;
+  if(!u||!p){setAlert('loginAlert','Please enter username and password.');return;}
+  var btn=document.getElementById('loginBtn');
+  btn.disabled=true;btn.textContent='Signing in...';
+  fetch('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:u,password:p})})
+  .then(function(r){return r.json();})
+  .then(function(d){
+    if(d.token){TOKEN=d.token;sessionStorage.setItem('pil_tok',TOKEN);showAdmin();}
+    else setAlert('loginAlert',d.error||'Login failed.');
+  })
+  .catch(function(){setAlert('loginAlert','Network error.');})
+  .finally(function(){btn.disabled=false;btn.textContent='Sign In';});
+}
+
+function doLogout(){TOKEN='';sessionStorage.removeItem('pil_tok');document.getElementById('loginWrap').style.display='flex';document.getElementById('adminWrap').style.display='none';}
+
+function goView(v){
+  ['dashboard','list','form'].forEach(function(x){
+    document.getElementById('v'+x.charAt(0).toUpperCase()+x.slice(1)).style.display='none';
+  });
+  document.getElementById('v'+v.charAt(0).toUpperCase()+v.slice(1)).style.display='block';
+  document.querySelectorAll('.sidebar-nav a').forEach(function(a){a.classList.remove('active');});
+  var map={dashboard:0,list:1,form:2};
+  var el=document.getElementById('sNav'+map[v]);
+  if(el)el.classList.add('active');
+  if(v==='dashboard')loadDash();
+  if(v==='list')loadList();
+  return false;
+}
+
+function loadDash(){
+  fetch('/api/get-prompts?limit=100',{headers:authH()})
+  .then(function(r){return r.json();})
+  .then(function(d){
+    var a=d.prompts||[];
+    document.getElementById('sTot').textContent=d.pagination?d.pagination.total:a.length;
+    document.getElementById('sIg').textContent=a.filter(function(x){return x.category==='instagram';}).length;
+    document.getElementById('sAn').textContent=a.filter(function(x){return x.category==='anime';}).length;
+    document.getElementById('sPr').textContent=a.filter(function(x){return x.category==='professional';}).length;
+    var rec=a.slice(0,5);
+    document.getElementById('dRecent').innerHTML=rec.length===0
+      ?'<p class="muted">No prompts yet. <a href="#" onclick="goView(\'form\');return false;">Create one.</a></p>'
+      :'<table class="tbl"><thead><tr><th>Title</th><th>Category</th><th>Created</th></tr></thead><tbody>'+
+        rec.map(function(p){return'<tr><td><a href="/prompts/'+p.slug+'" target="_blank" style="color:var(--primary)">'+p.title+'</a></td><td><span class="badge badge-'+p.category+'">'+p.category+'</span></td><td>'+fmtDate(p.created_at)+'</td></tr>';}).join('')+
+        '</tbody></table>';
+  }).catch(function(e){console.error(e);});
+}
+
+function loadList(){
+  document.getElementById('listBody').innerHTML='<tr><td colspan="5"><div class="spinner"></div></td></tr>';
+  fetch('/api/get-prompts?limit=100',{headers:authH()})
+  .then(function(r){return r.json();})
+  .then(function(d){
+    var a=d.prompts||[];
+    if(a.length===0){document.getElementById('listBody').innerHTML='<tr><td colspan="5" style="text-align:center;color:var(--muted)">No prompts. <a href="#" onclick="goView(\'form\');return false;">Create one.</a></td></tr>';return;}
+    document.getElementById('listBody').innerHTML=a.map(function(p){
+      return'<tr>'+
+        '<td><strong>'+p.title+'</strong></td>'+
+        '<td><a href="/prompts/'+p.slug+'" target="_blank" style="color:var(--primary);font-size:.82rem">'+p.slug+'</a></td>'+
+        '<td><span class="badge badge-'+p.category+'">'+p.category+'</span></td>'+
+        '<td>'+fmtDate(p.created_at)+'</td>'+
+        '<td><div class="act">'+
+          '<button class="btn btn-outline btn-sm" onclick="editPrompt('+p.id+',\''+p.slug.replace(/'/g,"\\'")+'\')" >&#9998; Edit</button>'+
+          '<button class="btn btn-danger btn-sm" onclick="openDelModal('+p.id+',\''+p.title.replace(/'/g,"\\'")+'\')" >&#128465;</button>'+
+        '</div></td>'+
+      '</tr>';
+    }).join('');
+  }).catch(function(e){setAlert('listAlert','Error: '+e.message);});
+}
+
+function editPrompt(id,slug){
+  fetch('/api/get-prompt-by-slug?slug='+slug,{headers:authH()})
+  .then(function(r){return r.json();})
+  .then(function(d){
+    var p=d.prompt;
+    document.getElementById('fId').value=p.id;
+    document.getElementById('fTitle').value=p.title;
+    document.getElementById('fSlug').value=p.slug;
+    document.getElementById('fCat').value=p.category;
+    document.getElementById('fMeta').value=p.meta_desc||'';
+    document.getElementById('fImg').value=p.image||'';
+    document.getElementById('fContent').value=p.content;
+    document.getElementById('slugPrev').textContent=p.slug;
+    if(p.image){document.getElementById('imgPrev').src=p.image;document.getElementById('imgPrev').style.display='block';}
+    document.getElementById('formHead').textContent='Edit Prompt';
+    goView('form');
+  }).catch(function(e){setAlert('listAlert','Error loading prompt: '+e.message);});
+}
+
+function autoSlug(){
+  if(document.getElementById('fId').value)return; // don't overwrite on edit
+  var v=document.getElementById('fTitle').value.toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,'').replace(/-+/g,'-').replace(/^-|-$/g,'');
+  document.getElementById('fSlug').value=v;
+  document.getElementById('slugPrev').textContent=v||'your-slug';
+}
+
+function updateSlugPreview(){
+  document.getElementById('slugPrev').textContent=document.getElementById('fSlug').value||'your-slug';
+}
+
+function resetForm(){
+  document.getElementById('fId').value='';
+  document.getElementById('fTitle').value='';
+  document.getElementById('fSlug').value='';
+  document.getElementById('fCat').value='general';
+  document.getElementById('fMeta').value='';
+  document.getElementById('fImg').value='';
+  document.getElementById('fContent').value='';
+  document.getElementById('imgPrev').style.display='none';
+  document.getElementById('slugPrev').textContent='your-slug';
+  document.getElementById('formAlert').innerHTML='';
+  document.getElementById('formHead').textContent='New Prompt';
+}
+
+function savePrompt(){
+  var id=document.getElementById('fId').value;
+  var title=document.getElementById('fTitle').value.trim();
+  var slug=document.getElementById('fSlug').value.trim();
+  var cat=document.getElementById('fCat').value;
+  var meta=document.getElementById('fMeta').value.trim();
+  var img=document.getElementById('fImg').value.trim();
+  var content=document.getElementById('fContent').value.trim();
+  if(!title||!slug||!content){setAlert('formAlert','Title, slug, and content are required.');return;}
+  var btn=document.getElementById('saveBtn');
+  btn.disabled=true;btn.textContent='Saving...';
+  var isEdit=!!id;
+  var body={title:title,slug:slug,content:content,category:cat,meta_desc:meta||null,image:img||null};
+  if(isEdit)body.id=parseInt(id);
+  fetch(isEdit?'/api/update-prompt':'/api/create-prompt',{
+    method:isEdit?'PUT':'POST',
+    headers:authH(),
+    body:JSON.stringify(body)
+  })
+  .then(function(r){return r.json();})
+  .then(function(d){
+    if(d.success){
+      setAlert('formAlert','Saved! <a href="/prompts/'+(d.slug||slug)+'" target="_blank" style="color:var(--secondary)">View &#8594;</a>','success');
+      if(!isEdit)resetForm();
+    }else setAlert('formAlert',d.error||'Save failed.');
+  })
+  .catch(function(e){setAlert('formAlert','Error: '+e.message);})
+  .finally(function(){btn.disabled=false;btn.textContent='💾 Save Prompt';});
+}
+
+function openDelModal(id,title){DEL_ID=id;document.getElementById('delTitle').textContent='"'+title+'"';document.getElementById('delModal').classList.add('open');}
+function closeDelModal(){DEL_ID=null;document.getElementById('delModal').classList.remove('open');}
+function confirmDel(){
+  if(!DEL_ID)return;
+  fetch('/api/delete-prompt?id='+DEL_ID,{method:'DELETE',headers:authH()})
+  .then(function(r){return r.json();})
+  .then(function(d){
+    closeDelModal();
+    if(d.success){setAlert('listAlert','Deleted.','success');loadList();loadDash();}
+    else setAlert('listAlert',d.error||'Delete failed.');
+  }).catch(function(e){closeDelModal();setAlert('listAlert','Error: '+e.message);});
+}
+
+document.getElementById('delModal').addEventListener('click',function(e){if(e.target===this)closeDelModal();});
+
+function setAlert(id,msg,type){
+  var el=document.getElementById(id);if(!el)return;
+  el.innerHTML='<div class="alert alert-'+(type||'error')+'">'+msg+'</div>';
+  if(type==='success')setTimeout(function(){if(el)el.innerHTML='';},5000);
+}
+function fmtDate(d){if(!d)return'';return new Date(d).toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'});}
+</script>
+</body>
+</html>
