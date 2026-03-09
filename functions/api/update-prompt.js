@@ -1,25 +1,31 @@
-import { json, cors, validateSession } from './_middleware.js';
+import { json, cors, validateSession, slugify } from './_middleware.js';
 
 export async function onRequestOptions() { return cors(); }
 
 export async function onRequestPut(context) {
   const { request, env } = context;
   if (!await validateSession(env, request)) return json({ error: 'Unauthorized' }, 401);
-
   try {
-    const body = await request.json();
-    const { id, title, slug, content, category, image, meta_desc } = body;
+    const b = await request.json();
+    const { id, title, slug, content, excerpt, category, tags, image, meta_title, meta_desc,
+            focus_keyword, og_image, schema_type, reading_time, featured, status, author } = b;
     if (!id) return json({ error: 'id required' }, 400);
-
-    const cleanSlug = slug?.toLowerCase().replace(/[^a-z0-9-]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
-
+    const cleanSlug = slug ? slugify(slug) : slugify(title);
+    const wordCount = content ? content.replace(/<[^>]*>/g, '').split(/\s+/).filter(Boolean).length : 0;
     await env.DB.prepare(
-      "UPDATE prompts SET title=?,slug=?,content=?,category=?,image=?,meta_desc=?,updated_at=datetime('now') WHERE id=?"
-    ).bind(title, cleanSlug, content, category || 'general', image || null, meta_desc || null, id).run();
-
+      `UPDATE prompts SET title=?,slug=?,content=?,excerpt=?,category=?,tags=?,image=?,meta_title=?,meta_desc=?,
+       focus_keyword=?,og_image=?,schema_type=?,reading_time=?,word_count=?,featured=?,status=?,author=?,
+       updated_at=datetime('now') WHERE id=?`
+    ).bind(
+      title, cleanSlug, content, excerpt||null, category||'general', tags||null,
+      image||null, meta_title||title, meta_desc||null, focus_keyword||null,
+      og_image||image||null, schema_type||'Article',
+      reading_time||Math.ceil(wordCount/200), wordCount,
+      featured?1:0, status||'published', author||'PromptImageLab', id
+    ).run();
     return json({ success: true, slug: cleanSlug });
   } catch (e) {
-    if (e.message?.includes('UNIQUE')) return json({ error: 'Slug already exists' }, 409);
+    if (e.message?.includes('UNIQUE')) return json({ error: 'Slug already exists.' }, 409);
     return json({ error: e.message }, 500);
   }
 }

@@ -10,3 +10,4 @@ database_id = "9a6bd273-0e19-4025-9329-979f38653184"
 [vars]
 SITE_URL = "https://promptimagelab.com"
 ADMIN_USERNAME = "admin"
+ADMIN_PASSWORD_HASH = "5d66d9e571f6649be6d4248668c39d5d6ccb903536808a011d68a755afc543da"
