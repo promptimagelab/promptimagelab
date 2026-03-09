@@ -1,0 +1,30 @@
+[build]
+  command = ""
+  destination = "public"
+
+[[redirects]]
+  from = "/home"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/index.php"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/prompts.php"
+  to = "/prompts"
+  status = 301
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "same-origin"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

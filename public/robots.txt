@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+Allow: /assets/
+Allow: /images/
+
+# Block sensitive files
+Disallow: /tools/
+Disallow: /includes/
+Disallow: /admin_pass.hash
+Disallow: /db.php
+Disallow: /migrate.php
+Disallow: /sitemapgenerator.php
+
+# Optional crawl speed control
+Crawl-delay: 1
+
+# Sitemaps
+Sitemap: https://promptimagelab.com/sitemap.xml
+Sitemap: https://promptimagelab.com/images-sitemap.xml
