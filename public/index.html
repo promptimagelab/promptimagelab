@@ -382,7 +382,7 @@
           <div class="footer-brand">Prompt<span style="color:var(--primary)">Image</span>Lab</div>
           <p class="footer-desc">Professional AI image prompt frameworks for Instagram DPs, anime avatars, CEO
             headshots, and professional portraits. Completely free, always updated.</p>
-          <a href="/cdn-cgi/l/email-protection#deaeacb1b3aeaab7b3bfb9bbb2bfbc9eb9b3bfb7b2f0bdb1b3" style="color:var(--primary);font-size:.82rem"><span class="__cf_email__" data-cfemail="4434362b2934302d29252321282526042329252d286a272b29">[email&#160;protected]</span></a>
+          <a href="/cdn-cgi/l/email-protection#7d0d0f12100d0914101c1a18111c1f3d1a101c1411531e1210" style="color:var(--primary);font-size:.82rem"><span class="__cf_email__" data-cfemail="3343415c5e43475a5e5254565f525173545e525a5f1d505c5e">[email&#160;protected]</span></a>
         </div>
         <div>
           <div class="footer-head">Navigation</div>
@@ -455,28 +455,32 @@
     }
 
     function card(p) {
+      var catIcon = ICON[p.category] || '✨';
       var img = p.image
-        ? '<img class="card-img" src="' + p.image + '" alt="' + p.title + ' — AI prompt guide" loading="lazy" width="285" height="170">'
-        : '<div class="card-placeholder">' + (ICON[p.category] || '✨') + '</div>';
-      var badge = p.featured ? '<div class="card-featured-badge">⭐ Featured</div>' : '';
+        ? '<img class="card-img" src="' + p.image + '" alt="' + p.title + ' — AI prompt guide" loading="lazy" width="285" height="170" onerror="this.style.display=\'none\'">'
+        : '<div class="card-placeholder" style="display:flex;align-items:center;justify-content:center;height:140px;font-size:2.5rem;background:rgba(99,102,241,.08);border-radius:8px 8px 0 0">' + catIcon + '</div>';
+      var badge = p.featured
+        ? '<div class="card-featured-badge" style="position:absolute;top:10px;left:10px;background:linear-gradient(135deg,#6366f1,#a855f7);color:#fff;font-size:.68rem;font-weight:800;padding:3px 10px;border-radius:99px;z-index:2">⭐ Featured</div>'
+        : '';
+      var catLabel = (p.category || 'general');
       var tags = (p.tags || '').split(',').filter(Boolean).slice(0, 2).map(function (t) {
-        return '<span class="tag">' + t.trim() + '</span>';
+        return '<span class="tag" style="display:inline-block;font-size:.68rem;padding:2px 8px;border-radius:99px;background:rgba(99,102,241,.13);color:#a5b4fc;margin-right:4px">' + t.trim() + '</span>';
       }).join('');
-      return '<article class="prompt-card" onclick="location.href=\'/prompts/' + p.slug + '\'" tabindex="0" role="article" aria-label="' + p.title + ' prompt guide">' +
+      return '<article class="prompt-card" onclick="location.href=\'/prompts/' + p.slug + '\'" tabindex="0" role="article" aria-label="' + p.title + ' prompt guide" style="position:relative;cursor:pointer;border-radius:12px;overflow:hidden;transition:transform .15s">' +
         badge + img +
-        '<div class="card-body">' +
-        '<div class="card-meta">' +
-        '<span class="card-cat">' + p.category + '</span>' +
-        '<span class="card-dot">•</span>' +
-        '<span class="card-read">⏱ ' + (p.reading_time || 8) + ' min</span>' +
+        '<div class="card-body" style="padding:14px 16px 10px">' +
+        '<div class="card-meta" style="display:flex;align-items:center;gap:6px;margin-bottom:8px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#a5b4fc">' +
+        '<span class="card-cat">' + catLabel + '</span>' +
+        '<span style="opacity:.4">•</span>' +
+        '<span>⏱ ' + (p.reading_time || 8) + ' min</span>' +
         '</div>' +
-        '<h2 class="card-title">' + p.title + '</h2>' +
-        '<p class="card-excerpt">' + (p.excerpt || p.meta_desc || '') + '</p>' +
-        (tags ? '<div class="tags" style="margin-top:9px">' + tags + '</div>' : '') +
+        '<h2 class="card-title" style="font-size:.92rem;font-weight:700;line-height:1.4;margin-bottom:7px;color:#f1f5f9">' + p.title + '</h2>' +
+        '<p class="card-excerpt" style="font-size:.8rem;line-height:1.55;color:#94a3b8;margin:0">' + (p.excerpt || p.meta_desc || '') + '</p>' +
+        (tags ? '<div style="margin-top:9px">' + tags + '</div>' : '') +
         '</div>' +
-        '<div class="card-foot">' +
-        '<span class="card-date">' + fmtDate(p.created_at) + '</span>' +
-        '<span class="card-cta">Read guide →</span>' +
+        '<div class="card-foot" style="padding:10px 16px 14px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.06)">' +
+        '<span style="font-size:.72rem;color:#64748b">' + fmtDate(p.created_at) + '</span>' +
+        '<span style="font-size:.75rem;font-weight:700;color:#818cf8">Read guide →</span>' +
         '</div>' +
         '</article>';
     }
@@ -573,4 +577,12 @@
     });
 
     /* FAQ toggle icons */
-    document.query
+    document.querySelectorAll('#faq details').forEach(function (d) {
+      d.addEventListener('toggle', function () {
+        var icon = this.querySelector('.faq-icon');
+        if (icon) icon.textContent = this.open ? '−' : '+';
+      });
+    });
+  </script>
+</body>     
+</html> 
