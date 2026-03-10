@@ -1,465 +1,781 @@
-CREATE TABLE IF NOT EXISTS prompts (
-  id            INTEGER PRIMARY KEY AUTOINCREMENT,
-  title         TEXT NOT NULL,
-  slug          TEXT UNIQUE NOT NULL,
-  content       TEXT NOT NULL,
-  excerpt       TEXT,
-  category      TEXT NOT NULL DEFAULT 'general',
-  tags          TEXT,
-  image         TEXT,
-  meta_title    TEXT,
-  meta_desc     TEXT,
-  focus_keyword TEXT,
-  canonical_url TEXT,
-  og_image      TEXT,
-  schema_type   TEXT DEFAULT 'Article',
-  reading_time  INTEGER DEFAULT 5,
-  word_count    INTEGER DEFAULT 0,
-  views         INTEGER DEFAULT 0,
-  featured      INTEGER DEFAULT 0,
-  status        TEXT DEFAULT 'published',
-  author        TEXT DEFAULT 'PromptImageLab',
-  created_at    TEXT NOT NULL DEFAULT (datetime('now')),
-  updated_at    TEXT NOT NULL DEFAULT (datetime('now'))
-);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin | PromptImageLab</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/main.css">
+<style>
+.seo-panel{background:rgba(56,189,248,.04);border:1px solid rgba(56,189,248,.15);border-radius:var(--radius);padding:20px;margin-bottom:6px}
+.seo-preview{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px;margin-top:12px}
+.serp-title{font-size:1.05rem;color:#8ab4f8;font-weight:500;margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.serp-url{font-size:.78rem;color:#8ab49a;margin-bottom:4px}
+.serp-desc{font-size:.84rem;color:#bdc1c6;line-height:1.5}
+.wc-good{color:var(--green)}
+.wc-warn{color:#fbbf24}
+.wc-bad{color:var(--red)}
+.section-divider{display:flex;align-items:center;gap:12px;margin:22px 0 16px}
+.section-divider span{font-size:.74rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);white-space:nowrap}
+.section-divider::before,.section-divider::after{content:'';flex:1;height:1px;background:var(--border)}
+.toggle-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0}
+.toggle{position:relative;display:inline-block;width:40px;height:22px}
+.toggle input{opacity:0;width:0;height:0}
+.toggle-slider{position:absolute;cursor:pointer;inset:0;background:var(--border);border-radius:22px;transition:.2s}
+.toggle-slider::before{content:'';position:absolute;height:16px;width:16px;left:3px;bottom:3px;background:var(--muted);border-radius:50%;transition:.2s}
+.toggle input:checked+.toggle-slider{background:var(--green)}
+.toggle input:checked+.toggle-slider::before{transform:translateX(18px);background:#000}
+.toolbar{display:flex;gap:5px;flex-wrap:wrap;background:var(--surface2);border:1px solid var(--border);border-bottom:none;border-radius:var(--radius-sm) var(--radius-sm) 0 0;padding:8px 10px}
+.toolbar button{background:var(--surface);border:1px solid var(--border);color:var(--text);padding:4px 10px;border-radius:4px;cursor:pointer;font-size:.8rem;font-family:inherit;font-weight:600;transition:all .13s}
+.toolbar button:hover{background:rgba(56,189,248,.1);border-color:var(--primary);color:var(--primary)}
+.toolbar-sep{width:1px;background:var(--border);margin:0 3px;align-self:stretch}
+#fContent{border-radius:0 0 var(--radius-sm) var(--radius-sm)!important}
+</style>
+</head>
+<body>
 
-CREATE TABLE IF NOT EXISTS admin_sessions (
-  token      TEXT PRIMARY KEY,
-  expires_at TEXT NOT NULL
-);
+<!-- ═══ LOGIN ═══ -->
+<div id="loginWrap" class="login-wrap">
+  <div class="login-card">
+    <div class="login-logo">Prompt<span>Image</span>Lab</div>
+    <p class="login-sub">Admin Dashboard — Sign In</p>
+    <div id="loginAlert"></div>
+    <div class="form-group">
+      <label for="lu">Username</label>
+      <input id="lu" type="text" class="form-ctrl" placeholder="admin" autocomplete="username">
+    </div>
+    <div class="form-group">
+      <label for="lp">Password</label>
+      <input id="lp" type="password" class="form-ctrl" placeholder="••••••••••" autocomplete="current-password">
+    </div>
+    <button class="btn btn-primary" style="width:100%" id="loginBtn" onclick="doLogin()">Sign In &#8594;</button>
+  </div>
+</div>
 
-CREATE TABLE IF NOT EXISTS site_settings (
-  key   TEXT PRIMARY KEY,
-  value TEXT
-);
+<!-- ═══ ADMIN LAYOUT ═══ -->
+<div id="adminWrap" class="admin-layout" style="display:none">
 
-CREATE INDEX IF NOT EXISTS idx_slug     ON prompts(slug);
-CREATE INDEX IF NOT EXISTS idx_category ON prompts(category);
-CREATE INDEX IF NOT EXISTS idx_status   ON prompts(status);
-CREATE INDEX IF NOT EXISTS idx_featured ON prompts(featured);
-CREATE INDEX IF NOT EXISTS idx_created  ON prompts(created_at DESC);
+  <aside class="admin-sidebar" aria-label="Admin sidebar">
+    <div class="sidebar-logo">Prompt<span>Image</span>Lab</div>
+    <ul class="sidebar-nav">
+      <li><a href="#" id="sNav0" onclick="return goView('dashboard')">&#128202; Dashboard</a></li>
+      <li><a href="#" id="sNav1" onclick="return goView('list')">&#128218; All Prompts</a></li>
+      <li><a href="#" id="sNav2" onclick="return goView('form');newPrompt();">&#10133; New Prompt</a></li>
+      <li><a href="/sitemap.xml" target="_blank">&#127760; Sitemap XML</a></li>
+      <li><a href="/" target="_blank">&#127968; View Site</a></li>
+      <li style="margin-top:auto"><a href="#" onclick="doLogout();return false;" style="color:var(--red)!important;border-top:1px solid var(--border);margin-top:8px">&#128682; Logout</a></li>
+    </ul>
+  </aside>
 
-INSERT OR IGNORE INTO site_settings (key, value) VALUES
-('site_name', 'PromptImageLab'),
-('site_tagline', 'Professional AI Image Prompt Frameworks'),
-('ga_id', 'G-MGTDGLQPSH'),
-('adsense_id', 'ca-pub-6771008610152378'),
-('footer_text', '© 2026 PromptImageLab. All rights reserved.');
+  <main class="admin-main">
 
-INSERT OR IGNORE INTO prompts (title, slug, excerpt, content, category, tags, meta_title, meta_desc, focus_keyword, reading_time, word_count, featured) VALUES
-(
-  'Instagram DP AI Prompts: Complete Guide to Perfect Profile Pictures',
-  'instagram-dp-ai-prompts',
-  'Discover 50+ proven AI prompts specifically crafted for Instagram display pictures. From natural portraits to artistic avatars, learn exactly what to type into Midjourney, DALL-E 3, or Stable Diffusion to generate a stunning Instagram DP that gets noticed.',
-  '<h2>Why Your Instagram DP Matters More Than You Think</h2>
-<p>Your Instagram profile picture is the single most viewed element of your entire account. Before anyone reads your bio, before they scroll your feed, before they decide whether to follow you — they see your DP. Research consistently shows that profiles with high-quality, professional-looking display pictures receive significantly more follow requests, more DM responses, and higher overall engagement.</p>
-<p>The problem? Professional photography is expensive. A studio session can cost hundreds of dollars. AI image generation has changed this completely — but only if you know how to write the right prompts. A vague prompt gives you a generic result. A precisely crafted prompt gives you a photo-realistic, scroll-stopping profile picture in under a minute.</p>
-<p>This guide gives you exactly that: battle-tested, specific AI prompts for Instagram DPs, organized by style, mood, and use case.</p>
+    <!-- ── DASHBOARD ── -->
+    <div id="vDashboard">
+      <div class="admin-topbar">
+        <h2>&#128202; Dashboard</h2>
+        <button class="btn btn-primary btn-sm" onclick="goView('form');newPrompt()">&#10133; New Prompt</button>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-card"><div class="stat-val" id="sTot">—</div><div class="stat-lbl">Total Prompts</div></div>
+        <div class="stat-card"><div class="stat-val" id="sPub" style="color:var(--green)">—</div><div class="stat-lbl">Published</div></div>
+        <div class="stat-card"><div class="stat-val" id="sDraft" style="color:#fbbf24">—</div><div class="stat-lbl">Drafts</div></div>
+        <div class="stat-card"><div class="stat-val" id="sViews" style="color:var(--accent)">—</div><div class="stat-lbl">Total Views</div></div>
+        <div class="stat-card"><div class="stat-val" id="sFeat">—</div><div class="stat-lbl">Featured</div></div>
+        <div class="stat-card"><div class="stat-val" id="sWC">—</div><div class="stat-lbl">Avg Word Count</div></div>
+      </div>
+      <!-- Category breakdown -->
+      <div class="admin-card">
+        <h3 style="font-size:.88rem;font-weight:800;margin-bottom:14px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)">Category Breakdown</h3>
+        <div id="catBreakdown" style="display:flex;gap:10px;flex-wrap:wrap"></div>
+      </div>
+      <!-- SEO Health -->
+      <div class="admin-card">
+        <h3 style="font-size:.88rem;font-weight:800;margin-bottom:14px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)">SEO Health Check</h3>
+        <div id="seoHealth"></div>
+      </div>
+      <!-- Recent -->
+      <div class="admin-card">
+        <h3 style="font-size:.88rem;font-weight:800;margin-bottom:14px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)">Recent Prompts</h3>
+        <div id="dRecent"><div class="spinner"></div></div>
+      </div>
+    </div>
 
-<h2>Understanding What Makes a Great Instagram DP Prompt</h2>
-<p>Before jumping into the prompts themselves, it helps to understand the core structure that makes AI image prompts effective. Every strong portrait prompt contains five elements working together:</p>
-<ul>
-<li><strong>Subject description</strong> — Who is in the image and their key characteristics</li>
-<li><strong>Style reference</strong> — The visual aesthetic you want (editorial, cinematic, natural, etc.)</li>
-<li><strong>Lighting specification</strong> — The type and direction of light (golden hour, studio, Rembrandt, etc.)</li>
-<li><strong>Technical parameters</strong> — Camera settings, lens type, resolution cues</li>
-<li><strong>Mood and atmosphere</strong> — The emotional feeling the image should convey</li>
-</ul>
-<p>When all five elements are present in your prompt, AI models have enough context to generate something genuinely impressive rather than a generic face.</p>
+    <!-- ── LIST ── -->
+    <div id="vList" style="display:none">
+      <div class="admin-topbar">
+        <h2>&#128218; All Prompts</h2>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <input id="listSearch" type="search" class="form-ctrl" style="width:200px;padding:7px 11px;font-size:.83rem" placeholder="&#128269; Filter..." oninput="filterList()">
+          <select id="listCatFilter" class="form-ctrl" style="width:140px;padding:7px 11px;font-size:.83rem" onchange="filterList()">
+            <option value="">All Categories</option>
+            <option value="instagram">Instagram</option>
+            <option value="anime">Anime</option>
+            <option value="professional">Professional</option>
+            <option value="general">General</option>
+          </select>
+          <button class="btn btn-primary btn-sm" onclick="goView('form');newPrompt()">&#10133; New</button>
+        </div>
+      </div>
+      <div id="listAlert"></div>
+      <div class="admin-card" style="padding:0;overflow:hidden">
+        <div class="tbl-wrap">
+          <table class="tbl" id="listTable">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Status</th>
+                <th>Words</th>
+                <th>Views</th>
+                <th>SEO</th>
+                <th>Featured</th>
+                <th>Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="listBody"><tr><td colspan="9"><div class="spinner"></div></td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
 
-<h2>Natural Portrait Instagram DP Prompts</h2>
-<p>These prompts are designed to create realistic, photographic-quality portraits that look like they were taken by a professional photographer in natural conditions. They work best for personal brands, lifestyle influencers, and anyone who wants an approachable, authentic profile picture.</p>
-<ul>
-<li>Portrait photograph of a person, soft natural window light from the left, shallow depth of field, bokeh background, Canon EOS R5, 85mm f/1.4, warm skin tones, candid expression, Instagram square crop, photorealistic</li>
-<li>Outdoor portrait, golden hour lighting, sun-kissed skin, relaxed smile, lifestyle photography style, handheld camera look, warm amber tones, urban background softly blurred, 4K quality</li>
-<li>Close-up portrait, overcast natural daylight, even skin rendering, genuine expression, minimal makeup look, fine hair detail, documentary photography style, neutral background</li>
-<li>Garden portrait, dappled sunlight through leaves, soft green bokeh background, natural beauty, Canon 50mm prime lens aesthetic, warm and inviting mood</li>
-<li>Beach portrait, late afternoon golden light, windswept hair, relaxed expression, ocean blur background, travel lifestyle aesthetic, high resolution</li>
-</ul>
+    <!-- ── FORM ── -->
+    <div id="vForm" style="display:none">
+      <div class="admin-topbar">
+        <h2 id="formHead">&#10133; New Prompt</h2>
+        <div style="display:flex;gap:8px">
+          <button class="btn btn-outline btn-sm" onclick="goView('list')">&#8592; Back</button>
+          <button class="btn btn-primary btn-sm" id="saveBtn" onclick="savePrompt('published')">&#128190; Publish</button>
+          <button class="btn btn-outline btn-sm" id="draftBtn" onclick="savePrompt('draft')">&#128203; Save Draft</button>
+        </div>
+      </div>
 
-<h2>Professional and Corporate Instagram DP Prompts</h2>
-<p>These prompts are ideal for entrepreneurs, freelancers, coaches, consultants, and anyone who uses Instagram for professional networking. The goal is to look authoritative and trustworthy while still feeling human and approachable — the perfect balance for a business profile picture.</p>
-<ul>
-<li>Professional headshot, clean white or light grey background, soft studio lighting, confident but warm expression, business casual attire, sharp focus on eyes, photorealistic portrait</li>
-<li>Corporate portrait, modern office background softly blurred, Rembrandt lighting setup, professional navy blazer, direct and confident gaze, LinkedIn and Instagram ready, 1:1 format</li>
-<li>Personal brand headshot, creative workspace background, natural window light, smart casual clothing, authentic smile, brand color palette in background elements</li>
-<li>Executive portrait, dark suit, crisp white shirt, subtle directional lighting, sharp jaw line, powerful but approachable expression, architectural office background</li>
-<li>Entrepreneur portrait, coffeeshop setting softly blurred, warm ambient light, casual but polished look, laptop suggestion in background, creative professional mood</li>
-</ul>
+      <div id="formAlert"></div>
 
-<h2>Artistic and Creative Instagram DP Prompts</h2>
-<p>For creatives, artists, musicians, and anyone who wants their profile picture to stand out with a more distinctive visual style. These prompts push beyond standard photography into more curated, aesthetic territory.</p>
-<ul>
-<li>Cinematic portrait, film noir lighting, dramatic side shadow, black and white with high contrast, 35mm film grain, mysterious expression, fashion photography style</li>
-<li>Artistic portrait, painterly texture overlay, Renaissance oil painting lighting style, rich warm colors, dramatic chiaroscuro shadows, museum quality aesthetic</li>
-<li>Fashion editorial portrait, harsh high-key lighting, avant-garde styling, graphic background, bold color grading, magazine cover composition</li>
-<li>Moody portrait, blue hour outdoor lighting, cool color palette, contemplative expression, rain-wet environment suggestion, cinematic mood, anamorphic lens flare</li>
-<li>Vintage portrait, 1970s film photography aesthetic, warm faded colors, light leak effects, slightly overexposed, nostalgic and warm mood</li>
-</ul>
+      <!-- two-column layout -->
+      <div style="display:grid;grid-template-columns:1fr 320px;gap:18px;align-items:start">
 
-<h2>How to Use These Prompts Effectively</h2>
-<p>Getting great results from these prompts requires understanding how to adapt them to each AI platform you use. Here is a practical guide for the three most popular tools:</p>
-<p><strong>Midjourney:</strong> Add <code>--ar 1:1 --style raw --v 6</code> to the end of any prompt for Instagram-optimized square output with maximum realism. Use <code>--cref</code> with a reference photo URL to preserve facial features.</p>
-<p><strong>DALL-E 3:</strong> DALL-E 3 responds well to conversational prompt phrasing. Frame your prompt as a description of a photograph rather than a command. Add "photorealistic" and "professional photography" to improve output quality.</p>
-<p><strong>Stable Diffusion:</strong> Use realistic vision or photon v1 checkpoint models for best portrait results. Add negative prompts like "cartoon, anime, illustration, low quality, blurry" to keep outputs photographic.</p>
+        <!-- LEFT column -->
+        <div>
+          <!-- Basic -->
+          <div class="admin-card">
+            <input type="hidden" id="fId">
+            <div class="form-group">
+              <label for="fTitle">Post Title *</label>
+              <input id="fTitle" type="text" class="form-ctrl" style="font-size:1.05rem;font-weight:700" placeholder="e.g. Instagram DP AI Prompts: Complete Guide to Perfect Profile Pictures" oninput="onTitleChange()">
+              <div style="display:flex;justify-content:space-between;margin-top:4px">
+                <div class="form-hint" id="titleHint">Recommended: 50–60 characters</div>
+                <div class="char-count" id="titleCount">0 / 60</div>
+              </div>
+            </div>
+            <div class="form-group" style="margin-bottom:0">
+              <label for="fSlug">URL Slug *</label>
+              <div style="display:flex;align-items:center;gap:8px">
+                <span class="muted" style="font-size:.8rem;white-space:nowrap">promptimagelab.com/prompts/</span>
+                <input id="fSlug" type="text" class="form-ctrl" placeholder="instagram-dp-ai-prompts" oninput="updateSlugPreview()" style="flex:1">
+              </div>
+            </div>
+          </div>
 
-<h2>Common Mistakes to Avoid When Generating Instagram DPs</h2>
-<p>Even with great prompts, many people make avoidable mistakes that result in disappointing outputs. Here are the most common errors and how to fix them:</p>
-<ul>
-<li><strong>Too vague:</strong> "A nice portrait" gives AI nothing to work with. Always specify lighting, style, and mood.</li>
-<li><strong>Conflicting styles:</strong> Asking for "natural photography" and "oil painting style" in the same prompt confuses the model. Pick one direction.</li>
-<li><strong>Ignoring aspect ratio:</strong> Instagram DPs display as circles cropped from squares. Always generate at 1:1 ratio and keep the face centered.</li>
-<li><strong>No technical parameters:</strong> Adding camera and lens references (85mm, f/1.8, etc.) dramatically improves realism in most models.</li>
-<li><strong>Skipping iteration:</strong> Your first output is a starting point, not a final product. Regenerate with tweaked prompts 3-5 times before deciding on a final image.</li>
-</ul>
+          <!-- HTML Editor -->
+          <div class="admin-card">
+            <div class="form-group" style="margin-bottom:0">
+              <label>Content * <span style="font-weight:400;text-transform:none;font-size:.74rem;color:var(--muted)">(HTML — minimum 2000 words for AdSense)</span></label>
+              <div class="toolbar">
+                <button onclick="fmt('h2')" title="Heading 2">H2</button>
+                <button onclick="fmt('h3')" title="Heading 3">H3</button>
+                <div class="toolbar-sep"></div>
+                <button onclick="fmt('b')" title="Bold"><strong>B</strong></button>
+                <button onclick="fmt('i')" title="Italic"><em>I</em></button>
+                <div class="toolbar-sep"></div>
+                <button onclick="fmtList('ul')" title="Bullet list">&#8226; List</button>
+                <button onclick="fmtList('ol')" title="Numbered list">1. List</button>
+                <button onclick="fmtLi()" title="List item">&#8594; Item</button>
+                <div class="toolbar-sep"></div>
+                <button onclick="fmtLink()" title="Link">&#128279; Link</button>
+                <button onclick="fmtCode()" title="Inline code">&#60;/&#62;</button>
+                <div class="toolbar-sep"></div>
+                <button onclick="fmtPara()" title="Paragraph">P</button>
+                <button onclick="previewContent()" title="Preview">&#128065; Preview</button>
+              </div>
+              <textarea id="fContent" class="form-ctrl" rows="22" placeholder="Write your full prompt guide here (HTML supported). Aim for 2000+ words with multiple H2 headings, lists, and practical examples for AdSense approval." oninput="onContentChange()"></textarea>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-top:6px;flex-wrap:wrap;gap:8px">
+                <div class="wc-indicator">
+                  <div class="wc-bar"><div class="wc-fill" id="wcFill" style="width:0;background:var(--red)"></div></div>
+                  <span id="wcLabel" class="form-hint">0 words</span>
+                </div>
+                <div id="wcStatus" class="form-hint"></div>
+              </div>
+            </div>
+          </div>
 
-<h2>Frequently Asked Questions About AI Instagram DPs</h2>
-<p><strong>Can AI-generated profile pictures look real?</strong> Yes. With the right prompts and modern AI models like Midjourney v6 or DALL-E 3, AI-generated portraits are indistinguishable from professional photography to the casual viewer.</p>
-<p><strong>Is it against Instagram terms to use an AI-generated DP?</strong> Instagram does not currently prohibit AI-generated profile pictures. However, impersonating real people using AI images is prohibited.</p>
-<p><strong>What resolution should my Instagram DP be?</strong> Instagram displays profile pictures at 110x110 pixels but stores them at 320x320. Generate your AI image at minimum 1024x1024 pixels for crisp results after compression.</p>',
-  'instagram',
-  'instagram dp,ai prompts,profile picture,instagram profile,midjourney portrait',
-  'Instagram DP AI Prompts: 50+ Proven Prompts for Perfect Profile Pictures',
-  'Get 50+ proven AI prompts for stunning Instagram DPs. Works with Midjourney, DALL-E 3, and Stable Diffusion. Natural, professional, and artistic styles included.',
-  'instagram dp ai prompts',
-  8,
-  2100,
-  1
-),
-(
-  'Anime Avatar AI Prompts: Create Studio-Quality Anime Profile Pictures',
-  'anime-avatars',
-  'Transform yourself into a stunning anime character with 40+ hand-crafted prompts covering Studio Ghibli style, cyberpunk anime, shonen action, and more. Complete guide with tips for Midjourney, DALL-E 3, and Stable Diffusion.',
-  '<h2>The Art of Anime Avatar Generation: Why Style Matters</h2>
-<p>Anime is not a single art style — it is an entire universe of visual languages, each with its own rules, aesthetics, and emotional vocabulary. Studio Ghibli films feel nothing like Dragon Ball Z. Demon Slayer looks nothing like Sailor Moon. When you ask an AI to generate an anime avatar without specifying which sub-style you want, you get an averaged, generic result that feels like none of them.</p>
-<p>The key to generating a truly great anime avatar is specificity. This guide breaks down the major anime art styles, explains what defines each one visually, and gives you precise prompts you can use immediately to generate profile pictures that actually look like they belong in a specific anime world.</p>
+          <!-- Excerpt -->
+          <div class="admin-card">
+            <div class="form-group" style="margin-bottom:0">
+              <label for="fExcerpt">Excerpt / Intro Summary</label>
+              <textarea id="fExcerpt" class="form-ctrl" rows="3" placeholder="1–2 sentence summary shown in cards and as intro on the article page. Plain text only."></textarea>
+              <div class="char-count" id="excerptCount">0 chars</div>
+            </div>
+          </div>
+        </div>
 
-<h2>Studio Ghibli Style Anime Avatar Prompts</h2>
-<p>Studio Ghibli films are defined by their warm, painterly aesthetic, soft color palettes, expressive yet simplified character designs, and a sense of quiet wonder. Ghibli characters feel deeply human even when they are fantastical. These prompts capture that signature look.</p>
-<ul>
-<li>Studio Ghibli style anime portrait, soft watercolor textures, warm pastel color palette, large expressive eyes, simplified but detailed facial features, painted background with nature elements, Hayao Miyazaki character design influence, gentle and warm mood</li>
-<li>Ghibli-inspired anime girl portrait, flowing hair with fine strand detail, forest spirit background, soft dappled light, cream and sage green color palette, hand-painted texture, peaceful expression</li>
-<li>Totoro-era Ghibli aesthetic anime boy, round expressive face, adventure outfit, countryside background, warm golden afternoon light, nostalgic mood, classic animation cel look</li>
-<li>Princess Mononoke inspired portrait, fierce expression, face markings, forest deity background elements, rich jewel tones, dramatic but painterly style, epic atmosphere</li>
-<li>Spirited Away aesthetic anime portrait, slightly wide-eyed wonder expression, spirit world background hints, muted but warm color palette, detailed background blur, dreamlike quality</li>
-</ul>
+        <!-- RIGHT column -->
+        <div>
 
-<h2>Cyberpunk and Futuristic Anime Avatar Prompts</h2>
-<p>Cyberpunk anime draws from Ghost in the Shell, Akira, and Cyberpunk Edgerunners. The aesthetic is defined by neon-lit urban environments, technological augmentations, high contrast between darkness and vivid artificial light, and characters who look simultaneously vulnerable and dangerous.</p>
-<ul>
-<li>Cyberpunk anime avatar, neon pink and cyan lighting from below, rain-wet urban backdrop, glowing cybernetic eye implant, leather jacket with tech details, high contrast noir atmosphere, Ghost in the Shell art influence</li>
-<li>Futuristic anime portrait, holographic interface elements floating around face, cool blue-white light source, sleek android aesthetic, ultra-detailed hair, sci-fi city background, 4K anime quality</li>
-<li>Edgerunners style cyberpunk anime character, street mercenary look, neon alley background, punk styling with tech accessories, Trigger animation studio aesthetic, vivid saturated colors</li>
-<li>Anime hacker portrait, green code rain background suggestion, smart glasses with HUD overlay, dark hoodie, cool expression, high-tech underground aesthetic, dramatic underlighting</li>
-<li>Mecha pilot anime portrait, flight suit with emblem details, cockpit background with controls, determined expression, dynamic lighting from instrument panels, Gainax animation style influence</li>
-</ul>
+          <!-- Publish settings -->
+          <div class="admin-card">
+            <div class="sidebar-head" style="margin-bottom:14px">&#128193; Publish Settings</div>
+            <div class="form-group">
+              <label for="fStatus">Status</label>
+              <select id="fStatus" class="form-ctrl">
+                <option value="published">&#128994; Published</option>
+                <option value="draft">&#128993; Draft</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="fCat">Category</label>
+              <select id="fCat" class="form-ctrl">
+                <option value="instagram">&#128248; Instagram</option>
+                <option value="anime">&#127912; Anime</option>
+                <option value="professional">&#128188; Professional</option>
+                <option value="general">&#10024; General</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="fAuthor">Author</label>
+              <input id="fAuthor" type="text" class="form-ctrl" value="PromptImageLab">
+            </div>
+            <div class="form-group">
+              <label for="fReadTime">Reading Time (minutes)</label>
+              <input id="fReadTime" type="number" class="form-ctrl" min="1" max="60" value="5">
+            </div>
+            <div class="form-group" style="margin-bottom:0">
+              <label for="fSchemaType">Schema Type</label>
+              <select id="fSchemaType" class="form-ctrl">
+                <option value="Article">Article</option>
+                <option value="HowTo">HowTo</option>
+                <option value="FAQPage">FAQPage</option>
+                <option value="BlogPosting">BlogPosting</option>
+              </select>
+            </div>
+            <div class="toggle-row">
+              <div>
+                <div style="font-size:.8rem;font-weight:700;color:var(--text)">&#11088; Featured Post</div>
+                <div style="font-size:.72rem;color:var(--muted)">Pinned to top of listing</div>
+              </div>
+              <label class="toggle"><input type="checkbox" id="fFeatured"><span class="toggle-slider"></span></label>
+            </div>
+          </div>
 
-<h2>Shonen Action Anime Avatar Prompts</h2>
-<p>Shonen anime (Naruto, Dragon Ball, My Hero Academia, Demon Slayer) is defined by bold line work, dynamic energy, spiky or flowing hair, intense expressions, and a sense of barely-contained power. These prompts capture that kinetic energy.</p>
-<ul>
-<li>Shonen anime portrait, spiky dark hair with highlights, intense determined eyes, battle scar, training outfit, power aura effect around body, dynamic wind movement in hair, Masashi Kishimoto art style influence, dramatic lighting</li>
-<li>My Hero Academia style anime character portrait, hero costume detail, strong confident expression, dramatic spotlight lighting, clean modern shonen art style, vibrant colors</li>
-<li>Demon Slayer aesthetic anime portrait, detailed haori pattern, breath technique energy wisps, focused battle expression, Koyoharu Gotouge character design influence, rich color palette</li>
-<li>Dragon Ball Z style anime portrait, spiky ultra hair, power energy crackling, intense battle aura, bold outlines, classic 90s anime aesthetic, epic atmospheric lighting</li>
-<li>Attack on Titan survey corps anime portrait, military uniform, ODM gear suggestion, determined expression, blue sky and wall background, Hajime Isayama inspired character design, war-weary but resolved mood</li>
-</ul>
+          <!-- SEO -->
+          <div class="admin-card">
+            <div class="sidebar-head" style="margin-bottom:14px">&#128269; SEO Settings</div>
 
-<h2>Shoujo and Romantic Anime Avatar Prompts</h2>
-<p>Shoujo anime (Sailor Moon, Cardcaptor Sakura, Fruits Basket) features soft, detailed art with emphasis on emotion, sparkle effects, floral elements, and a dreamy quality that makes characters feel like they inhabit a world slightly more beautiful than our own.</p>
-<ul>
-<li>Shoujo anime portrait, large sparkling eyes with detailed iris reflections, soft pink and lavender color palette, flower crown with rose details, Naoko Takeuchi art style influence, starlight background, ethereal beauty</li>
-<li>Magical girl transformation anime portrait, elaborate costume with ribbons and gems, dynamic pose, sparkle and light beam effects, warm gold and pink lighting, 1990s classic anime aesthetic</li>
-<li>Fruits Basket style anime portrait, gentle expression, soft brown tones, cozy indoor setting, warm lamp light, delicate hair detail, emotional depth in eyes, Natsuki Takaya character design</li>
-<li>Romantic shoujo anime portrait, windswept hair, cherry blossom petals falling, soft spring light, longing expression, delicate pastel tones, screentone texture suggestion</li>
-</ul>
+            <div class="seo-panel">
+              <div class="form-group">
+                <label for="fMetaTitle">Meta Title (SEO)</label>
+                <input id="fMetaTitle" type="text" class="form-ctrl" placeholder="Leave blank to use post title" oninput="updateSerpPreview()" maxlength="70">
+                <div style="display:flex;justify-content:space-between;margin-top:3px">
+                  <div class="form-hint" id="metaTitleHint">50–60 chars ideal</div>
+                  <div class="char-count" id="metaTitleCount">0 / 70</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="fMetaDesc">Meta Description</label>
+                <textarea id="fMetaDesc" class="form-ctrl" rows="3" placeholder="150–160 character SEO description shown in search results." oninput="updateSerpPreview()" maxlength="170"></textarea>
+                <div style="display:flex;justify-content:space-between;margin-top:3px">
+                  <div class="form-hint" id="metaDescHint">150–160 chars ideal</div>
+                  <div class="char-count" id="metaDescCount">0 / 170</div>
+                </div>
+              </div>
+              <div class="form-group" style="margin-bottom:8px">
+                <label for="fFocusKw">Focus Keyword</label>
+                <input id="fFocusKw" type="text" class="form-ctrl" placeholder="e.g. instagram dp ai prompts" oninput="updateSeoScore()">
+                <div class="form-hint">Primary keyword to optimize for</div>
+              </div>
+              <!-- SERP Preview -->
+              <div class="seo-preview">
+                <div style="font-size:.7rem;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em">Google Search Preview</div>
+                <div class="serp-title" id="serpTitle">Post title will appear here | PromptImageLab</div>
+                <div class="serp-url" id="serpUrl">promptimagelab.com/prompts/your-slug</div>
+                <div class="serp-desc" id="serpDesc">Your meta description will appear here in search results...</div>
+              </div>
+              <!-- SEO Score -->
+              <div style="margin-top:12px">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+                  <span style="font-size:.76rem;font-weight:700;color:var(--muted)">SEO Score</span>
+                  <span id="seoScoreLabel" style="font-size:.76rem;font-weight:800;color:var(--muted)">0 / 100</span>
+                </div>
+                <div class="seo-bar"><div class="seo-fill" id="seoFill" style="width:0;background:var(--red)"></div></div>
+                <div id="seoChecks" style="margin-top:10px;display:flex;flex-direction:column;gap:5px;font-size:.75rem;color:var(--muted)"></div>
+              </div>
+            </div>
 
-<h2>How to Customize These Prompts for Your Appearance</h2>
-<p>If you are generating an anime avatar that should resemble you, there are several techniques to improve accuracy. For Midjourney, use the <code>--cref</code> parameter with a photo of yourself to guide the AI toward your facial structure while applying the anime style transformation. For Stable Diffusion, use an img2img workflow with your photo as the base image and an anime-focused checkpoint model.</p>
-<p>Key features to specify in your prompt: hair color and length, eye color, distinctive facial features, and any accessories you typically wear. The more specific you are, the more your avatar will feel like you rather than a generic character.</p>
+            <div class="form-group" style="margin-top:14px">
+              <label for="fTags">Tags / Keywords</label>
+              <input id="fTags" type="text" class="form-ctrl" placeholder="instagram,ai prompts,profile picture,midjourney">
+              <div class="form-hint">Comma-separated. Used in meta keywords and tags display.</div>
+            </div>
+            <div class="form-group" style="margin-bottom:0">
+              <label for="fCanonical">Canonical URL (optional)</label>
+              <input id="fCanonical" type="text" class="form-ctrl" placeholder="Leave blank to auto-generate">
+            </div>
+          </div>
 
-<h2>Choosing the Right AI Tool for Anime Avatars</h2>
-<p><strong>Midjourney v6</strong> produces the most aesthetically polished anime images with the best understanding of specific studio styles. Use <code>--niji 6</code> mode specifically for anime — it is trained on anime artwork and produces dramatically better results than standard mode.</p>
-<p><strong>Stable Diffusion with AnythingV5 or Counterfeit V3 checkpoints</strong> gives you the most control and is free to use locally. Best for users who want to fine-tune every aspect of the output.</p>
-<p><strong>DALL-E 3</strong> produces competent anime images but tends toward a more generic anime style. Best used when you want something broadly anime-inspired rather than matching a specific studio aesthetic.</p>',
-  'anime',
-  'anime avatar,anime profile picture,ai anime,midjourney anime,ghibli style',
-  'Anime Avatar AI Prompts: 40+ Prompts for Studio Ghibli, Cyberpunk & Shonen Styles',
-  'Create stunning anime avatars with 40+ AI prompts. Covers Studio Ghibli, cyberpunk, shonen, and shoujo styles. Works with Midjourney Niji, DALL-E 3, and Stable Diffusion.',
-  'anime avatar ai prompts',
-  9,
-  2200,
-  1
-),
-(
-  'CEO Style Portrait AI Prompts: Generate Executive Headshots That Command Respect',
-  'ceo-style-portrait-prompts',
-  'Stop paying thousands for executive photography. These AI prompts generate CEO-quality portrait images that convey authority, intelligence, and trustworthiness. Used by entrepreneurs, founders, and executives to build powerful personal brands.',
-  '<h2>Why Executive Portrait Photography Changed Forever</h2>
-<p>Until recently, a truly professional executive headshot required a professional photographer, a studio rental, a makeup artist, hours of your time, and a bill that could exceed two thousand dollars. For large companies with dedicated communications budgets, this was manageable. For solo entrepreneurs, startup founders, and small business owners, it was a significant barrier.</p>
-<p>AI image generation has removed that barrier entirely — but only when the prompts are written with the same intentionality that a skilled photographer brings to a shoot. A photographer doesn''t just point a camera. They make deliberate decisions about lighting direction, background choice, lens selection, and posing that communicate specific things about the subject. Your AI prompts need to make those same deliberate decisions.</p>
-<p>This guide gives you executive portrait prompts that have been carefully constructed to communicate authority, intelligence, approachability, and trustworthiness — the four qualities that make an executive portrait actually work for business purposes.</p>
+          <!-- Images -->
+          <div class="admin-card">
+            <div class="sidebar-head" style="margin-bottom:14px">&#128444; Images</div>
+            <div class="form-group">
+              <label for="fImg">Featured Image URL</label>
+              <input id="fImg" type="url" class="form-ctrl" placeholder="https://..." oninput="previewImg()">
+              <img id="imgPrev" style="display:none;width:100%;border-radius:8px;border:1px solid var(--border);margin-top:8px;max-height:140px;object-fit:cover" alt="Image preview">
+            </div>
+            <div class="form-group" style="margin-bottom:0">
+              <label for="fOgImg">Open Graph Image URL</label>
+              <input id="fOgImg" type="url" class="form-ctrl" placeholder="1200×630px for best social sharing">
+              <div class="form-hint">Leave blank to use featured image</div>
+            </div>
+          </div>
 
-<h2>The Psychology of Executive Portrait Photography</h2>
-<p>Before writing prompts, it helps to understand what executive portraits are actually communicating. Studies in psychology and business communication have identified consistent patterns in how people interpret portrait photographs:</p>
-<ul>
-<li><strong>Direct eye contact</strong> communicates confidence and honesty. Your prompt should specify "direct gaze" or "looking at camera".</li>
-<li><strong>Slight upward chin angle</strong> (3-5 degrees) reads as confident without being arrogant. Specify "slight chin lift" in prompts.</li>
-<li><strong>Closed or slight smile</strong> reads as composed and professional. A wide open smile in an executive portrait can undermine authority perception.</li>
-<li><strong>Dark attire</strong> (navy, charcoal, black) is consistently rated as more authoritative in business contexts.</li>
-<li><strong>Neutral or architectural backgrounds</strong> keep focus on the subject and signal professionalism.</li>
-</ul>
+        </div>
+      </div><!-- end grid -->
+    </div>
 
-<h2>Classic Executive Headshot Prompts</h2>
-<p>These prompts produce the clean, authoritative headshots you see on Forbes profiles, company About pages, and LinkedIn profiles of senior executives. They are designed to be immediately professional without being stuffy.</p>
-<ul>
-<li>Professional executive headshot, charcoal grey suit with subtle texture, crisp white shirt, confident direct gaze, soft studio lighting with slight Rembrandt triangle, neutral gradient background from dark to light grey, shallow depth of field, sharp focus on eyes, photorealistic corporate photography, 4K quality</li>
-<li>CEO portrait, navy blue power suit, slight chin lift, composed professional expression, architectural office lobby background blurred, directional key light from upper left, subtle fill light, deep eye socket shadows that convey authority, LinkedIn-ready format</li>
-<li>Business leader headshot, black turtleneck (Steve Jobs-inspired minimalism), clean white background, even studio lighting, strong jaw emphasis, thoughtful expression, tight portrait crop, high contrast black and white treatment option</li>
-<li>Female executive portrait, tailored burgundy blazer, statement jewelry, confident expression with warm undertone, glass office background, professional makeup look, power pose with straight posture suggestion</li>
-<li>Startup founder portrait, smart casual aesthetic, open collar shirt, modern coworking space background, natural window light, approachable confidence, slightly informal feel that signals innovation over tradition</li>
-</ul>
+    <!-- ── PREVIEW MODAL ── -->
+    <div class="modal-bg" id="previewModal">
+      <div class="modal" style="max-width:900px">
+        <div class="modal-head">
+          <h3>&#128065; Content Preview</h3>
+          <button class="modal-x" onclick="closePreview()">&#215;</button>
+        </div>
+        <div id="previewBody" style="background:var(--bg);border-radius:var(--radius-sm);padding:22px;max-height:70vh;overflow-y:auto;line-height:1.8;color:var(--text)"></div>
+      </div>
+    </div>
 
-<h2>Cinematic Executive Portrait Prompts</h2>
-<p>These prompts go beyond standard headshots into something more editorial and cinematic — appropriate for personal brand websites, speaker profiles, book covers, and press materials where you want to make a stronger visual impression.</p>
-<ul>
-<li>Cinematic executive portrait, dramatic side lighting, deep shadows on one side, sharp architectural lines in background, dark and moody atmosphere, serious expression conveying weight of leadership, anamorphic lens bokeh, film photography aesthetic</li>
-<li>Editorial business portrait, high contrast black and white, harsh directional light, strong graphic shadows, fashion magazine editorial style, powerful expression, Times Magazine cover aesthetic</li>
-<li>Environmental executive portrait, shown in context of their industry (trading floor, hospital corridor, law library, tech server room), candid but directed feel, environment tells the story of their expertise</li>
-<li>Power portrait, low camera angle looking slightly up at subject, dramatic lighting, dark background, authoritative expression, suit detail sharp, confidence and dominance communicated through composition</li>
-</ul>
+  </main>
+</div>
 
-<h2>Industry-Specific Executive Portrait Prompts</h2>
-<p>Different industries have different visual cultures. A law firm partner and a tech startup CEO should have very different portrait aesthetics even though both want to look professional and trustworthy. These prompts are tuned for specific professional contexts.</p>
-<ul>
-<li><strong>Finance/Law:</strong> Traditional three-piece suit, wood-panelled office or library background, warm lamp lighting, formal expression, gold accent watch visible, gravitas and tradition communicated</li>
-<li><strong>Technology:</strong> Premium casual (quality fabric, minimal logos), modern open office or glass building background, natural light preferred, approachable intelligence, innovative energy</li>
-<li><strong>Healthcare:</strong> White coat over business attire, clinical but warm environment, caring expression balanced with competence, trust-building warm lighting</li>
-<li><strong>Creative/Media:</strong> More expressive styling permitted, creative studio or urban environment, personality allowed to come through, dynamic composition</li>
-<li><strong>Consulting/Coaching:</strong> Business casual, warm neutral tones, approachable smile, collaborative body language, premium but not intimidating aesthetic</li>
-</ul>
+<!-- DELETE CONFIRM MODAL -->
+<div class="modal-bg" id="delModal">
+  <div class="modal" style="max-width:420px">
+    <div class="modal-head"><h3>&#128465; Delete Prompt</h3><button class="modal-x" onclick="closeDelModal()">&#215;</button></div>
+    <p class="muted" style="margin-bottom:22px">Are you sure you want to permanently delete <strong id="delTitle" style="color:var(--text)"></strong>? This cannot be undone.</p>
+    <div style="display:flex;gap:10px;justify-content:flex-end">
+      <button class="btn btn-outline" onclick="closeDelModal()">Cancel</button>
+      <button class="btn btn-danger" onclick="confirmDel()">&#128465; Delete</button>
+    </div>
+  </div>
+</div>
 
-<h2>Technical Settings That Make the Difference</h2>
-<p>Adding technical photography parameters to your prompts dramatically improves output quality across all AI platforms. These are the most impactful additions:</p>
-<ul>
-<li><strong>Lens specification:</strong> "85mm portrait lens" or "135mm telephoto" — longer focal lengths compress features flatteringly</li>
-<li><strong>Aperture:</strong> "f/1.8 to f/2.8" creates professional background separation without making subjects look unrealistically sharp</li>
-<li><strong>Lighting type:</strong> "Rembrandt lighting," "butterfly lighting," or "split lighting" — each creates a distinct mood</li>
-<li><strong>Color grading:</strong> "Warm golden toning," "cool desaturated corporate grade," "high contrast black and white"</li>
-<li><strong>Format:</strong> Always specify "1:1 ratio" for LinkedIn/Instagram or "2:3 portrait" for websites and press kits</li>
-</ul>',
-  'professional',
-  'ceo portrait,executive headshot,linkedin profile,professional portrait,business headshot',
-  'CEO Style Portrait AI Prompts: Executive Headshots That Command Authority',
-  'Generate CEO-quality executive portraits with AI. Proven prompts for LinkedIn, company websites, and press materials. Authority, confidence, and professionalism guaranteed.',
-  'ceo style portrait ai prompts',
-  8,
-  2050,
-  1
-),
-(
-  'Corporate Portrait AI Prompts: Professional Team and Business Headshots',
-  'corporate-portrait-prompts',
-  'Complete guide to generating corporate headshots for entire teams using AI prompts. Achieve visual consistency across all team member portraits without expensive photography sessions. Includes prompts for every industry and role level.',
-  '<h2>The Corporate Portrait Challenge: Consistency at Scale</h2>
-<p>Individual executive headshots are one challenge. Corporate team photography is an entirely different problem. When you need consistent, professional portraits for an entire team — same lighting style, same background treatment, same quality level — the logistics and cost of traditional photography become genuinely prohibitive.</p>
-<p>A company with twenty employees needs twenty individual photography sessions, or a single day-long shoot that requires everyone to be available simultaneously, a professional photographer, a studio space, lighting equipment, and a post-processing workflow. The total cost routinely exceeds five thousand dollars, and the results are only as good as the coordination effort.</p>
-<p>AI portrait generation solves this completely. With the right prompts and a consistent prompt template, you can generate a visually cohesive set of professional corporate portraits in hours rather than days, at a fraction of the cost, with the ability to regenerate or update individual portraits whenever needed.</p>
+<script>
+var TOKEN=sessionStorage.getItem('pil_tok')||'';
+var DEL_ID=null;
+var ALL_PROMPTS=[];
 
-<h2>Building a Consistent Corporate Portrait System</h2>
-<p>The key to visual consistency across AI-generated corporate portraits is treating your prompt as a template rather than a one-off creation. Identify the fixed elements that will remain constant across all portraits (background, lighting style, color palette) and the variable elements that will change per person (attire description, expression mood).</p>
-<p>A corporate portrait template prompt looks like this:</p>
-<p><em>[VARIABLE: person description and attire] + [FIXED: professional headshot, modern office background blurred, soft directional studio light, photorealistic, 4K, 1:1 ratio, professional color grade]</em></p>
-<p>By keeping the fixed elements identical across every portrait, you achieve visual consistency even when the individual subjects differ.</p>
+function authH(){return{'Content-Type':'application/json','Authorization':'Bearer '+TOKEN};}
+window.onload=function(){if(TOKEN)showAdmin();};
+document.addEventListener('keydown',function(e){if(e.key==='Enter'&&document.getElementById('loginWrap').style.display!=='none')doLogin();});
 
-<h2>Corporate Headshot Prompts by Role</h2>
-<p>Different roles within an organization have different visual conventions. These prompts are tuned to what works best for each level and function:</p>
+// ════ AUTH ════
+function doLogin(){
+  var u=document.getElementById('lu').value.trim();
+  var p=document.getElementById('lp').value;
+  if(!u||!p){setAlert('loginAlert','Enter username and password.');return;}
+  var btn=document.getElementById('loginBtn');btn.disabled=true;btn.textContent='Signing in...';
+  fetch('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:u,password:p})})
+  .then(function(r){return r.json();})
+  .then(function(d){
+    if(d.token){TOKEN=d.token;sessionStorage.setItem('pil_tok',TOKEN);showAdmin();}
+    else setAlert('loginAlert',d.error||'Login failed.');
+  })
+  .catch(function(){setAlert('loginAlert','Network error. Check connection.');})
+  .finally(function(){btn.disabled=false;btn.textContent='Sign In →';});
+}
+function doLogout(){TOKEN='';sessionStorage.removeItem('pil_tok');document.getElementById('loginWrap').style.display='flex';document.getElementById('adminWrap').style.display='none';}
+function showAdmin(){document.getElementById('loginWrap').style.display='none';document.getElementById('adminWrap').style.display='flex';goView('dashboard');}
 
-<h3>C-Suite and Executive Level</h3>
-<ul>
-<li>Senior executive corporate headshot, formal dark suit with tie, authoritative expression, architectural lobby or boardroom background softly blurred, dramatic directional lighting, gravitas and experience communicated, LinkedIn premium aesthetic</li>
-<li>Female C-suite executive, tailored blazer in power color (navy, burgundy, or black), statement accessories, direct confident gaze, glass office tower background, sophisticated professional lighting, Forbes-quality portrait</li>
-<li>Founder/CEO corporate portrait, thoughtful expression balancing authority with approachability, modern workspace background, business casual but premium quality attire, natural window light supplemented with studio fill</li>
-</ul>
+// ════ VIEWS ════
+function goView(v){
+  ['dashboard','list','form'].forEach(function(x){document.getElementById('v'+cap(x)).style.display='none';});
+  document.getElementById('v'+cap(v)).style.display='block';
+  document.querySelectorAll('.sidebar-nav a').forEach(function(a){a.classList.remove('active');});
+  var map={dashboard:0,list:1,form:2};
+  var el=document.getElementById('sNav'+map[v]);if(el)el.classList.add('active');
+  if(v==='dashboard')loadDash();
+  if(v==='list')loadList();
+  return false;
+}
+function cap(s){return s.charAt(0).toUpperCase()+s.slice(1);}
 
-<h3>Management and Director Level</h3>
-<ul>
-<li>Business manager headshot, professional blazer over open-collar shirt, warm confident smile, modern office environment background, soft studio lighting, approachable authority, team-leader energy</li>
-<li>Marketing director portrait, creative professional aesthetic, fashionable but polished styling, bright modern workspace, warm personality coming through professional exterior, dynamic composition</li>
-<li>Operations director headshot, efficient and organized aesthetic, clean background, precise and competent expression, no-nonsense but human, classic professional photography style</li>
-</ul>
+// ════ DASHBOARD ════
+function loadDash(){
+  fetch('/api/get-prompts?limit=100',{headers:authH()})
+  .then(function(r){return r.json();})
+  .then(function(d){
+    ALL_PROMPTS=d.prompts||[];
+    var pub=ALL_PROMPTS.filter(function(x){return x.status==='published'||!x.status;});
+    var draft=ALL_PROMPTS.filter(function(x){return x.status==='draft';});
+    var views=ALL_PROMPTS.reduce(function(s,x){return s+(x.views||0);},0);
+    var feat=ALL_PROMPTS.filter(function(x){return x.featured;}).length;
+    var avgWC=ALL_PROMPTS.length?Math.round(ALL_PROMPTS.reduce(function(s,x){return s+(x.word_count||0);},0)/ALL_PROMPTS.length):0;
+    document.getElementById('sTot').textContent=d.pagination?d.pagination.total:ALL_PROMPTS.length;
+    document.getElementById('sPub').textContent=pub.length;
+    document.getElementById('sDraft').textContent=draft.length;
+    document.getElementById('sViews').textContent=views.toLocaleString();
+    document.getElementById('sFeat').textContent=feat;
+    document.getElementById('sWC').textContent=avgWC.toLocaleString();
+    // Category breakdown
+    var cats={instagram:0,anime:0,professional:0,general:0};
+    ALL_PROMPTS.forEach(function(p){if(cats[p.category]!==undefined)cats[p.category]++;else cats.general++;});
+    var catColors={instagram:'#f06292',anime:'#a78bfa',professional:'#38bdf8',general:'#9ca3af'};
+    document.getElementById('catBreakdown').innerHTML=Object.entries(cats).map(function(e){
+      return'<div style="background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:8px;padding:12px 16px;min-width:100px">'+
+        '<div style="font-size:1.4rem;font-weight:800;color:'+catColors[e[0]]+'">'+e[1]+'</div>'+
+        '<div style="font-size:.76rem;color:var(--muted);text-transform:capitalize">'+e[0]+'</div>'+
+      '</div>';
+    }).join('');
+    // SEO health
+    var noMeta=ALL_PROMPTS.filter(function(p){return!p.meta_desc;}).length;
+    var shortContent=ALL_PROMPTS.filter(function(p){return(p.word_count||0)<2000;}).length;
+    var noExcerpt=ALL_PROMPTS.filter(function(p){return!p.excerpt;}).length;
+    var total=ALL_PROMPTS.length||1;
+    document.getElementById('seoHealth').innerHTML=[
+      {label:'Meta descriptions present',val:total-noMeta,total:total,ok:noMeta===0},
+      {label:'Content 2000+ words (AdSense ready)',val:total-shortContent,total:total,ok:shortContent===0},
+      {label:'Excerpts written',val:total-noExcerpt,total:total,ok:noExcerpt===0},
+    ].map(function(c){
+      var pct=Math.round(c.val/c.total*100);
+      return'<div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">'+
+        '<span style="font-size:.8rem;color:var(--muted);min-width:240px">'+c.label+'</span>'+
+        '<div style="flex:1;height:6px;background:var(--surface2);border-radius:3px;overflow:hidden">'+
+          '<div style="height:100%;width:'+pct+'%;background:'+(c.ok?'var(--green)':pct>60?'#fbbf24':'var(--red)')+';border-radius:3px"></div>'+
+        '</div>'+
+        '<span style="font-size:.76rem;font-weight:700;color:'+(c.ok?'var(--green)':'var(--red)')+'">'+c.val+'/'+c.total+'</span>'+
+      '</div>';
+    }).join('');
+    // Recent
+    document.getElementById('dRecent').innerHTML=ALL_PROMPTS.length===0
+      ?'<p class="muted">No prompts yet. <a href="#" onclick="goView(\'form\');newPrompt();return false;" style="color:var(--primary)">Create your first prompt.</a></p>'
+      :'<table class="tbl"><thead><tr><th>Title</th><th>Category</th><th>Status</th><th>Words</th><th>Views</th></tr></thead><tbody>'+
+        ALL_PROMPTS.slice(0,6).map(function(p){
+          return'<tr><td><a href="/prompts/'+p.slug+'" target="_blank" style="color:var(--primary)">'+p.title+'</a></td>'+
+            '<td><span class="badge badge-'+p.category+'">'+p.category+'</span></td>'+
+            '<td><span class="badge badge-'+(p.status||'published')+'">'+(p.status||'published')+'</span></td>'+
+            '<td class="'+(p.word_count>=2000?'wc-good':p.word_count>=1000?'wc-warn':'wc-bad')+'">'+(p.word_count||0)+'</td>'+
+            '<td>'+(p.views||0).toLocaleString()+'</td></tr>';
+        }).join('')+'</tbody></table>';
+  });
+}
 
-<h3>Technical and Specialist Roles</h3>
-<ul>
-<li>Software engineer professional headshot, smart casual attire (quality hoodie or button-down), modern tech office background, intelligent and focused expression, genuine personality visible, startup-culture appropriate</li>
-<li>Financial analyst corporate portrait, business formal attire, clean neutral background, precise and analytical expression, trustworthy and detail-oriented energy, traditional financial services aesthetic</li>
-<li>Healthcare professional portrait, white coat or medical attire, clinical but warm environment, caring and competent expression, high trust aesthetic, clean professional lighting</li>
-</ul>
+// ════ LIST ════
+var allRows=[];
+function loadList(){
+  document.getElementById('listBody').innerHTML='<tr><td colspan="9"><div class="spinner"></div></td></tr>';
+  fetch('/api/get-prompts?limit=200',{headers:authH()})
+  .then(function(r){return r.json();})
+  .then(function(d){
+    allRows=d.prompts||[];
+    renderList(allRows);
+  });
+}
+function filterList(){
+  var q=document.getElementById('listSearch').value.toLowerCase();
+  var cat=document.getElementById('listCatFilter').value;
+  var filtered=allRows.filter(function(p){
+    var matchQ=!q||p.title.toLowerCase().includes(q)||p.slug.includes(q);
+    var matchC=!cat||p.category===cat;
+    return matchQ&&matchC;
+  });
+  renderList(filtered);
+}
+function renderList(rows){
+  if(rows.length===0){document.getElementById('listBody').innerHTML='<tr><td colspan="9" style="text-align:center;color:var(--muted);padding:28px">No prompts found.</td></tr>';return;}
+  document.getElementById('listBody').innerHTML=rows.map(function(p){
+    var seoOk=p.meta_desc&&p.word_count>=2000&&p.excerpt;
+    var seoScore=0;if(p.meta_desc)seoScore+=40;if(p.word_count>=2000)seoScore+=40;if(p.excerpt)seoScore+=20;
+    return'<tr>'+
+      '<td style="max-width:260px"><a href="/prompts/'+p.slug+'" target="_blank" style="color:var(--primary);font-weight:600;font-size:.85rem">'+p.title+'</a><div style="font-size:.72rem;color:var(--muted);margin-top:2px">/prompts/'+p.slug+'</div></td>'+
+      '<td><span class="badge badge-'+p.category+'">'+p.category+'</span></td>'+
+      '<td><span class="badge badge-'+(p.status||'published')+'">'+(p.status||'published')+'</span></td>'+
+      '<td class="'+(p.word_count>=2000?'wc-good':p.word_count>=1000?'wc-warn':'wc-bad')+'" style="font-weight:700">'+(p.word_count||0)+'</td>'+
+      '<td>'+(p.views||0)+'</td>'+
+      '<td><div style="width:50px;height:5px;background:var(--surface2);border-radius:3px"><div style="height:100%;width:'+seoScore+'%;background:'+(seoScore>=80?'var(--green)':seoScore>=50?'#fbbf24':'var(--red)')+';border-radius:3px"></div></div><div style="font-size:.68rem;color:var(--muted);margin-top:2px">'+seoScore+'/100</div></td>'+
+      '<td style="text-align:center">'+(p.featured?'⭐':'—')+'</td>'+
+      '<td style="white-space:nowrap;font-size:.78rem;color:var(--muted)">'+fmtDate(p.created_at)+'</td>'+
+      '<td><div class="act">'+
+        '<button class="btn btn-outline btn-sm" onclick="editPrompt('+p.id+',\''+esc(p.slug)+'\')">✏️ Edit</button>'+
+        '<button class="btn btn-danger btn-sm" onclick="openDelModal('+p.id+',\''+esc(p.title)+'\')">🗑</button>'+
+      '</div></td>'+
+    '</tr>';
+  }).join('');
+}
 
-<h2>Industry-Specific Corporate Portrait Prompts</h2>
-<ul>
-<li><strong>Legal Firm:</strong> Attorney headshot, dark suit, conservative tie, wood-panelled library background, formal expression, authority and tradition communicated, warm lamp lighting</li>
-<li><strong>Architecture/Design:</strong> Creative professional portrait, architectural studio background with drawings visible, smart casual styling, visionary expression, design-world aesthetic</li>
-<li><strong>Real Estate:</strong> Agent headshot, polished business casual, warm approachable smile, exterior property or modern interior background, trust and local expertise communicated</li>
-<li><strong>Education:</strong> Academic professional portrait, scholarly but approachable expression, university building or library background, intellectual warmth, expertise with accessibility</li>
-<li><strong>Nonprofit/Social Impact:</strong> Mission-driven professional portrait, warm and empathetic expression, community or organization environment background, authentic and purpose-driven aesthetic</li>
-</ul>
+// ════ FORM ════
+function newPrompt(){
+  document.getElementById('fId').value='';
+  document.getElementById('fTitle').value='';
+  document.getElementById('fSlug').value='';
+  document.getElementById('fContent').value='';
+  document.getElementById('fExcerpt').value='';
+  document.getElementById('fCat').value='instagram';
+  document.getElementById('fStatus').value='published';
+  document.getElementById('fAuthor').value='PromptImageLab';
+  document.getElementById('fReadTime').value='5';
+  document.getElementById('fSchemaType').value='Article';
+  document.getElementById('fFeatured').checked=false;
+  document.getElementById('fMetaTitle').value='';
+  document.getElementById('fMetaDesc').value='';
+  document.getElementById('fFocusKw').value='';
+  document.getElementById('fTags').value='';
+  document.getElementById('fCanonical').value='';
+  document.getElementById('fImg').value='';
+  document.getElementById('fOgImg').value='';
+  document.getElementById('imgPrev').style.display='none';
+  document.getElementById('formAlert').innerHTML='';
+  document.getElementById('formHead').textContent='✚ New Prompt';
+  document.getElementById('serpTitle').textContent='Post title will appear here | PromptImageLab';
+  document.getElementById('serpUrl').textContent='promptimagelab.com/prompts/your-slug';
+  document.getElementById('serpDesc').textContent='Your meta description will appear here...';
+  updateWordCount();updateSeoScore();
+}
 
-<h2>Creating a Complete Team Photo Set with AI</h2>
-<p>Follow this workflow to create a visually consistent corporate portrait set for an entire team:</p>
-<ul>
-<li><strong>Step 1 — Define your brand template:</strong> Choose background style, lighting setup, and color grade that matches your company brand. Write this as a fixed prompt suffix.</li>
-<li><strong>Step 2 — Standardize crop and composition:</strong> Decide on headshot (face and shoulders) vs. three-quarter (waist up) vs. full-length. Be consistent across all portraits.</li>
-<li><strong>Step 3 — Vary only the individual elements:</strong> Change attire description, expression mood, and any role-specific details while keeping all other variables fixed.</li>
-<li><strong>Step 4 — Batch generate and review:</strong> Generate 4-6 variations per person and select the best. Regenerate any that don''t meet the standard.</li>
-<li><strong>Step 5 — Post-process for consistency:</strong> Apply identical color grading adjustments across all selected portraits in Lightroom or Photoshop.</li>
-</ul>',
-  'professional',
-  'corporate headshot,team portraits,business photography,professional headshots,company portraits',
-  'Corporate Portrait AI Prompts: Professional Team Headshots at Scale',
-  'Generate consistent corporate headshots for entire teams using AI. Prompts for every role, industry, and company culture. Achieve professional photography quality without the cost.',
-  'corporate portrait ai prompts',
-  7,
-  2000,
-  0
-),
-(
-  'AI Profile Picture Prompts: The Ultimate Guide for Every Social Platform',
-  'ai-profile-picture-dp-prompts',
-  'Platform-specific AI prompts for Instagram, LinkedIn, Twitter, TikTok, WhatsApp, Discord, and more. Each platform has different visual requirements — this guide covers all of them with 60+ targeted prompts optimized for each use case.',
-  '<h2>One Size Does Not Fit All: Platform-Specific Profile Picture Strategy</h2>
-<p>A profile picture that works perfectly on LinkedIn will often feel out of place on TikTok. An avatar that stands out beautifully on Discord might look unprofessional on a business networking platform. Each social platform has its own visual culture, its own audience expectations, and its own technical requirements that affect how your profile picture will actually appear.</p>
-<p>Understanding these differences before generating your AI profile picture will save you significant time and produce dramatically better results. This guide breaks down the specific requirements and optimal strategies for every major platform, with targeted AI prompts for each one.</p>
+function editPrompt(id,slug){
+  fetch('/api/get-prompt-by-slug?slug='+slug,{headers:authH()})
+  .then(function(r){return r.json();})
+  .then(function(d){
+    var p=d.prompt;
+    document.getElementById('fId').value=p.id;
+    document.getElementById('fTitle').value=p.title;
+    document.getElementById('fSlug').value=p.slug;
+    document.getElementById('fContent').value=p.content;
+    document.getElementById('fExcerpt').value=p.excerpt||'';
+    document.getElementById('fCat').value=p.category;
+    document.getElementById('fStatus').value=p.status||'published';
+    document.getElementById('fAuthor').value=p.author||'PromptImageLab';
+    document.getElementById('fReadTime').value=p.reading_time||5;
+    document.getElementById('fSchemaType').value=p.schema_type||'Article';
+    document.getElementById('fFeatured').checked=!!p.featured;
+    document.getElementById('fMetaTitle').value=p.meta_title||'';
+    document.getElementById('fMetaDesc').value=p.meta_desc||'';
+    document.getElementById('fFocusKw').value=p.focus_keyword||'';
+    document.getElementById('fTags').value=p.tags||'';
+    document.getElementById('fCanonical').value=p.canonical_url||'';
+    document.getElementById('fImg').value=p.image||'';
+    document.getElementById('fOgImg').value=p.og_image||'';
+    if(p.image){document.getElementById('imgPrev').src=p.image;document.getElementById('imgPrev').style.display='block';}
+    else document.getElementById('imgPrev').style.display='none';
+    document.getElementById('formHead').textContent='✏️ Edit: '+p.title;
+    document.getElementById('formAlert').innerHTML='';
+    updateWordCount();updateSeoScore();updateSerpPreview();updateTitleCount();
+    goView('form');
+  })
+  .catch(function(e){setAlert('listAlert','Error loading: '+e.message);});
+}
 
-<h2>Instagram Profile Picture AI Prompts</h2>
-<p>Instagram crops profile pictures into circles and displays them very small in feed posts, but larger on profile pages. The optimal Instagram DP is bold, high contrast, and readable at small sizes — which means busy backgrounds and fine details often disappear. Faces should be centered and taking up a significant portion of the frame.</p>
-<ul>
-<li>Instagram profile portrait, face centered and close-cropped, bold lighting with clear shadow definition, clean or intentionally blurred background, strong visual contrast between subject and background, circle-crop safe composition, 1080x1080 resolution quality</li>
-<li>Instagram aesthetic portrait, warm golden color grade, trendy but timeless styling, lifestyle mood, high saturation slightly applied, works as both circle crop and square display</li>
-</ul>
+function onTitleChange(){
+  var t=document.getElementById('fTitle').value;
+  var count=t.length;
+  document.getElementById('titleCount').textContent=count+' / 60';
+  document.getElementById('titleCount').style.color=count>60?'var(--red)':count>=50?'var(--green)':'var(--muted)';
+  // auto slug only for new posts
+  if(!document.getElementById('fId').value){
+    var slug=t.toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,'').replace(/-+/g,'-').replace(/^-|-$/g,'');
+    document.getElementById('fSlug').value=slug;
+  }
+  updateSerpPreview();updateSeoScore();
+}
+function updateTitleCount(){
+  var t=document.getElementById('fTitle').value;document.getElementById('titleCount').textContent=t.length+' / 60';
+}
+function updateSlugPreview(){document.getElementById('serpUrl').textContent='promptimagelab.com/prompts/'+(document.getElementById('fSlug').value||'your-slug');}
 
-<h2>LinkedIn Profile Picture AI Prompts</h2>
-<p>LinkedIn is a professional network and its profile picture conventions reflect that. However, LinkedIn has shifted in recent years toward authenticity and personality alongside professionalism. The worst LinkedIn photos are stiff and corporate. The best ones look professional but genuinely human.</p>
-<ul>
-<li>LinkedIn professional headshot, business casual or formal attire, genuine approachable smile, clean background (white, light grey, or subtle office), professional but warm lighting, high image quality, trustworthy and competent impression</li>
-<li>LinkedIn thought leader portrait, smart casual intellectual look, bookshelf or workspace background, engaged and knowledgeable expression, premium quality photography aesthetic, personal brand consistency</li>
-<li>LinkedIn executive portrait, full authority aesthetic, dark formal attire, architectural background, direct confident gaze, premium professional photography quality, industry leader impression</li>
-</ul>
+function onContentChange(){
+  updateWordCount();updateSeoScore();
+  document.getElementById('excerptCount').textContent=document.getElementById('fExcerpt').value.length+' chars';
+}
 
-<h2>Twitter/X Profile Picture AI Prompts</h2>
-<p>Twitter displays profile pictures as small circles, and the platform culture rewards distinctive, memorable images over conventional beauty. Bold colors, strong contrast, and unique visual signatures work better on Twitter than polished conventional headshots.</p>
-<ul>
-<li>Twitter profile avatar, bold and distinctive visual style, strong color contrast, memorable and recognizable even at 48px size, personality-forward, genuine and authentic feel, not overly polished</li>
-<li>Twitter/X avatar, graphic and bold aesthetic, high contrast lighting, strong silhouette, brand color incorporated naturally, stands out in a fast-moving timeline</li>
-</ul>
+function updateWordCount(){
+  var text=document.getElementById('fContent').value.replace(/<[^>]*>/g,' ').replace(/\s+/g,' ').trim();
+  var words=text?text.split(/\s+/).filter(Boolean).length:0;
+  var target=2000;var pct=Math.min(100,Math.round(words/target*100));
+  document.getElementById('wcFill').style.width=pct+'%';
+  document.getElementById('wcFill').style.background=words>=2000?'var(--green)':words>=1000?'#fbbf24':'var(--red)';
+  document.getElementById('wcLabel').textContent=words.toLocaleString()+' words';
+  document.getElementById('wcLabel').className='form-hint '+(words>=2000?'wc-good':words>=1000?'wc-warn':'wc-bad');
+  document.getElementById('wcStatus').textContent=words>=2000?'✓ AdSense ready':words>=1000?'↑ Need '+(2000-words)+' more words':'✗ Need '+(2000-words)+' more words for AdSense';
+  document.getElementById('wcStatus').style.color=words>=2000?'var(--green)':words>=1000?'#fbbf24':'var(--red)';
+}
 
-<h2>WhatsApp DP AI Prompts</h2>
-<p>WhatsApp profile pictures appear in chat lists and are viewed primarily by people who know you personally. This is the most personal of all platform DPs — it should feel genuine, warm, and recognizably like you rather than overly formal or stylized.</p>
-<ul>
-<li>WhatsApp profile picture, natural and warm aesthetic, genuine relaxed expression, personal and approachable feel, outdoor or home environment, candid photography style, feels like a real personal photo rather than professional shot</li>
-<li>WhatsApp DP, lifestyle portrait, golden hour outdoor setting, warm smile, genuine personality visible, feels authentic and personal rather than curated</li>
-</ul>
+function updateSerpPreview(){
+  var title=(document.getElementById('fMetaTitle').value||document.getElementById('fTitle').value||'Post Title')+' | PromptImageLab';
+  var slug=document.getElementById('fSlug').value||'your-slug';
+  var desc=document.getElementById('fMetaDesc').value||'Your meta description will appear here in search results...';
+  document.getElementById('serpTitle').textContent=title;
+  document.getElementById('serpUrl').textContent='promptimagelab.com/prompts/'+slug;
+  document.getElementById('serpDesc').textContent=desc;
+  // color title length
+  var mt=document.getElementById('fMetaTitle').value;
+  document.getElementById('metaTitleCount').textContent=mt.length+' / 70';
+  document.getElementById('metaTitleCount').style.color=mt.length>70?'var(--red)':mt.length>=50?'var(--green)':'var(--muted)';
+  var md=document.getElementById('fMetaDesc').value;
+  document.getElementById('metaDescCount').textContent=md.length+' / 170';
+  document.getElementById('metaDescCount').style.color=md.length>160?'var(--red)':md.length>=140?'var(--green)':'var(--muted)';
+}
 
-<h2>Discord and Gaming Avatar AI Prompts</h2>
-<p>Discord servers range from professional communities to gaming clans to fan servers, and the avatar conventions vary accordingly. Gaming avatars tend toward stylized, bold, and character-driven. Professional Discord servers (developer communities, creative studios) often prefer cleaner, more identifiable avatars.</p>
-<ul>
-<li>Discord gaming avatar, stylized character portrait, bold color palette, dramatic lighting effects, cyberpunk or fantasy aesthetic, strong visual identity, memorable at small sizes, gamer personality</li>
-<li>Discord community avatar, clean and distinctive design, works as both animated and static, bold personality, community-appropriate tone, instantly recognizable</li>
-<li>Discord professional server avatar, clean portrait style, distinctive but not distracting, personality visible without being chaotic, works well in group settings</li>
-</ul>
+function updateSeoScore(){
+  var score=0;var checks=[];
+  var title=document.getElementById('fTitle').value;
+  var metaDesc=document.getElementById('fMetaDesc').value;
+  var content=document.getElementById('fContent').value;
+  var kw=document.getElementById('fFocusKw').value.toLowerCase();
+  var slug=document.getElementById('fSlug').value;
+  var excerpt=document.getElementById('fExcerpt').value;
+  var words=content.replace(/<[^>]*>/g,' ').split(/\s+/).filter(Boolean).length;
+  var hasH2=/<h2/i.test(content);
+  var h2count=(content.match(/<h2/gi)||[]).length;
 
-<h2>TikTok Profile Picture AI Prompts</h2>
-<p>TikTok is the most youth-oriented and trend-conscious of all major platforms. Profile pictures that perform well on TikTok tend to be vibrant, expressive, and on-trend. The aesthetic changes faster than any other platform, so timelessness is less important than current visual relevance.</p>
-<ul>
-<li>TikTok profile picture, vibrant and energetic aesthetic, trend-aware styling, expressive face with personality, bright colors, fun and approachable mood, Gen Z aesthetic sensibility, high contrast and eye-catching</li>
-<li>TikTok creator avatar, behind-the-scenes creator energy, authentic and relatable but visually polished, content-creator lifestyle aesthetic</li>
-</ul>
+  function chk(label,ok,points){checks.push({label:label,ok:ok});if(ok)score+=points;}
+  chk('Title is 50–60 characters',title.length>=50&&title.length<=70,10);
+  chk('Meta description written',metaDesc.length>0,15);
+  chk('Meta description 140–160 chars',metaDesc.length>=140&&metaDesc.length<=170,10);
+  chk('Focus keyword set',kw.length>0,5);
+  chk('Focus keyword in title',kw&&title.toLowerCase().includes(kw),10);
+  chk('Focus keyword in meta description',kw&&metaDesc.toLowerCase().includes(kw),5);
+  chk('Content has multiple H2 headings',h2count>=3,10);
+  chk('Content 2000+ words (AdSense)',words>=2000,20);
+  chk('Slug is set',slug.length>0,5);
+  chk('Excerpt written',excerpt.length>50,10);
 
-<h2>YouTube Channel Profile Picture AI Prompts</h2>
-<p>YouTube channel icons appear at small sizes in search results and subscription lists, but also at larger sizes on channel pages. They need to work at multiple scales and often represent a brand or show concept as much as a person.</p>
-<ul>
-<li>YouTube channel profile picture, bold and distinctive at small sizes, channel branding integrated naturally, host portrait with strong personality, professional production value, recognizable brand identity</li>
-<li>YouTube creator avatar, signature style visual identity, warm and inviting to subscription, memorable face with consistent styling, builds channel recognition across all touchpoints</li>
-</ul>
+  document.getElementById('seoScoreLabel').textContent=score+' / 100';
+  document.getElementById('seoFill').style.width=score+'%';
+  document.getElementById('seoFill').style.background=score>=80?'var(--green)':score>=50?'#fbbf24':'var(--red)';
+  document.getElementById('seoChecks').innerHTML=checks.map(function(c){
+    return'<div style="display:flex;align-items:center;gap:6px">'+
+      '<span style="color:'+(c.ok?'var(--green)':'var(--red)')+';font-size:.85rem">'+(c.ok?'✓':'✗')+'</span>'+
+      '<span style="color:'+(c.ok?'var(--muted)':'var(--text)');return c.ok?'var(--muted)':'var(--text)';})());
+  // rewrite properly:
+  document.getElementById('seoChecks').innerHTML=checks.map(function(c){
+    return'<div style="display:flex;align-items:center;gap:6px"><span style="color:'+(c.ok?'var(--green)':'var(--red)')+';">'+(c.ok?'✓':'✗')+'</span><span style="color:var(--muted)">'+c.label+'</span></div>';
+  }).join('');
+}
 
-<h2>Technical Specifications by Platform</h2>
-<p>Getting the technical specifications right ensures your AI-generated profile picture looks crisp and properly cropped on every platform. Always generate larger than needed and resize down:</p>
-<ul>
-<li><strong>Instagram:</strong> 320x320px minimum, displayed as circle, generate at 1080x1080</li>
-<li><strong>LinkedIn:</strong> 400x400px minimum, displayed as circle, generate at 1200x1200</li>
-<li><strong>Twitter/X:</strong> 400x400px minimum, displayed as circle, generate at 800x800</li>
-<li><strong>WhatsApp:</strong> Any square ratio, generate at 800x800 minimum</li>
-<li><strong>Discord:</strong> 128x128 minimum, generate at 512x512 or larger</li>
-<li><strong>TikTok:</strong> 20x20 minimum display but shown larger on profile, generate at 720x720</li>
-<li><strong>YouTube:</strong> 800x800 minimum, generate at 1600x1600 for best quality</li>
-</ul>',
-  'general',
-  'ai profile picture,social media profile,dp prompts,profile photo ai,avatar generator',
-  'AI Profile Picture Prompts: Complete Guide for Instagram, LinkedIn, Twitter & More',
-  'Platform-specific AI prompts for every social network. Instagram, LinkedIn, Twitter, WhatsApp, Discord, TikTok, YouTube — 60+ prompts optimized for each platform.',
-  'ai profile picture prompts',
-  10,
-  2300,
-  1
-),
-(
-  'Instagram DP Black and White AI Prompts: Timeless Monochrome Profile Pictures',
-  'instagram-dp-black-white-ai-prompts',
-  'Master the art of black and white portrait AI generation with 35+ prompts spanning fine art photography, film noir, editorial fashion, and documentary styles. Create Instagram DPs with the timeless quality of classic photography.',
-  '<h2>Why Black and White Profile Pictures Stand Out on Instagram</h2>
-<p>Instagram feeds have become increasingly saturated with color — vivid sunsets, heavily filtered food shots, neon-lit nightclub photos. In this visually loud environment, a carefully crafted black and white profile picture does something remarkable: it stops the scroll. Monochrome images have a timeless quality that communicates sophistication, intentionality, and a certain visual confidence that saturated color photos often lack.</p>
-<p>Black and white photography is not simply the removal of color. It is a completely different visual language with its own vocabulary. Tonal contrast, texture, shadow depth, and highlight detail all become more important and more visible when color is absent. A great black and white portrait reveals things about a subject that color often conceals — bone structure, the quality of light on skin, the depth and expression in eyes.</p>
-<p>Generating truly excellent black and white portraits with AI requires understanding this language and building it into your prompts with specificity. These prompts do exactly that.</p>
+function savePrompt(statusOverride){
+  var id=document.getElementById('fId').value;
+  var title=document.getElementById('fTitle').value.trim();
+  var slug=document.getElementById('fSlug').value.trim();
+  var content=document.getElementById('fContent').value.trim();
+  if(!title||!content){setAlert('formAlert','Title and content are required.');return;}
+  var status=statusOverride||document.getElementById('fStatus').value;
+  var body={
+    title,slug,content,status,
+    excerpt:document.getElementById('fExcerpt').value.trim()||null,
+    category:document.getElementById('fCat').value,
+    author:document.getElementById('fAuthor').value.trim()||'PromptImageLab',
+    reading_time:parseInt(document.getElementById('fReadTime').value)||5,
+    schema_type:document.getElementById('fSchemaType').value,
+    featured:document.getElementById('fFeatured').checked,
+    meta_title:document.getElementById('fMetaTitle').value.trim()||null,
+    meta_desc:document.getElementById('fMetaDesc').value.trim()||null,
+    focus_keyword:document.getElementById('fFocusKw').value.trim()||null,
+    tags:document.getElementById('fTags').value.trim()||null,
+    canonical_url:document.getElementById('fCanonical').value.trim()||null,
+    image:document.getElementById('fImg').value.trim()||null,
+    og_image:document.getElementById('fOgImg').value.trim()||null,
+  };
+  if(id)body.id=parseInt(id);
+  var btn=document.getElementById('saveBtn');btn.disabled=true;btn.textContent='Saving...';
+  fetch(id?'/api/update-prompt':'/api/create-prompt',{
+    method:id?'PUT':'POST',
+    headers:authH(),
+    body:JSON.stringify(body)
+  })
+  .then(function(r){return r.json();})
+  .then(function(d){
+    if(d.success){
+      setAlert('formAlert','<strong>Saved!</strong> <a href="/prompts/'+(d.slug||slug)+'" target="_blank" style="color:var(--green)">View live ↗</a>','success');
+      if(!id&&d.id){document.getElementById('fId').value=d.id;document.getElementById('formHead').textContent='✏️ Edit: '+title;}
+    }else setAlert('formAlert',d.error||'Save failed.');
+  })
+  .catch(function(e){setAlert('formAlert','Error: '+e.message);})
+  .finally(function(){btn.disabled=false;btn.textContent='💾 Publish';});
+}
 
-<h2>Fine Art Black and White Portrait Prompts</h2>
-<p>Fine art portrait photography in black and white draws from masters like Yousuf Karsh, Irving Penn, and Richard Avedon. The style is characterized by exceptional technical precision, dramatic lighting, and an almost sculptural quality to the human face.</p>
-<ul>
-<li>Fine art black and white portrait, Yousuf Karsh lighting style, dramatic directional key light with deep shadow fill, exceptional skin texture rendering, catchlight in eyes, dark background gradating to black, Hasselblad medium format camera aesthetic, archival silver gelatin print quality</li>
-<li>Irving Penn style black and white portrait, minimal corner or neutral background, stark and graphic composition, fashion photography precision, high contrast with clean highlight rolloff, masterful tonal range from pure black to paper white</li>
-<li>Richard Avedon style B&W portrait, white background, subject fully lit from front, psychological depth in expression, every line and feature revealed, confrontational directness, large format camera aesthetic</li>
-<li>Ansel Adams zone system inspired portrait, complete tonal scale from zone 0 black to zone 10 white, technically perfect exposure, luminous highlights, deep rich shadows, extraordinary detail in every zone</li>
-</ul>
+// ════ TOOLBAR ════
+function fmt(tag){
+  var ta=document.getElementById('fContent');
+  var s=ta.selectionStart,e=ta.selectionEnd;
+  var sel=ta.value.substring(s,e)||'Your text here';
+  var replacement='<'+tag+'>'+sel+'</'+tag+'>';
+  ta.value=ta.value.substring(0,s)+replacement+ta.value.substring(e);
+  onContentChange();
+}
+function fmtList(tag){
+  var ta=document.getElementById('fContent');
+  var s=ta.selectionStart;
+  ta.value=ta.value.substring(0,s)+'\n<'+tag+'>\n  <li>Item 1</li>\n  <li>Item 2</li>\n  <li>Item 3</li>\n</'+tag+'>\n'+ta.value.substring(s);
+  onContentChange();
+}
+function fmtLi(){
+  var ta=document.getElementById('fContent');var s=ta.selectionStart;
+  var sel=ta.value.substring(ta.selectionStart,ta.selectionEnd)||'List item text';
+  ta.value=ta.value.substring(0,s)+'<li>'+sel+'</li>'+ta.value.substring(ta.selectionEnd);
+  onContentChange();
+}
+function fmtLink(){
+  var url=prompt('Enter URL:');if(!url)return;
+  var ta=document.getElementById('fContent');var s=ta.selectionStart;
+  var sel=ta.value.substring(s,ta.selectionEnd)||'Link text';
+  ta.value=ta.value.substring(0,s)+'<a href="'+url+'">'+sel+'</a>'+ta.value.substring(ta.selectionEnd);
+  onContentChange();
+}
+function fmtCode(){fmt('code');}
+function fmtPara(){
+  var ta=document.getElementById('fContent');var s=ta.selectionStart;
+  var sel=ta.value.substring(s,ta.selectionEnd)||'Paragraph text goes here.';
+  ta.value=ta.value.substring(0,s)+'<p>'+sel+'</p>'+ta.value.substring(ta.selectionEnd);
+  onContentChange();
+}
+function previewContent(){
+  document.getElementById('previewBody').innerHTML=document.getElementById('fContent').value||'<p class="muted">Nothing to preview yet.</p>';
+  document.getElementById('previewModal').classList.add('open');
+}
+function closePreview(){document.getElementById('previewModal').classList.remove('open');}
 
-<h2>Film Noir Black and White Portrait Prompts</h2>
-<p>Film noir photography draws from 1940s Hollywood cinematography — hard shadows, venetian blind patterns, smoke and mystery, femme fatale glamour and hard-boiled detective grit. It is theatrical, atmospheric, and immediately evocative.</p>
-<ul>
-<li>Film noir portrait, 1940s Hollywood cinematography style, hard side lighting casting dramatic shadow across half of face, window blind shadow pattern across background, smoke atmosphere suggestion, vintage Hollywood glamour and danger, high contrast black and white</li>
-<li>Noir detective portrait, harsh underlighting (unusual and threatening), fedora hat casting face shadow, trench coat collar up, cigarette smoke wisps, 1950s crime fiction aesthetic, dark and moody</li>
-<li>Femme fatale noir portrait, dramatic directional lighting, strong mascara emphasis, pearl jewelry, mysterious knowing expression, classic Hollywood noir glamour, Marlene Dietrich or Lauren Bacall inspiration</li>
-<li>Urban noir portrait, rain-slicked city street at night, harsh street lamp from above, high contrast black and white, wet pavement reflection below, cinematic widescreen composition, neon signs softly visible in background</li>
-</ul>
+// ════ IMAGE PREVIEW ════
+document.getElementById('fImg').addEventListener('input',function(){previewImg();});
+function previewImg(){
+  var v=document.getElementById('fImg').value.trim();
+  var p=document.getElementById('imgPrev');
+  if(v){p.src=v;p.style.display='block';}else p.style.display='none';
+}
 
-<h2>Editorial and Fashion Black and White Portrait Prompts</h2>
-<p>Fashion and editorial black and white photography appears in Vogue, Harper''s Bazaar, and W Magazine. It is sophisticated, often slightly abstract, and valued for visual impact over conventional beauty standards.</p>
-<ul>
-<li>High fashion editorial black and white portrait, Vogue Italia aesthetic, dramatic architectural lighting, avant-garde styling, graphic shadow patterns, powerful model expression, Steven Meisel or Peter Lindbergh photographic influence</li>
-<li>Peter Lindbergh style black and white portrait, natural textured skin rendering (no excessive retouching), windswept or natural hair, outdoor location with raw weather atmosphere, authentic human beauty, fashion quality but real</li>
-<li>Helmut Newton style B&W portrait, strong and powerful feminine presence, architectural or luxury interior background, fashion precision, sexual confidence and authority, sophisticated high contrast</li>
-<li>Fashion magazine cover black and white, bold graphic composition, high contrast lighting, strong jaw line emphasis, couture or minimal styling, striking and memorable, newsstand impact</li>
-</ul>
+// ════ DELETE ════
+function openDelModal(id,title){DEL_ID=id;document.getElementById('delTitle').textContent='"'+title+'"';document.getElementById('delModal').classList.add('open');}
+function closeDelModal(){DEL_ID=null;document.getElementById('delModal').classList.remove('open');}
+function confirmDel(){
+  if(!DEL_ID)return;
+  fetch('/api/delete-prompt?id='+DEL_ID,{method:'DELETE',headers:authH()})
+  .then(function(r){return r.json();})
+  .then(function(d){
+    closeDelModal();
+    if(d.success){setAlert('listAlert','Prompt deleted.','success');loadList();}
+    else setAlert('listAlert',d.error||'Delete failed.');
+  }).catch(function(e){closeDelModal();setAlert('listAlert','Error: '+e.message);});
+}
+document.getElementById('delModal').addEventListener('click',function(e){if(e.target===this)closeDelModal();});
+document.getElementById('previewModal').addEventListener('click',function(e){if(e.target===this)closePreview();});
 
-<h2>Documentary and Street Photography Style Prompts</h2>
-<p>Documentary black and white portraiture (Henri Cartier-Bresson, Sebastião Salgado, Dorothea Lange) captures authentic human moments with raw emotional power. This style is completely different from studio portraiture — its power comes from its apparent unscripted truth.</p>
-<ul>
-<li>Documentary portrait, candid photography aesthetic, natural unposed expression, grain texture from high ISO film, handheld camera slight motion suggestion, Leica rangefinder camera aesthetic, 35mm film, honest and direct</li>
-<li>Street photography portrait, urban environment context, decisive moment capture, Cartier-Bresson influence, reportage style, human story in a single frame, high contrast B&W, authentic and real</li>
-<li>Environmental documentary portrait, subject in context of their world and work, available light only, 400 ISO film grain, raw emotional honesty, Dorothea Lange or Gordon Parks influence</li>
-</ul>
-
-<h2>Technical Guide to AI Black and White Portrait Generation</h2>
-<p>Generating black and white images with AI requires specific technical knowledge that color portrait prompts don''t. Here are the key technical elements to include:</p>
-<ul>
-<li><strong>Tonal contrast descriptor:</strong> Always specify "high contrast" or "soft low contrast" — these produce completely different moods</li>
-<li><strong>Shadow depth:</strong> "Deep rich blacks," "pure paper white highlights," "mid-tone emphasis" guide the tonal distribution</li>
-<li><strong>Film grain:</strong> "Fine grain," "visible grain texture," or "smooth grain-free" dramatically affect the period authenticity</li>
-<li><strong>Highlight rolloff:</strong> "Gentle highlight rolloff" prevents blown-out white areas; "harsh clipped highlights" creates graphic drama</li>
-<li><strong>Skin texture rendering:</strong> "Detailed skin texture" vs. "smooth skin rendering" controls the level of portrait retouching aesthetic</li>
-</ul>',
-  'instagram',
-  'black and white instagram dp,monochrome portrait,b&w profile picture,film noir portrait,fine art photography',
-  'Instagram DP Black and White AI Prompts: Film Noir, Fine Art & Editorial Styles',
-  'Create timeless black and white Instagram DPs with 35+ AI prompts. Film noir, fine art, editorial fashion, and documentary styles. Stunning monochrome profile pictures.',
-  'instagram dp black white ai prompts',
-  9,
-  2150,
-  0
-);
+// ════ HELPERS ════
+function setAlert(id,msg,type){
+  var el=document.getElementById(id);if(!el)return;
+  el.innerHTML='<div class="alert alert-'+(type||'error')+'">'+msg+'</div>';
+  if(type==='success')setTimeout(function(){el.innerHTML='';},6000);
+  el.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function fmtDate(d){if(!d)return'';return new Date(d).toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'});}
+function esc(s){return(s||'').replace(/'/g,"\\'");}
+</script>
+</body>
+</html>

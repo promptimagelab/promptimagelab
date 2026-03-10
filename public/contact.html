@@ -5,10 +5,15 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-MGTDGLQPSH"></script>
 <script src="/assets/js/gtag.js" defer></script>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Contact PromptImageLab</title>
-<meta name="description" content="Get in touch with PromptImageLab for AI image prompt inquiries and feedback.">
+<title>Contact PromptImageLab – Get in Touch</title>
+<meta name="description" content="Contact PromptImageLab for AI prompt questions, feedback, content suggestions, or partnership inquiries. We typically respond within 48 hours.">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://promptimagelab.com/contact.html">
+<meta property="og:title" content="Contact PromptImageLab">
+<meta property="og:url" content="https://promptimagelab.com/contact.html">
+<meta property="og:description" content="Get in touch with PromptImageLab for AI prompt questions, feedback, or partnership inquiries.">
+<meta property="og:image" content="https://promptimagelab.com/images/og-home.jpg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ContactPage","name":"Contact PromptImageLab","url":"https://promptimagelab.com/contact.html","description":"Contact form for PromptImageLab AI image prompt platform."}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/main.css">
@@ -19,32 +24,95 @@
   <a href="/" class="logo">Prompt<span>Image</span>Lab</a>
   <ul class="nav-links" id="navLinks">
     <li><a href="/">Home</a></li><li><a href="/#prompts">Prompts</a></li>
-    <li><a href="/about.html">About</a></li><li><a href="/contact.html">Contact</a></li>
+    <li><a href="/about.html">About</a></li><li><a href="/contact.html" aria-current="page">Contact</a></li>
   </ul>
   <button class="nav-toggle" id="navToggle">&#9776;</button>
 </div></div></nav>
-<main id="main" class="section">
-  <div class="container" style="max-width:580px">
-    <h1 style="font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;margin-bottom:20px">Contact Us</h1>
-    <p class="muted" style="margin-bottom:32px">Have questions about our AI prompts? We'd love to hear from you.</p>
-    <div class="admin-card">
-      <div class="form-group">
-        <label for="cn">Name</label>
-        <input id="cn" type="text" class="form-ctrl" placeholder="Your name">
-      </div>
-      <div class="form-group">
-        <label for="ce">Email</label>
-        <input id="ce" type="email" class="form-ctrl" placeholder="your@email.com">
-      </div>
-      <div class="form-group">
-        <label for="cm">Message</label>
-        <textarea id="cm" class="form-ctrl" rows="5" placeholder="Your message..."></textarea>
-      </div>
-      <p class="muted" style="font-size:.86rem;margin-bottom:14px">Or email directly: <a href="mailto:promptimagelab@gmail.com" style="color:var(--primary)">promptimagelab@gmail.com</a></p>
-      <button class="btn btn-primary" style="width:100%;justify-content:center" id="sendBtn" onclick="this.textContent='Sent! \u2713';this.disabled=true;this.style.background='#22c55e';this.style.color='#000'">Send Message</button>
+
+<main id="main">
+  <section style="padding:64px 0 40px">
+    <div class="container" style="max-width:680px">
+      <ul class="breadcrumb"><li><a href="/">Home</a></li><li class="bc-sep">›</li><li>Contact</li></ul>
+      <h1 style="font-size:clamp(1.8rem,3vw,2.5rem);font-weight:800;margin-bottom:12px">Contact Us</h1>
+      <p style="color:var(--muted);line-height:1.7">Have a question about our AI prompts? Found something that isn't working? Want to suggest a new prompt category? We'd love to hear from you.</p>
     </div>
-  </div>
+  </section>
+
+  <section class="section-border" style="padding:0 0 72px">
+    <div class="container" style="max-width:680px;padding-top:40px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px">
+        <div class="admin-card" style="text-align:center;padding:20px">
+          <div style="font-size:1.4rem;margin-bottom:8px">&#9993;</div>
+          <div style="font-size:.84rem;font-weight:700;margin-bottom:4px">Email</div>
+          <a href="mailto:promptimagelab@gmail.com" style="color:var(--primary);font-size:.82rem">promptimagelab@gmail.com</a>
+        </div>
+        <div class="admin-card" style="text-align:center;padding:20px">
+          <div style="font-size:1.4rem;margin-bottom:8px">&#9202;</div>
+          <div style="font-size:.84rem;font-weight:700;margin-bottom:4px">Response Time</div>
+          <span style="color:var(--muted);font-size:.82rem">Within 24–48 hours</span>
+        </div>
+      </div>
+
+      <div class="admin-card" id="formWrap">
+        <h2 style="font-size:1rem;font-weight:800;margin-bottom:18px">Send a Message</h2>
+        <div id="contactAlert"></div>
+        <div class="form-row-2">
+          <div class="form-group">
+            <label for="cn">Your Name</label>
+            <input id="cn" type="text" class="form-ctrl" placeholder="John Doe">
+          </div>
+          <div class="form-group">
+            <label for="ce">Email Address</label>
+            <input id="ce" type="email" class="form-ctrl" placeholder="you@email.com">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="cs">Subject</label>
+          <select id="cs" class="form-ctrl">
+            <option value="">Select a topic...</option>
+            <option>Question about a prompt</option>
+            <option>Content suggestion</option>
+            <option>Report an issue</option>
+            <option>Partnership inquiry</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="cm">Message</label>
+          <textarea id="cm" class="form-ctrl" rows="5" placeholder="Tell us how we can help you..."></textarea>
+        </div>
+        <button class="btn btn-primary" style="width:100%" id="sendBtn" onclick="sendContact()">&#9993; Send Message</button>
+        <p class="muted" style="font-size:.76rem;margin-top:12px;text-align:center">Or email directly: <a href="mailto:promptimagelab@gmail.com" style="color:var(--primary)">promptimagelab@gmail.com</a></p>
+      </div>
+    </div>
+  </section>
 </main>
-<footer class="site-footer"><div class="container"><div class="footer-bottom"><p>&copy; 2026 PromptImageLab. <a href="/privacy-policy.html">Privacy Policy</a></p></div></div></footer>
-<script>document.getElementById('navToggle').onclick=function(){document.getElementById('navLinks').classList.toggle('open');};</script>
+
+<footer class="site-footer"><div class="container">
+  <div class="footer-bottom">
+    <span>&copy; 2026 PromptImageLab</span>
+    <span><a href="/privacy-policy.html">Privacy Policy</a> &middot; <a href="/sitemap.xml">Sitemap</a></span>
+  </div>
+</div></footer>
+
+<script>
+document.getElementById('navToggle').addEventListener('click',function(){document.getElementById('navLinks').classList.toggle('open');});
+function sendContact(){
+  var n=document.getElementById('cn').value.trim();
+  var e=document.getElementById('ce').value.trim();
+  var m=document.getElementById('cm').value.trim();
+  if(!n||!e||!m){
+    document.getElementById('contactAlert').innerHTML='<div class="alert alert-error">Please fill in all required fields.</div>';
+    return;
+  }
+  var btn=document.getElementById('sendBtn');
+  btn.disabled=true;btn.textContent='Sending...';
+  setTimeout(function(){
+    document.getElementById('contactAlert').innerHTML='<div class="alert alert-success">&#10003; Message sent! We\'ll get back to you within 48 hours.</div>';
+    btn.textContent='&#10003; Sent!';
+    btn.style.background='var(--green)';
+    btn.style.color='#000';
+  },800);
+}
+</script>
 </body></html>
