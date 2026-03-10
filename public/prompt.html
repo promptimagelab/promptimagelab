@@ -209,7 +209,7 @@
           <div class="footer-brand">Prompt<span style="color:var(--primary)">Image</span>Lab</div>
           <p class="footer-desc">Professional AI image prompt frameworks for Instagram DPs, anime avatars, LinkedIn
             headshots, and portraits. Free for everyone.</p>
-          <a href="/cdn-cgi/l/email-protection#f78785989a87839e9a9690929b9695b7909a969e9bd994989a" style="color:var(--primary);font-size:.82rem"><span class="__cf_email__" data-cfemail="ea9a9885879a9e83878b8d8f868b88aa8d878b8386c4898587">[email&#160;protected]</span></a>
+          <a href="/cdn-cgi/l/email-protection#f484869b9984809d99959391989596b49399959d98da979b99" style="color:var(--primary);font-size:.82rem"><span class="__cf_email__" data-cfemail="0e7e7c61637e7a67636f696b626f6c4e69636f6762206d6163">[email&#160;protected]</span></a>
         </div>
         <div>
           <div class="footer-head">Navigation</div>
@@ -515,4 +515,13 @@
         })
         .then(function (d) {
           if (d.error) throw new Error(d.error);
-          setMeta(d.prompt)
+          setMeta(d.prompt);
+          render(d.prompt, d.related || []);
+        })
+        .catch(function (err) {
+          showError('Could not load this prompt. ' + (err.message || '') + ' <br><br><a href="/">← Browse all guides</a>');
+        });
+    })();
+  </script>
+</body>
+</html>
