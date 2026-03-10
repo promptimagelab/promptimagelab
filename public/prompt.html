@@ -1,360 +1,518 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6771008610152378" crossorigin="anonymous"></script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-MGTDGLQPSH"></script>
-<script src="/assets/js/gtag.js" defer></script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title id="pt">Loading... | PromptImageLab</title>
-<meta id="md" name="description" content="">
-<meta id="mk" name="keywords" content="">
-<meta id="mfk" name="news_keywords" content="">
-<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
-<meta name="author" content="PromptImageLab">
-<link id="can" rel="canonical" href="https://promptimagelab.com/">
-<meta id="ogType" property="og:type" content="article">
-<meta id="ogUrl"  property="og:url" content="">
-<meta id="ogTitle" property="og:title" content="">
-<meta id="ogDesc" property="og:description" content="">
-<meta id="ogImg"  property="og:image" content="https://promptimagelab.com/images/og-home.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:site_name" content="PromptImageLab">
-<meta name="twitter:card" content="summary_large_image">
-<meta id="twTitle" name="twitter:title" content="">
-<meta id="twDesc" name="twitter:description" content="">
-<meta id="twImg"  name="twitter:image" content="https://promptimagelab.com/images/og-home.jpg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/main.css">
-<style>
-.toc{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px;margin-bottom:24px}
-.toc-title{font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:12px}
-.toc-list{list-style:none;display:flex;flex-direction:column;gap:5px}
-.toc-list a{font-size:.88rem;color:var(--primary);transition:opacity .14s}
-.toc-list a:hover{opacity:.75}
-.share-row{display:flex;gap:9px;align-items:center;margin:24px 0;flex-wrap:wrap}
-.share-lbl{font-size:.8rem;color:var(--muted);font-weight:700}
-.share-btn{padding:7px 14px;border-radius:var(--radius-sm);font-size:.8rem;font-weight:700;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);font-family:inherit;transition:all .14s;display:flex;align-items:center;gap:5px}
-.share-btn:hover{border-color:var(--primary);color:var(--primary)}
-.copy-prompt{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 16px;font-family:'Courier New',monospace;font-size:.84rem;color:var(--muted);line-height:1.6;position:relative;margin:10px 0 4px;cursor:pointer;transition:border-color .14s}
-.copy-prompt:hover{border-color:var(--primary)}
-.copy-prompt::after{content:'Copy';position:absolute;top:8px;right:10px;background:var(--primary);color:#000;font-size:.7rem;font-weight:800;padding:2px 8px;border-radius:100px;font-family:Inter,sans-serif}
-.copy-prompt.copied::after{content:'Copied ✓';background:var(--green)}
-.sidebar-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;margin-bottom:16px}
-.sidebar-head{font-size:.76rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:12px}
-.progress-bar{height:4px;background:var(--surface2);position:fixed;top:0;left:0;right:0;z-index:999}
-.progress-fill{height:100%;background:var(--primary);width:0;transition:width .1s}
-</style>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6771008610152378"
+    crossorigin="anonymous"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MGTDGLQPSH"></script>
+  <script src="/assets/js/gtag.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title id="pt">Loading... | PromptImageLab</title>
+  <meta id="pmd" name="description" content="">
+  <meta id="pmk" name="keywords" content="">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <meta name="author" content="PromptImageLab">
+  <link id="pcan" rel="canonical" href="https://promptimagelab.com/">
+  <meta property="og:type" content="article">
+  <meta id="ogU" property="og:url" content="">
+  <meta id="ogT" property="og:title" content="">
+  <meta id="ogD" property="og:description" content="">
+  <meta id="ogI" property="og:image" content="https://promptimagelab.com/images/og-default.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="PromptImageLab">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta id="twT" name="twitter:title" content="">
+  <meta id="twD" name="twitter:description" content="">
+  <meta id="twI" name="twitter:image" content="https://promptimagelab.com/images/og-default.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <style>
+    .rdr-bar {
+      height: 3px;
+      background: var(--surface2);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      pointer-events: none
+    }
+
+    .rdr-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      width: 0;
+      transition: width .08s linear
+    }
+
+    .toc-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      margin-bottom: 24px
+    }
+
+    .toc-label {
+      font-size: .7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--muted);
+      margin-bottom: 10px
+    }
+
+    .toc-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 3px
+    }
+
+    .toc-list a {
+      font-size: .85rem;
+      color: var(--primary);
+      padding: 2px 0;
+      border-bottom: none
+    }
+
+    .toc-list a:hover {
+      opacity: .65
+    }
+
+    .share-strip {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin: 16px 0 20px
+    }
+
+    .share-lbl {
+      font-size: .76rem;
+      font-weight: 700;
+      color: var(--muted)
+    }
+
+    .s-btn {
+      padding: 5px 12px;
+      border-radius: var(--radius-sm);
+      font-size: .76rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      font-family: inherit;
+      transition: all .12s
+    }
+
+    .s-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary)
+    }
+
+    .sb-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 15px;
+      margin-bottom: 14px
+    }
+
+    .sb-head {
+      font-size: .7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      color: var(--muted);
+      margin-bottom: 10px
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 24px;
+      align-items: start
+    }
+
+    @media(max-width:800px) {
+      .detail-grid {
+        grid-template-columns: 1fr !important
+      }
+
+      .sticky-sb {
+        position: static !important
+      }
+    }
+  </style>
 </head>
+
 <body>
-<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-<a class="skip-link" href="#main">Skip to main content</a>
-
-<nav class="site-nav" role="navigation" aria-label="Main navigation">
-  <div class="container">
-    <div class="nav-inner">
-      <a href="/" class="logo" aria-label="PromptImageLab Home">Prompt<span>Image</span>Lab</a>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="/">Home</a></li>
-        <li><a href="/#prompts">Prompts</a></li>
-        <li><a href="/about.html">About</a></li>
-        <li><a href="/contact.html">Contact</a></li>
-      </ul>
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">&#9776;</button>
-    </div>
+  <div class="rdr-bar">
+    <div class="rdr-fill" id="rdrFill"></div>
   </div>
-</nav>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-<main id="main">
-<div id="loadingState">
-  <section class="prompt-hero">
-    <div class="container" style="max-width:1060px">
-      <div class="skeleton" style="height:11px;width:220px;margin-bottom:14px;border-radius:100px"></div>
-      <div class="skeleton" style="height:36px;width:70%;margin-bottom:12px"></div>
-      <div class="skeleton" style="height:11px;width:200px;margin-bottom:20px"></div>
-      <div class="skeleton" style="height:60px;border-radius:8px"></div>
-    </div>
-  </section>
-  <div class="container" style="max-width:1060px;padding-bottom:72px">
-    <div style="display:grid;grid-template-columns:1fr 300px;gap:28px">
-      <div>
-        <div class="skeleton" style="height:300px;border-radius:13px;margin-bottom:22px"></div>
-        <div class="skeleton" style="height:14px;margin-bottom:9px"></div>
-        <div class="skeleton" style="height:14px;width:88%;margin-bottom:9px"></div>
-        <div class="skeleton" style="height:14px;width:76%"></div>
-      </div>
-      <div><div class="skeleton" style="height:200px;border-radius:13px"></div></div>
-    </div>
-  </div>
-</div>
-
-<div id="content" style="display:none"></div>
-</main>
-
-<footer class="site-footer" role="contentinfo">
-  <div class="container">
-    <div class="footer-grid">
-      <div>
-        <div class="footer-brand">Prompt<span style="color:var(--primary)">Image</span>Lab</div>
-        <p class="footer-desc">Professional AI image prompt frameworks for profile pictures, anime avatars, LinkedIn headshots, and stylized portraits.</p>
-        <a href="mailto:promptimagelab@gmail.com" style="color:var(--primary);font-size:.82rem">promptimagelab@gmail.com</a>
-      </div>
-      <div>
-        <div class="footer-head">Navigation</div>
-        <ul class="footer-links">
+  <nav class="site-nav" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="/" class="logo">Prompt<span>Image</span>Lab</a>
+        <ul class="nav-links" id="navLinks">
           <li><a href="/">Home</a></li>
-          <li><a href="/#prompts">Browse Prompts</a></li>
+          <li><a href="/#prompts">Prompts</a></li>
           <li><a href="/about.html">About</a></li>
           <li><a href="/contact.html">Contact</a></li>
         </ul>
-      </div>
-      <div>
-        <div class="footer-head">Categories</div>
-        <ul class="footer-links">
-          <li><a href="/#prompts">Instagram Prompts</a></li>
-          <li><a href="/#prompts">Anime Prompts</a></li>
-          <li><a href="/#prompts">Professional Portraits</a></li>
-          <li><a href="/#prompts">General Avatars</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="footer-head">Legal</div>
-        <ul class="footer-links">
-          <li><a href="/privacy-policy.html">Privacy Policy</a></li>
-          <li><a href="/sitemap.xml">Sitemap</a></li>
-          <li><a href="/contact.html">Contact</a></li>
-        </ul>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">&#9776;</button>
       </div>
     </div>
-    <div class="footer-bottom">
-      <span>&copy; 2026 PromptImageLab. All rights reserved.</span>
-      <span><a href="/privacy-policy.html">Privacy Policy</a> &middot; <a href="/sitemap.xml">Sitemap</a></span>
+  </nav>
+
+  <main id="main">
+    <!-- Skeleton loader -->
+    <div id="skeleton">
+      <section class="prompt-hero">
+        <div class="container" style="max-width:1060px">
+          <div class="skeleton" style="height:10px;width:220px;margin-bottom:14px;border-radius:99px"></div>
+          <div class="skeleton" style="height:32px;width:72%;margin-bottom:10px"></div>
+          <div class="skeleton" style="height:10px;width:190px;margin-bottom:18px"></div>
+          <div class="skeleton" style="height:54px;border-radius:8px"></div>
+        </div>
+      </section>
+      <div class="container" style="max-width:1060px;padding-bottom:64px">
+        <div style="display:grid;grid-template-columns:1fr 280px;gap:24px">
+          <div>
+            <div class="skeleton" style="height:260px;border-radius:12px;margin-bottom:20px"></div>
+            <div class="skeleton" style="height:12px;margin-bottom:8px"></div>
+            <div class="skeleton" style="height:12px;width:84%;margin-bottom:8px"></div>
+            <div class="skeleton" style="height:12px;width:68%"></div>
+          </div>
+          <div>
+            <div class="skeleton" style="height:200px;border-radius:12px"></div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</footer>
 
-<script>
-var ICON={instagram:'📸',anime:'🎨',professional:'💼',general:'✨'};
-document.getElementById('navToggle').addEventListener('click',function(){document.getElementById('navLinks').classList.toggle('open');});
+    <!-- Article container (filled by JS) -->
+    <div id="article" style="display:none"></div>
+  </main>
 
-// Reading progress
-window.addEventListener('scroll',function(){
-  var doc=document.documentElement,body=document.body;
-  var scrollTop=doc.scrollTop||body.scrollTop;
-  var scrollHeight=(doc.scrollHeight||body.scrollHeight)-doc.clientHeight;
-  var pct=scrollHeight>0?Math.round(scrollTop/scrollHeight*100):0;
-  document.getElementById('progressFill').style.width=pct+'%';
-});
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">Prompt<span style="color:var(--primary)">Image</span>Lab</div>
+          <p class="footer-desc">Professional AI image prompt frameworks for Instagram DPs, anime avatars, LinkedIn
+            headshots, and portraits. Free for everyone.</p>
+          <a href="/cdn-cgi/l/email-protection#f78785989a87839e9a9690929b9695b7909a969e9bd994989a" style="color:var(--primary);font-size:.82rem"><span class="__cf_email__" data-cfemail="ea9a9885879a9e83878b8d8f868b88aa8d878b8386c4898587">[email&#160;protected]</span></a>
+        </div>
+        <div>
+          <div class="footer-head">Navigation</div>
+          <ul class="footer-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/#prompts">Browse Prompts</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-head">Top Guides</div>
+          <ul class="footer-links">
+            <li><a href="/prompts/instagram-dp-ai-prompts">Instagram DP</a></li>
+            <li><a href="/prompts/anime-avatars">Anime Avatars</a></li>
+            <li><a href="/prompts/ceo-style-portrait-prompts">CEO Portraits</a></li>
+            <li><a href="/prompts/ai-profile-picture-dp-prompts">All Platforms</a></li>
+            <li><a href="/prompts/instagram-dp-black-white-ai-prompts">B&amp;W DP</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-head">Legal</div>
+          <ul class="footer-links">
+            <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="/sitemap.xml">Sitemap</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 PromptImageLab. All rights reserved.</span>
+        <span><a href="/privacy-policy.html">Privacy</a> &middot; <a href="/sitemap.xml">Sitemap</a></span>
+      </div>
+    </div>
+  </footer>
 
-function slug(){var p=window.location.pathname;var parts=p.replace(/\/+$/,'').split('/');return parts[parts.length-1]||'';}
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    /* ── reading progress ── */
+    window.addEventListener('scroll', function () {
+      var d = document.documentElement, b = document.body;
+      var st = d.scrollTop || b.scrollTop;
+      var h = (d.scrollHeight || b.scrollHeight) - d.clientHeight;
+      document.getElementById('rdrFill').style.width = (h > 0 ? Math.min(100, st / h * 100) : 0) + '%';
+    }, { passive: true });
 
-function setMeta(p){
-  var title=(p.meta_title||p.title)+' | PromptImageLab';
-  var desc=p.meta_desc||p.excerpt||p.title;
-  var url='https://promptimagelab.com/prompts/'+p.slug;
-  var img=p.og_image||p.image||'https://promptimagelab.com/images/og-home.jpg';
-  var tags=p.tags||p.focus_keyword||'';
-  document.title=title;
-  document.getElementById('pt').textContent=title;
-  document.getElementById('md').setAttribute('content',desc);
-  document.getElementById('mk').setAttribute('content',tags);
-  document.getElementById('mfk').setAttribute('content',tags);
-  document.getElementById('can').setAttribute('href',url);
-  document.getElementById('ogUrl').setAttribute('content',url);
-  document.getElementById('ogTitle').setAttribute('content',title);
-  document.getElementById('ogDesc').setAttribute('content',desc);
-  document.getElementById('ogImg').setAttribute('content',img);
-  document.getElementById('twTitle').setAttribute('content',title);
-  document.getElementById('twDesc').setAttribute('content',desc);
-  document.getElementById('twImg').setAttribute('content',img);
+    /* ── nav toggle ── */
+    document.getElementById('navToggle').addEventListener('click', function () {
+      var o = document.getElementById('navLinks').classList.toggle('open');
+      this.setAttribute('aria-expanded', String(o));
+    });
 
-  // Article JSON-LD
-  var schema={
-    "@context":"https://schema.org",
-    "@graph":[
-      {"@type":"BreadcrumbList","itemListElement":[
-        {"@type":"ListItem","position":1,"name":"Home","item":"https://promptimagelab.com/"},
-        {"@type":"ListItem","position":2,"name":"Prompts","item":"https://promptimagelab.com/#prompts"},
-        {"@type":"ListItem","position":3,"name":p.title,"item":url}
-      ]},
-      {"@type":p.schema_type||"Article",
-       "headline":p.title,
-       "description":desc,
-       "url":url,
-       "datePublished":p.created_at,
-       "dateModified":p.updated_at||p.created_at,
-       "image":{"@type":"ImageObject","url":img,"width":1200,"height":630},
-       "author":{"@type":"Organization","name":"PromptImageLab","url":"https://promptimagelab.com"},
-       "publisher":{"@type":"Organization","name":"PromptImageLab","logo":{"@type":"ImageObject","url":"https://promptimagelab.com/images/logo.png"}},
-       "mainEntityOfPage":{"@type":"WebPage","@id":url},
-       "keywords":tags,
-       "wordCount":p.word_count||2000,
-       "timeRequired":"PT"+(p.reading_time||5)+"M",
-       "articleSection":p.category
+    /* ══════════════════════════════════════════════
+       CRITICAL FIX: Extract slug from /prompts/SLUG
+       pathname = /prompts/instagram-dp-ai-prompts
+       We grab everything after /prompts/
+    ══════════════════════════════════════════════ */
+    function getSlug() {
+      var path = window.location.pathname; // e.g. /prompts/instagram-dp-ai-prompts
+      // Remove trailing slash if any
+      path = path.replace(/\/+$/, '');
+      // Match /prompts/ followed by slug
+      var m = path.match(/^\/prompts\/(.+)$/);
+      if (m && m[1]) return decodeURIComponent(m[1]);
+      // Fallback: last path segment
+      var parts = path.split('/').filter(Boolean);
+      return parts[parts.length - 1] || '';
+    }
+
+    var ICON = { instagram: '📸', anime: '🎨', professional: '💼', general: '✨' };
+
+    function fmtDate(s) {
+      if (!s) return '';
+      try { return new Date(s).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }); } catch (e) { return ''; }
+    }
+
+    function setMeta(p) {
+      var ttl = (p.meta_title || p.title) + ' | PromptImageLab';
+      var dsc = p.meta_desc || p.excerpt || p.title;
+      var url = 'https://promptimagelab.com/prompts/' + p.slug;
+      var img = p.og_image || p.image || '';
+      var kw = p.tags || p.focus_keyword || p.category;
+      document.title = ttl;
+      set('pt', 'textContent', ttl);
+      // ── GA4: override page_location so analytics shows real slug URL, not /prompt.html ──
+      if (typeof gtag !== 'undefined') {
+        gtag('config', 'G-MGTDGLQPSH', {
+          page_title: ttl,
+          page_location: url,      // real canonical URL: https://promptimagelab.com/prompts/slug
+          page_path: '/prompts/' + p.slug
+        });
       }
-    ]
-  };
-  var s=document.createElement('script');
-  s.type='application/ld+json';s.textContent=JSON.stringify(schema);
-  document.head.appendChild(s);
-}
+      setA('pmd', 'content', dsc);
+      setA('pmk', 'content', kw);
+      setA('pcan', 'href', url);
+      setA('ogU', 'content', url);
+      setA('ogT', 'content', ttl);
+      setA('ogD', 'content', dsc);
+      if (img) setA('ogI', 'content', img);
+      setA('twT', 'content', ttl);
+      setA('twD', 'content', dsc);
+      if (img) setA('twI', 'content', img);
+      // JSON-LD
+      var sc = document.createElement('script');
+      sc.type = 'application/ld+json';
+      sc.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "BreadcrumbList", "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://promptimagelab.com/" },
+              { "@type": "ListItem", "position": 2, "name": "Prompts", "item": "https://promptimagelab.com/#prompts" },
+              { "@type": "ListItem", "position": 3, "name": p.title, "item": url }
+            ]
+          },
+          {
+            "@type": p.schema_type || "Article",
+            "headline": p.title, "description": dsc, "url": url,
+            "image": { "@type": "ImageObject", "url": img, "width": 1200, "height": 630 },
+            "datePublished": (p.created_at || (new Date().toISOString())).replace(' ', 'T'),
+            "dateModified": (p.updated_at || p.created_at || (new Date().toISOString())).replace(' ', 'T'),
+            "author": { "@type": "Organization", "name": "PromptImageLab", "url": "https://promptimagelab.com" },
+            "publisher": {
+              "@type": "Organization", "name": "PromptImageLab",
+              "logo": { "@type": "ImageObject", "url": "https://promptimagelab.com/images/logo.png", "width": 280, "height": 60 }
+            },
+            "mainEntityOfPage": { "@type": "WebPage", "@id": url },
+            "keywords": kw, "wordCount": p.word_count || 2000,
+            "timeRequired": "PT" + (p.reading_time || 8) + "M",
+            "articleSection": p.category,
+            "inLanguage": "en-US"
+          }
+        ]
+      });
+      document.head.appendChild(sc);
+      /* GA4 – fire content_view event so Google sees engagement */
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'view_item', {
+          item_id: p.slug,
+          item_name: p.title,
+          item_category: p.category,
+          content_type: 'article',
+          word_count: p.word_count || 0
+        });
+      }
+    }
 
-function fmtDate(d){if(!d)return'';return new Date(d).toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});}
+    function set(id, prop, val) { var e = document.getElementById(id); if (e) e[prop] = val; }
+    function setA(id, attr, val) { var e = document.getElementById(id); if (e) e.setAttribute(attr, val); }
 
-function buildTOC(content){
-  var matches=[],re=/<h2[^>]*>([^<]+)<\/h2>/g,m;
-  while((m=re.exec(content))!==null)matches.push(m[1]);
-  if(matches.length<2)return'';
-  var items=matches.map(function(t,i){
-    return'<li><a href="#h2-'+i+'">'+t+'</a></li>';
-  }).join('');
-  return'<div class="toc"><div class="toc-title">&#128218; Table of Contents</div><ul class="toc-list">'+items+'</ul></div>';
-}
+    function buildTOC(html) {
+      var headings = [], idx = 0;
+      var fixed = html.replace(/<h2([^>]*)>/gi, function (_, attrs) {
+        var id = 's' + idx;
+        headings.push({ id: id, idx: idx });
+        idx++;
+        return '<h2' + attrs + ' id="' + id + '">';
+      });
+      // Extract h2 text from original html (before id injection)
+      var texts = [], re = /<h2[^>]*>([^<]*)<\/h2>/gi, m;
+      var tmp = html;
+      while ((m = re.exec(tmp)) !== null) { texts.push(m[1]); }
+      if (texts.length < 2) return { toc: '', html: html };
+      var toc = '<div class="toc-box"><div class="toc-label">&#128218; Contents</div><ul class="toc-list">' +
+        texts.map(function (t, i) { return '<li><a href="#s' + i + '">' + t + '</a></li>'; }).join('') +
+        '</ul></div>';
+      return { toc: toc, html: fixed };
+    }
 
-function addHeadingIds(content){
-  var i=0;
-  return content.replace(/<h2([^>]*)>/g,function(match,attrs){
-    return'<h2'+attrs+' id="h2-'+i+++'">';
-  });
-}
+    function relatedCards(arr) {
+      if (!arr || !arr.length) return '';
+      return '<section style="margin-top:44px" aria-labelledby="relHead">' +
+        '<h2 id="relHead" style="font-size:1.08rem;font-weight:800;margin-bottom:14px">Related Prompt Guides</h2>' +
+        '<div class="related-grid">' +
+        arr.map(function (r) {
+          return '<article class="prompt-card" onclick="location.href=\'/prompts/' + r.slug + '\'" style="cursor:pointer" tabindex="0">' +
+            '<div class="card-placeholder">' + (ICON[r.category] || '✨') + '</div>' +
+            '<div class="card-body">' +
+            '<div class="card-meta"><span class="card-cat">' + r.category + '</span>' +
+            '<span class="card-dot">•</span><span class="card-read">⏱ ' + (r.reading_time || 8) + ' min</span></div>' +
+            '<h3 class="card-title" style="font-size:.86rem">' + r.title + '</h3>' +
+            '</div></article>';
+        }).join('') + '</div></section>';
+    }
 
-function copyPrompt(el){
-  var text=el.textContent.replace(/\s*Copy\s*$/,'').replace(/\s*Copied ✓\s*$/,'').trim();
-  navigator.clipboard&&navigator.clipboard.writeText(text).then(function(){
-    el.classList.add('copied');
-    setTimeout(function(){el.classList.remove('copied');},2000);
-  });
-}
+    function render(p, related) {
+      var built = buildTOC(p.content);
+      var tagHtml = (p.tags || '').split(',').filter(Boolean).slice(0, 5).map(function (t) {
+        return '<span class="tag">' + t.trim() + '</span>';
+      }).join('');
+      // Only render image when URL is set; hide automatically if URL is broken
+      var featImg = p.image
+        ? '<img class="feat-img" src="' + p.image + '" alt="' + (p.title || '') + '" width="840" height="400" loading="eager" style="border-radius:var(--radius);width:100%;margin-bottom:22px;display:block" onerror="this.style.display=\'none\'">'
+        : '';
+      var pageUrl = 'https://promptimagelab.com/prompts/' + p.slug;
 
-function render(p,related){
-  var contentWithIds=addHeadingIds(p.content);
-  var toc=buildTOC(p.content);
-  var fi=p.image?'<img class="feat-img" src="'+p.image+'" alt="'+p.title+' - AI image prompt guide" width="840" height="400" loading="eager">':'';
-  var tagHtml=p.tags?(p.tags.split(',').map(function(t){return'<span class="tag">'+t.trim()+'</span>';}).join('')):'';
+      document.getElementById('skeleton').style.display = 'none';
+      document.getElementById('article').style.display = 'block';
 
-  var relHtml='';
-  if(related&&related.length>0){
-    relHtml='<section style="margin-top:48px" aria-labelledby="relatedHeading">'+
-      '<h2 id="relatedHeading" style="font-size:1.15rem;font-weight:800;margin-bottom:16px">Related Prompt Guides</h2>'+
-      '<div class="related-grid">'+
-      related.map(function(r){
-        return'<article class="prompt-card" onclick="location.href=\'/prompts/'+r.slug+'\'" style="cursor:pointer">'+
-          '<div class="card-placeholder">'+(ICON[r.category]||'✨')+'</div>'+
-          '<div class="card-body">'+
-            '<div class="card-meta"><span class="card-cat">'+r.category+'</span><span class="card-dot">&#8226;</span><span class="card-read">&#9201; '+(r.reading_time||5)+' min</span></div>'+
-            '<h3 class="card-title" style="font-size:.9rem">'+r.title+'</h3>'+
-          '</div>'+
-        '</article>';
-      }).join('')+
-      '</div></section>';
-  }
+      document.getElementById('article').innerHTML =
+        /* ── HERO ── */
+        '<section class="prompt-hero">' +
+        '<div class="container" style="max-width:1060px">' +
+        '<ul class="breadcrumb" aria-label="Breadcrumb">' +
+        '<li><a href="/">Home</a></li><li class="bc-sep">›</li>' +
+        '<li><a href="/#prompts">Prompts</a></li><li class="bc-sep">›</li>' +
+        '<li><span class="cat-pill">' + (ICON[p.category] || '') + '&nbsp;' + p.category + '</span></li><li class="bc-sep">›</li>' +
+        '<li aria-current="page">' + p.title + '</li>' +
+        '</ul>' +
+        '<h1>' + p.title + '</h1>' +
+        '<div class="prompt-meta-row">' +
+        '<span class="meta-item">⏱ ' + (p.reading_time || 8) + ' min read</span>' +
+        '<span class="meta-item">📅 ' + fmtDate(p.created_at) + '</span>' +
+        '<span class="meta-item">📝 ' + (p.word_count || '2000') + '+ words</span>' +
+        (p.views ? '<span class="meta-item">👁 ' + p.views.toLocaleString() + ' views</span>' : '') +
+        '</div>' +
+        (p.excerpt ? '<div class="prompt-excerpt">' + p.excerpt + '</div>' : '') +
+        '<div class="share-strip">' +
+        '<span class="share-lbl">Share:</span>' +
+        '<button class="s-btn" onclick="shareX()">𝕏 Twitter</button>' +
+        '<button class="s-btn" onclick="shareFB()">Facebook</button>' +
+        '<button class="s-btn" onclick="copyLink()">🔗 Copy Link</button>' +
+        '</div>' +
+        '</div>' +
+        '</section>' +
+        /* ── BODY ── */
+        '<div style="padding-bottom:72px">' +
+        '<div class="container" style="max-width:1060px">' +
+        '<div class="detail-grid">' +
+        /* Article column */
+        '<div>' +
+        featImg +
+        '<div style="text-align:center;margin-bottom:22px">' +
+        '<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6771008610152378" data-ad-format="auto" data-full-width-responsive="true"></ins>' +
+        '</div>' +
+        built.toc +
+        '<article class="prose-wrap">' + built.html + '</article>' +
+        (tagHtml ? '<div class="tags" style="margin-top:16px">' + tagHtml + '</div>' : '') +
+        '<div style="text-align:center;margin:26px 0">' +
+        '<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6771008610152378" data-ad-format="auto" data-full-width-responsive="true"></ins>' +
+        '</div>' +
+        relatedCards(related) +
+        '</div>' +
+        /* Sidebar */
+        '<aside class="sticky-sb" style="position:sticky;top:80px">' +
+        '<div class="sb-card">' +
+        '<div class="sb-head">Article Info</div>' +
+        '<div style="display:flex;flex-direction:column;gap:9px;font-size:.82rem;color:var(--muted)">' +
+        '<div><strong style="color:var(--text)">Category:</strong> ' + p.category + '</div>' +
+        '<div><strong style="color:var(--text)">Reading time:</strong> ' + (p.reading_time || 8) + ' min</div>' +
+        '<div><strong style="color:var(--text)">Word count:</strong> ' + (p.word_count || '2000') + '</div>' +
+        '<div><strong style="color:var(--text)">Updated:</strong> ' + fmtDate(p.updated_at || p.created_at) + '</div>' +
+        (p.focus_keyword ? '<div><strong style="color:var(--text)">Topic:</strong> ' + p.focus_keyword + '</div>' : '') +
+        '</div>' +
+        '</div>' +
+        '<div class="sb-card">' +
+        '<div class="sb-head">Browse More</div>' +
+        '<a href="/#prompts" class="cat-pill" style="display:inline-block;font-size:.78rem;margin-bottom:6px">' +
+        (ICON[p.category] || '✨') + ' More ' + p.category + ' prompts →</a>' +
+        '<br><a href="/" class="cat-pill" style="display:inline-block;font-size:.78rem">✨ All prompt guides →</a>' +
+        '</div>' +
+        '<div style="text-align:center">' +
+        '<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6771008610152378" data-ad-format="auto" data-full-width-responsive="true"></ins>' +
+        '</div>' +
+        '</aside>' +
+        '</div>' +
+        '</div>' +
+        '</div>';
 
-  var sidebarCat='<div class="sidebar-card"><div class="sidebar-head">Category</div><a href="/#prompts" style="display:inline-flex;align-items:center;gap:7px" class="cat-pill">&#127968; Browse all '+p.category+' prompts</a></div>';
-  var sidebarInfo='<div class="sidebar-card"><div class="sidebar-head">Prompt Info</div>'+
-    '<div style="display:flex;flex-direction:column;gap:9px;font-size:.83rem;color:var(--muted)">'+
-    '<div><strong style="color:var(--text)">Category:</strong> '+p.category+'</div>'+
-    '<div><strong style="color:var(--text)">Reading time:</strong> '+(p.reading_time||5)+' min</div>'+
-    '<div><strong style="color:var(--text)">Word count:</strong> '+(p.word_count||'2000+')+'</div>'+
-    '<div><strong style="color:var(--text)">Last updated:</strong> '+fmtDate(p.updated_at||p.created_at)+'</div>'+
-    (p.focus_keyword?'<div><strong style="color:var(--text)">Focus:</strong> '+p.focus_keyword+'</div>':'')+
-    '</div></div>';
-  var sidebarAd='<div style="text-align:center"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6771008610152378" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins></div>';
+      // Activate ads
+      try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) { }
+      try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) { }
+      try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) { }
 
-  document.getElementById('loadingState').style.display='none';
-  document.getElementById('content').style.display='block';
-  document.getElementById('content').innerHTML=
-    // Hero
-    '<section class="prompt-hero" aria-label="Article header">'+
-      '<div class="container" style="max-width:1060px">'+
-        '<ul class="breadcrumb" aria-label="Breadcrumb">'+
-          '<li><a href="/">Home</a></li><li class="bc-sep" aria-hidden="true">›</li>'+
-          '<li><a href="/#prompts">Prompts</a></li><li class="bc-sep" aria-hidden="true">›</li>'+
-          '<li><a href="/#prompts">'+p.category+'</a></li><li class="bc-sep" aria-hidden="true">›</li>'+
-          '<li aria-current="page">'+p.title+'</li>'+
-        '</ul>'+
-        '<h1>'+p.title+'</h1>'+
-        '<div class="prompt-meta-row">'+
-          '<span class="cat-pill">'+(ICON[p.category]||'')+'  '+p.category+'</span>'+
-          '<span class="meta-item">&#9201; '+(p.reading_time||5)+' min read</span>'+
-          '<span class="meta-item">&#128197; '+fmtDate(p.created_at)+'</span>'+
-          '<span class="meta-item">&#128221; '+(p.word_count||'2000+')+'+ words</span>'+
-          (p.views?'<span class="meta-item">&#128065; '+p.views.toLocaleString()+' views</span>':'')+
-        '</div>'+
-        (p.excerpt?'<div class="prompt-excerpt">'+p.excerpt+'</div>':'')+
-        // Share row
-        '<div class="share-row">'+
-          '<span class="share-lbl">Share:</span>'+
-          '<button class="share-btn" onclick="shareTwitter()">&#120143; Twitter</button>'+
-          '<button class="share-btn" onclick="shareFacebook()">&#128100; Facebook</button>'+
-          '<button class="share-btn" onclick="copyLink()">&#128279; Copy Link</button>'+
-        '</div>'+
-      '</div>'+
-    '</section>'+
-    // Main content area
-    '<div style="padding-bottom:72px">'+
-      '<div class="container" style="max-width:1060px">'+
-        '<div style="display:grid;grid-template-columns:1fr 285px;gap:28px;align-items:start">'+
-          // Left: article
-          '<div>'+
-            fi+
-            '<div style="text-align:center;margin-bottom:22px">'+
-              '<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6771008610152378" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>'+
-            '</div>'+
-            toc+
-            '<article class="prose-wrap" itemscope itemtype="https://schema.org/Article">'+
-              '<meta itemprop="headline" content="'+p.title+'">'+
-              '<div itemprop="articleBody">'+contentWithIds+'</div>'+
-            '</article>'+
-            (tagHtml?'<div class="tags" style="margin-top:18px">'+tagHtml+'</div>':'')+
-            '<div style="text-align:center;margin:26px 0">'+
-              '<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6771008610152378" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>'+
-            '</div>'+
-            relHtml+
-          '</div>'+
-          // Right: sidebar
-          '<aside style="position:sticky;top:82px" aria-label="Article sidebar">'+
-            sidebarInfo+
-            sidebarCat+
-            sidebarAd+
-          '</aside>'+
-        '</div>'+
-      '</div>'+
-    '</div>';
+      // Keyboard nav on related cards
+      document.querySelectorAll('#article .prompt-card').forEach(function (c) {
+        c.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') this.click(); });
+      });
+    }
 
-  // Activate ads
-  try{(adsbygoogle=window.adsbygoogle||[]).push({});}catch(e){}
-  try{(adsbygoogle=window.adsbygoogle||[]).push({});}catch(e){}
-  try{(adsbygoogle=window.adsbygoogle||[]).push({});}catch(e){}
+    function shareX() { window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(location.href) + '&text=' + encodeURIComponent(document.title), '_blank', 'noopener,noreferrer'); }
+    function shareFB() { window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(location.href), '_blank', 'noopener,noreferrer'); }
+    function copyLink() { if (navigator.clipboard) navigator.clipboard.writeText(location.href).then(function () { alert('Link copied!'); }); }
 
-  // Copy prompt blocks
-  document.querySelectorAll('.copy-prompt').forEach(function(el){
-    el.addEventListener('click',function(){copyPrompt(this);});
-  });
-}
+    function showError(msg) {
+      document.getElementById('skeleton').style.display = 'none';
+      document.getElementById('article').style.display = 'block';
+      document.getElementById('article').innerHTML =
+        '<div class="empty-state" style="padding:120px 20px;text-align:center">' +
+        '<div class="empty-icon">❌</div>' +
+        '<p>' + msg + '</p>' +
+        '<a href="/" class="btn btn-primary" style="margin-top:18px">← Back Home</a></div>';
+    }
 
-function shareTwitter(){window.open('https://twitter.com/intent/tweet?url='+encodeURIComponent(location.href)+'&text='+encodeURIComponent(document.title),'_blank');}
-function shareFacebook(){window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),'_blank');}
-function copyLink(){navigator.clipboard&&navigator.clipboard.writeText(location.href).then(function(){alert('Link copied!');});}
+    /* ── MAIN ── */
+    (function () {
+      var slug = getSlug();
+      if (!slug) { showError('No prompt specified.'); return; }
 
-// Load
-var s=slug();
-if(!s){
-  document.getElementById('loadingState').style.display='none';
-  document.getElementById('content').style.display='block';
-  document.getElementById('content').innerHTML='<div class="empty-state" style="padding:120px 20px"><div class="empty-icon">&#10060;</div><p>Prompt not found.</p><a href="/" class="btn btn-primary" style="margin-top:18px">Back Home</a></div>';
-}else{
-  fetch('/api/get-prompt-by-slug?slug='+encodeURIComponent(s))
-  .then(function(r){if(!r.ok)throw new Error('not found');return r.json();})
-  .then(function(d){setMeta(d.prompt);render(d.prompt,d.related);})
-  .catch(function(){
-    document.getElementById('loadingState').style.display='none';
-    document.getElementById('content').style.display='block';
-    document.getElementById('content').innerHTML='<div class="empty-state" style="padding:120px 20px"><div class="empty-icon">&#10060;</div><p>Prompt not found or failed to load.</p><a href="/" class="btn btn-primary" style="margin-top:18px">&#8592; Back Home</a></div>';
-  });
-}
-</script>
-</body>
-</html>
-
+      fetch('/api/get-prompt-by-slug?slug=' + encodeURIComponent(slug))
+        .then(function (r) {
+          if (!r.ok) throw new Error('Server returned ' + r.status);
+          return r.json();
+        })
+        .then(function (d) {
+          if (d.error) throw new Error(d.error);
+          setMeta(d.prompt)

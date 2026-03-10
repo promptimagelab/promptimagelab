@@ -1,6 +1,47 @@
+# PromptImageLab — robots.txt
+# https://promptimagelab.com/robots.txt
+
+# Allow all compliant crawlers
 User-agent: *
 Allow: /
 Disallow: /admin.html
 Disallow: /api/
 
+# Block high-volume SEO scrapers that waste crawl budget
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+# Explicitly allow Google & Bing
+User-agent: Googlebot
+Allow: /
+Disallow: /admin.html
+Disallow: /api/
+
+User-agent: Bingbot
+Allow: /
+Disallow: /admin.html
+Disallow: /api/
+
+# Allow Google image crawler
+User-agent: Googlebot-Image
+Allow: /images/
+Allow: /assets/
+
+# Allow Google AdSense crawler
+User-agent: Mediapartners-Google
+Allow: /
+
+# Sitemap locations
 Sitemap: https://promptimagelab.com/sitemap.xml

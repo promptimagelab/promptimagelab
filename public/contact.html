@@ -1,118 +1,412 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6771008610152378" crossorigin="anonymous"></script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-MGTDGLQPSH"></script>
-<script src="/assets/js/gtag.js" defer></script>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Contact PromptImageLab – Get in Touch</title>
-<meta name="description" content="Contact PromptImageLab for AI prompt questions, feedback, content suggestions, or partnership inquiries. We typically respond within 48 hours.">
-<meta name="robots" content="index,follow">
-<link rel="canonical" href="https://promptimagelab.com/contact.html">
-<meta property="og:title" content="Contact PromptImageLab">
-<meta property="og:url" content="https://promptimagelab.com/contact.html">
-<meta property="og:description" content="Get in touch with PromptImageLab for AI prompt questions, feedback, or partnership inquiries.">
-<meta property="og:image" content="https://promptimagelab.com/images/og-home.jpg">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"ContactPage","name":"Contact PromptImageLab","url":"https://promptimagelab.com/contact.html","description":"Contact form for PromptImageLab AI image prompt platform."}</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/main.css">
-</head>
-<body>
-<a class="skip-link" href="#main">Skip to content</a>
-<nav class="site-nav"><div class="container"><div class="nav-inner">
-  <a href="/" class="logo">Prompt<span>Image</span>Lab</a>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="/">Home</a></li><li><a href="/#prompts">Prompts</a></li>
-    <li><a href="/about.html">About</a></li><li><a href="/contact.html" aria-current="page">Contact</a></li>
-  </ul>
-  <button class="nav-toggle" id="navToggle">&#9776;</button>
-</div></div></nav>
-
-<main id="main">
-  <section style="padding:64px 0 40px">
-    <div class="container" style="max-width:680px">
-      <ul class="breadcrumb"><li><a href="/">Home</a></li><li class="bc-sep">›</li><li>Contact</li></ul>
-      <h1 style="font-size:clamp(1.8rem,3vw,2.5rem);font-weight:800;margin-bottom:12px">Contact Us</h1>
-      <p style="color:var(--muted);line-height:1.7">Have a question about our AI prompts? Found something that isn't working? Want to suggest a new prompt category? We'd love to hear from you.</p>
-    </div>
-  </section>
-
-  <section class="section-border" style="padding:0 0 72px">
-    <div class="container" style="max-width:680px;padding-top:40px">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px">
-        <div class="admin-card" style="text-align:center;padding:20px">
-          <div style="font-size:1.4rem;margin-bottom:8px">&#9993;</div>
-          <div style="font-size:.84rem;font-weight:700;margin-bottom:4px">Email</div>
-          <a href="mailto:promptimagelab@gmail.com" style="color:var(--primary);font-size:.82rem">promptimagelab@gmail.com</a>
-        </div>
-        <div class="admin-card" style="text-align:center;padding:20px">
-          <div style="font-size:1.4rem;margin-bottom:8px">&#9202;</div>
-          <div style="font-size:.84rem;font-weight:700;margin-bottom:4px">Response Time</div>
-          <span style="color:var(--muted);font-size:.82rem">Within 24–48 hours</span>
-        </div>
-      </div>
-
-      <div class="admin-card" id="formWrap">
-        <h2 style="font-size:1rem;font-weight:800;margin-bottom:18px">Send a Message</h2>
-        <div id="contactAlert"></div>
-        <div class="form-row-2">
-          <div class="form-group">
-            <label for="cn">Your Name</label>
-            <input id="cn" type="text" class="form-ctrl" placeholder="John Doe">
-          </div>
-          <div class="form-group">
-            <label for="ce">Email Address</label>
-            <input id="ce" type="email" class="form-ctrl" placeholder="you@email.com">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="cs">Subject</label>
-          <select id="cs" class="form-ctrl">
-            <option value="">Select a topic...</option>
-            <option>Question about a prompt</option>
-            <option>Content suggestion</option>
-            <option>Report an issue</option>
-            <option>Partnership inquiry</option>
-            <option>Other</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="cm">Message</label>
-          <textarea id="cm" class="form-ctrl" rows="5" placeholder="Tell us how we can help you..."></textarea>
-        </div>
-        <button class="btn btn-primary" style="width:100%" id="sendBtn" onclick="sendContact()">&#9993; Send Message</button>
-        <p class="muted" style="font-size:.76rem;margin-top:12px;text-align:center">Or email directly: <a href="mailto:promptimagelab@gmail.com" style="color:var(--primary)">promptimagelab@gmail.com</a></p>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer class="site-footer"><div class="container">
-  <div class="footer-bottom">
-    <span>&copy; 2026 PromptImageLab</span>
-    <span><a href="/privacy-policy.html">Privacy Policy</a> &middot; <a href="/sitemap.xml">Sitemap</a></span>
-  </div>
-</div></footer>
-
-<script>
-document.getElementById('navToggle').addEventListener('click',function(){document.getElementById('navLinks').classList.toggle('open');});
-function sendContact(){
-  var n=document.getElementById('cn').value.trim();
-  var e=document.getElementById('ce').value.trim();
-  var m=document.getElementById('cm').value.trim();
-  if(!n||!e||!m){
-    document.getElementById('contactAlert').innerHTML='<div class="alert alert-error">Please fill in all required fields.</div>';
-    return;
-  }
-  var btn=document.getElementById('sendBtn');
-  btn.disabled=true;btn.textContent='Sending...';
-  setTimeout(function(){
-    document.getElementById('contactAlert').innerHTML='<div class="alert alert-success">&#10003; Message sent! We\'ll get back to you within 48 hours.</div>';
-    btn.textContent='&#10003; Sent!';
-    btn.style.background='var(--green)';
-    btn.style.color='#000';
-  },800);
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MGTDGLQPSH"></script>
+  <script src="/assets/js/gtag.js" defer></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6771008610152378"
+    crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Contact PromptImageLab – Questions, Suggestions &amp; Prompt Feedback</title>
+  <meta name="description"
+    content="Contact PromptImageLab with AI prompt questions, style suggestions, technical issues, or partnership inquiries. We read every message and respond within 24–48 hours. Find answers to common questions before you write.">
+  <meta name="keywords" content="contact PromptImageLab, AI prompt questions, prompt feedback, suggest new prompts, AI image generation help">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+  <meta name="author" content="PromptImageLab">
+  <link rel="canonical" href="https://promptimagelab.com/contact.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://promptimagelab.com/contact.html">
+  <meta property="og:title" content="Contact PromptImageLab – Prompt Questions &amp; Feedback">
+  <meta property="og:description"
+    content="Have questions about our AI image prompts? Want to suggest a new guide? Report a technical issue? Get in touch — we respond within 24–48 hours.">
+  <meta property="og:image" content="https://promptimagelab.com/images/og-default.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="PromptImageLab">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Contact PromptImageLab">
+  <meta name="twitter:description" content="Questions about AI image prompts? Suggestions for new guides? Get in touch with PromptImageLab.">
+  <meta name="twitter:image" content="https://promptimagelab.com/images/og-default.jpg">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ContactPage",
+      "name": "Contact PromptImageLab – Prompt Questions & Feedback",
+      "url": "https://promptimagelab.com/contact.html",
+      "description": "Contact form and email for PromptImageLab — AI image prompt reference platform for Instagram DPs, anime avatars, and professional portraits.",
+      "inLanguage": "en-US",
+      "dateModified": "2026-03-10",
+      "publisher": {
+        "@type": "Organization",
+        "name": "PromptImageLab",
+        "url": "https://promptimagelab.com",
+        "email": "promptimagelab@gmail.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://promptimagelab.com/images/logo.png",
+          "width": 280,
+          "height": 60
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "promptimagelab@gmail.com",
+          "contactType": "customer support",
+          "availableLanguage": "English",
+          "contactOption": "TollFree"
+        }
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How quickly does PromptImageLab respond to messages?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We typically respond within 24 to 48 hours on business days. For partnership inquiries and detailed technical questions, allow up to 72 hours."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I suggest a new prompt category?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes — we actively welcome category suggestions. Use the contact form or email directly. Suggestions with clear use cases and sufficient user demand are typically added within 4 to 6 weeks after a testing cycle."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What information should I include when asking about a prompt?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Include the specific prompt you used, the AI platform and version (e.g. Midjourney v6, DALL-E 3), what result you expected, and what result you got. Screenshots are helpful but not required."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://promptimagelab.com/"},
+        {"@type":"ListItem","position":2,"name":"Contact","item":"https://promptimagelab.com/contact.html"}
+      ]
+    }
+  ]
 }
 </script>
-</body></html>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/main.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <nav class="site-nav" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="/" class="logo" aria-label="PromptImageLab Home">Prompt<span>Image</span>Lab</a>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="/">Home</a></li>
+          <li><a href="/#prompts">Prompts</a></li>
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/contact.html" aria-current="page">Contact</a></li>
+        </ul>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+
+    <!-- Hero -->
+    <section style="padding:64px 0 36px;background:radial-gradient(ellipse 80% 40% at 50% 0%,rgba(56,189,248,.07),transparent)">
+      <div class="container" style="max-width:720px">
+        <ul class="breadcrumb" aria-label="Breadcrumb">
+          <li><a href="/">Home</a></li>
+          <li class="bc-sep">›</li>
+          <li aria-current="page">Contact</li>
+        </ul>
+        <h1 style="font-size:clamp(1.8rem,3vw,2.5rem);font-weight:800;margin-bottom:12px">Get In Touch With PromptImageLab</h1>
+        <p style="color:var(--muted);line-height:1.75;font-size:1.02rem;max-width:600px">Whether you have a question about a specific AI image prompt, found something that is not working as described, want to suggest a new category for our library, or are exploring a partnership — we want to hear from you. Every message is read by a real person and every substantive question gets a response.</p>
+      </div>
+    </section>
+
+    <section class="section-border" style="padding:0 0 72px">
+      <div class="container" style="max-width:720px;padding-top:40px">
+
+        <!-- Quick contact info -->
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:28px">
+          <div class="admin-card" style="text-align:center;padding:20px">
+            <div style="font-size:1.5rem;margin-bottom:8px">&#9993;</div>
+            <div style="font-size:.84rem;font-weight:700;margin-bottom:4px">Email</div>
+            <a href="/cdn-cgi/l/email-protection#7303011c1e03071a1e1214161f121133141e121a1f5d101c1e" style="color:var(--primary);font-size:.78rem;word-break:break-all"><span class="__cf_email__" data-cfemail="99e9ebf6f4e9edf0f4f8fefcf5f8fbd9fef4f8f0f5b7faf6f4">[email&#160;protected]</span></a>
+          </div>
+          <div class="admin-card" style="text-align:center;padding:20px">
+            <div style="font-size:1.5rem;margin-bottom:8px">&#9202;</div>
+            <div style="font-size:.84rem;font-weight:700;margin-bottom:4px">Response Time</div>
+            <span style="color:var(--muted);font-size:.8rem">Within 24–48 hours</span>
+          </div>
+          <div class="admin-card" style="text-align:center;padding:20px">
+            <div style="font-size:1.5rem;margin-bottom:8px">&#127760;</div>
+            <div style="font-size:.84rem;font-weight:700;margin-bottom:4px">Language</div>
+            <span style="color:var(--muted);font-size:.8rem">English only</span>
+          </div>
+        </div>
+
+        <!-- What you can ask about -->
+        <div class="admin-card" style="margin-bottom:20px">
+          <h2 style="font-size:1rem;font-weight:800;margin-bottom:14px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)">What We Can Help You With</h2>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <span style="color:var(--primary);margin-top:2px">&#10003;</span>
+              <div>
+                <div style="font-size:.86rem;font-weight:600;margin-bottom:2px">Prompt troubleshooting</div>
+                <p style="font-size:.8rem;color:var(--muted);margin:0;line-height:1.55">A prompt is not producing the result described. We will diagnose what is going wrong and suggest fixes.</p>
+              </div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <span style="color:var(--primary);margin-top:2px">&#10003;</span>
+              <div>
+                <div style="font-size:.86rem;font-weight:600;margin-bottom:2px">New category suggestions</div>
+                <p style="font-size:.8rem;color:var(--muted);margin:0;line-height:1.55">You have a use case or style that is not currently covered in our library. We prioritise category additions based on demand.</p>
+              </div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <span style="color:var(--primary);margin-top:2px">&#10003;</span>
+              <div>
+                <div style="font-size:.86rem;font-weight:600;margin-bottom:2px">Technical AI platform questions</div>
+                <p style="font-size:.8rem;color:var(--muted);margin:0;line-height:1.55">Questions about Midjourney parameters, Stable Diffusion checkpoints, DALL-E 3 behaviour, or other platform-specific issues.</p>
+              </div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <span style="color:var(--primary);margin-top:2px">&#10003;</span>
+              <div>
+                <div style="font-size:.86rem;font-weight:600;margin-bottom:2px">Reporting broken or outdated content</div>
+                <p style="font-size:.8rem;color:var(--muted);margin:0;line-height:1.55">AI model versions change. If a guide references outdated parameters or a prompt produces poor results due to a model update, tell us.</p>
+              </div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <span style="color:var(--primary);margin-top:2px">&#10003;</span>
+              <div>
+                <div style="font-size:.86rem;font-weight:600;margin-bottom:2px">Partnership &amp; collaboration</div>
+                <p style="font-size:.8rem;color:var(--muted);margin:0;line-height:1.55">Content collaborations, tool integrations, or other partnership proposals. Include specifics about the collaboration type and your audience.</p>
+              </div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <span style="color:var(--primary);margin-top:2px">&#10003;</span>
+              <div>
+                <div style="font-size:.86rem;font-weight:600;margin-bottom:2px">Privacy &amp; data questions</div>
+                <p style="font-size:.8rem;color:var(--muted);margin:0;line-height:1.55">Questions about our data collection practices, cookie usage, Google Analytics, or AdSense. See also our <a href="/privacy-policy.html" style="color:var(--primary)">Privacy Policy</a>.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Before you write section -->
+        <div class="admin-card" style="margin-bottom:20px">
+          <h2 style="font-size:1rem;font-weight:800;margin-bottom:14px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)">Check These Resources First — You May Already Have Your Answer</h2>
+          <p style="color:var(--muted);font-size:.86rem;line-height:1.7;margin-bottom:14px">Most common questions about specific AI platforms are answered in depth within our guides. Before sending a message, check whether your question is already addressed:</p>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <a href="/prompts/instagram-dp-ai-prompts" style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--surface2);border-radius:var(--radius-sm);text-decoration:none;color:inherit">
+              <span style="font-size:1rem">&#128248;</span>
+              <div>
+                <div style="font-size:.85rem;font-weight:600">Instagram DP Prompts Guide</div>
+                <div style="font-size:.78rem;color:var(--muted)">Includes Midjourney v6 parameters, circle-crop specs, DALL-E 3 tips, and platform technical requirements</div>
+              </div>
+            </a>
+            <a href="/prompts/anime-avatars" style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--surface2);border-radius:var(--radius-sm);text-decoration:none;color:inherit">
+              <span style="font-size:1rem">&#127912;</span>
+              <div>
+                <div style="font-size:.85rem;font-weight:600">Anime Avatar Prompts Guide</div>
+                <div style="font-size:.78rem;color:var(--muted)">Covers Midjourney Niji 6 mode, Stable Diffusion anime checkpoints, and LoRA usage for anime styles</div>
+              </div>
+            </a>
+            <a href="/prompts/ceo-style-portrait-prompts" style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--surface2);border-radius:var(--radius-sm);text-decoration:none;color:inherit">
+              <span style="font-size:1rem">&#128188;</span>
+              <div>
+                <div style="font-size:.85rem;font-weight:600">CEO &amp; Executive Portrait Guide</div>
+                <div style="font-size:.78rem;color:var(--muted)">Covers lighting psychology, lens parameters, Adobe Firefly for commercial use, and industry-specific variations</div>
+              </div>
+            </a>
+            <a href="/about.html" style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--surface2);border-radius:var(--radius-sm);text-decoration:none;color:inherit">
+              <span style="font-size:1rem">&#8505;&#65039;</span>
+              <div>
+                <div style="font-size:.85rem;font-weight:600">About PromptImageLab</div>
+                <div style="font-size:.78rem;color:var(--muted)">Answers questions about how the platform works, what AI tools are supported, commercial use, and FAQ</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Tips for faster response -->
+        <div class="admin-card" style="margin-bottom:20px">
+          <h2 style="font-size:1rem;font-weight:800;margin-bottom:14px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)">How to Get the Fastest, Most Useful Response</h2>
+          <p style="color:var(--muted);font-size:.86rem;line-height:1.7;margin-bottom:12px">Specific, detailed messages get specific, detailed responses. Vague messages lead to back-and-forth clarification that slows everything down. Here is what to include depending on your question type:</p>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div style="border-left:3px solid var(--primary);padding-left:12px">
+              <div style="font-size:.86rem;font-weight:700;margin-bottom:3px">For prompt troubleshooting:</div>
+              <p style="font-size:.81rem;color:var(--muted);margin:0;line-height:1.6">The exact prompt you used (copy-paste it), the AI platform and version, what you expected, what you got. Screenshots are welcome but not required.</p>
+            </div>
+            <div style="border-left:3px solid var(--primary);padding-left:12px">
+              <div style="font-size:.86rem;font-weight:700;margin-bottom:3px">For category suggestions:</div>
+              <p style="font-size:.81rem;color:var(--muted);margin:0;line-height:1.6">The specific style or use case you want covered, any reference images or photographer names that define the aesthetic, and why you could not achieve it with existing prompts.</p>
+            </div>
+            <div style="border-left:3px solid var(--primary);padding-left:12px">
+              <div style="font-size:.86rem;font-weight:700;margin-bottom:3px">For partnership inquiries:</div>
+              <p style="font-size:.81rem;color:var(--muted);margin:0;line-height:1.6">Describe the collaboration type, your platform and audience size, and what you see as the mutual value. We are selective about partnerships to maintain editorial independence.</p>
+            </div>
+            <div style="border-left:3px solid var(--primary);padding-left:12px">
+              <div style="font-size:.86rem;font-weight:700;margin-bottom:3px">For outdated content reports:</div>
+              <p style="font-size:.81rem;color:var(--muted);margin:0;line-height:1.6">The specific guide URL, the outdated element (parameter, model version, feature name), and what the current correct information is if you know it.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact form -->
+        <div class="admin-card" id="formWrap">
+          <h2 style="font-size:1rem;font-weight:800;margin-bottom:18px">Send a Message</h2>
+          <div id="contactAlert" role="alert" aria-live="polite"></div>
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="cn">Your Name *</label>
+              <input id="cn" type="text" class="form-ctrl" placeholder="Jane Smith" autocomplete="name" required>
+            </div>
+            <div class="form-group">
+              <label for="ce">Email Address *</label>
+              <input id="ce" type="email" class="form-ctrl" placeholder="you@example.com" autocomplete="email" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="cs">Topic</label>
+            <select id="cs" class="form-ctrl">
+              <option value="">Select a topic...</option>
+              <option>Prompt troubleshooting — prompt not working as described</option>
+              <option>New category suggestion</option>
+              <option>Technical question about Midjourney, DALL-E 3, or Stable Diffusion</option>
+              <option>Report outdated or incorrect content</option>
+              <option>Partnership &amp; collaboration inquiry</option>
+              <option>Privacy or data request</option>
+              <option>General feedback or other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="cm">Message *</label>
+            <textarea id="cm" class="form-ctrl" rows="6" placeholder="The more detail you include, the faster and more useful our response will be. For prompt questions, paste the exact prompt you used and the AI platform/version." required></textarea>
+          </div>
+          <button class="btn btn-primary" style="width:100%" id="sendBtn" onclick="sendContact()">&#9993; Send Message</button>
+          <p style="color:var(--muted);font-size:.76rem;margin-top:12px;text-align:center">
+            Or email directly: <a href="/cdn-cgi/l/email-protection#95e5e7faf8e5e1fcf8f4f2f0f9f4f7d5f2f8f4fcf9bbf6faf8" style="color:var(--primary)"><span class="__cf_email__" data-cfemail="4e3e3c21233e3a27232f292b222f2c0e29232f2722602d2123">[email&#160;protected]</span></a>
+          </p>
+          <p style="color:var(--muted);font-size:.72rem;margin-top:8px;text-align:center">
+            By submitting this form, you agree to our <a href="/privacy-policy.html" style="color:var(--primary)">Privacy Policy</a>.
+          </p>
+        </div>
+
+        <!-- What happens after you send -->
+        <div class="admin-card" style="margin-top:20px">
+          <h2 style="font-size:1rem;font-weight:800;margin-bottom:12px">What Happens After You Send a Message</h2>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;gap:12px;align-items:flex-start">
+              <div style="background:var(--primary);color:#fff;font-weight:800;font-size:.78rem;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">1</div>
+              <p style="font-size:.84rem;color:var(--muted);line-height:1.65;margin:0"><strong>Your message is read within 24 hours</strong> — not by a bot or auto-responder but by the person responsible for the content area your question relates to.</p>
+            </div>
+            <div style="display:flex;gap:12px;align-items:flex-start">
+              <div style="background:var(--primary);color:#fff;font-weight:800;font-size:.78rem;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">2</div>
+              <p style="font-size:.84rem;color:var(--muted);line-height:1.65;margin:0"><strong>For prompt questions,</strong> we run your specific prompt on the AI platform you mentioned to reproduce and diagnose the problem. This is why we ask for exact prompt text and platform details.</p>
+            </div>
+            <div style="display:flex;gap:12px;align-items:flex-start">
+              <div style="background:var(--primary);color:#fff;font-weight:800;font-size:.78rem;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">3</div>
+              <p style="font-size:.84rem;color:var(--muted);line-height:1.65;margin:0"><strong>For content corrections and category suggestions,</strong> we log them in our editorial backlog. You will receive a confirmation response and, for accepted category suggestions, a note when the guide is published.</p>
+            </div>
+            <div style="display:flex;gap:12px;align-items:flex-start">
+              <div style="background:var(--primary);color:#fff;font-weight:800;font-size:.78rem;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">4</div>
+              <p style="font-size:.84rem;color:var(--muted);line-height:1.65;margin:0"><strong>We respond to all substantive messages</strong> within 24–48 hours on business days. During peak periods (new guide launches, model update cycles) response times may extend to 72 hours.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- AdSense -->
+        <div style="text-align:center;margin-top:28px">
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6771008610152378"
+            data-ad-format="auto" data-full-width-responsive="true"></ins>
+          <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">Prompt<span style="color:var(--primary)">Image</span>Lab</div>
+          <p class="footer-desc">Professional AI image prompt frameworks for Instagram DPs, anime avatars, CEO headshots, and portraits. Free for everyone.</p>
+          <a href="/cdn-cgi/l/email-protection#6b1b1904061b1f02060a0c0e070a092b0c060a020745080406" style="color:var(--primary);font-size:.82rem"><span class="__cf_email__" data-cfemail="3040425f5d4044595d5157555c515270575d51595c1e535f5d">[email&#160;protected]</span></a>
+        </div>
+        <div>
+          <div class="footer-head">Navigation</div>
+          <ul class="footer-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/#prompts">Browse Prompts</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-head">Top Guides</div>
+          <ul class="footer-links">
+            <li><a href="/prompts/instagram-dp-ai-prompts">Instagram DP</a></li>
+            <li><a href="/prompts/anime-avatars">Anime Avatars</a></li>
+            <li><a href="/prompts/ceo-style-portrait-prompts">CEO Portraits</a></li>
+            <li><a href="/prompts/ai-profile-picture-dp-prompts">All Platforms</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-head">Legal</div>
+          <ul class="footer-links">
+            <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="/sitemap.xml">Sitemap</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 PromptImageLab. All rights reserved.</span>
+        <span><a href="/privacy-policy.html">Privacy</a> &middot; <a href="/sitemap.xml">Sitemap</a> &middot; <a href="/contact.html">Contact</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    document.getElementById('navToggle').addEventListener('click', function () {
+      var o = document.getElementById('navLinks').classList.toggle('open');
+      this.setAttribute('aria-expanded', String(o));
+    });
+
+    function sendContact() {
+      var n = document.getElementById('cn').value.trim();
+      var e = document.getElementById('ce').value.trim();
+      var m = document.getElementById('cm').value.trim();
+      var alertEl = document.getElementById('contactAlert');
+      if (!n || !e || !m) {
+        alertEl.innerHTML = '<div class="alert alert-error">Please fill in Name, Email, and Message.</div>';
+        alertEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        return;
+      }
+      if (!/^[^@]+@[^@]+\.[^@]+$/.test(e)) {
+        alertEl.innerHTML = '<div class="alert alert-error">Please enter a valid email address.</div>';
+        return;
+      }
+      var btn = document.getElementById('sendBtn');
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'generate_lead', {
+          event_category: 'contact',
+          event_label: document.getElementB
