@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+
+  <title>About PromptImageLab – AI Image Prompt Education Platform</title>
+  <meta name="description" content="Learn about PromptImageLab, the leading educational platform for AI image generation prompts. Discover our mission to teach effective AI image prompting techniques.">
+  <link rel="canonical" href="https://promptimagelab.com/about">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://promptimagelab.com/about">
+  <meta property="og:title"       content="About PromptImageLab – AI Image Prompt Education Platform">
+  <meta property="og:description" content="Learn about PromptImageLab, the leading educational platform for AI image generation prompts. Discover our mission to teach effective AI image prompting techniques.">
+  <meta property="og:image"       content="https://promptimagelab.com/images/og-default.png">
+  <meta property="og:site_name"   content="PromptImageLab">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="About PromptImageLab – AI Image Prompt Education Platform">
+  <meta name="twitter:description" content="Learn about PromptImageLab, the leading educational platform for AI image generation prompts. Discover our mission to teach effective AI image prompting techniques.">
+  <meta name="twitter:image"       content="https://promptimagelab.com/images/og-default.png">
+
+  <!-- Preload critical CSS -->
+  <link rel="preload" href="/style.css" as="style">
+  <link rel="stylesheet" href="/style.css">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://promptimagelab.com"},{"@type":"ListItem","position":2,"name":"About PromptImageLab – AI Image Prompt Education Platform","item":"https://promptimagelab.com/about"}]},{"@type":"WebPage","url":"https://promptimagelab.com/about","name":"About PromptImageLab – AI Image Prompt Education Platform","description":"Learn about PromptImageLab, the leading educational platform for AI image generation prompts. Discover our mission to teach effective AI image prompting techniques.","inLanguage":"en","publisher":{"@type":"Organization","name":"PromptImageLab","url":"https://promptimagelab.com"}}]}</script>
+
+  
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MGTDGLQPSH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-MGTDGLQPSH');
+  </script>
+
+  
+  <!-- Google AdSense -->
+  <!-- ⚠️  REPLACE ca-pub-XXXXXXXX with your real AdSense Publisher ID from:
+       https://www.google.com/adsense → Account → Account information -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXX"
+          crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+  
+  <!-- Skip link for accessibility -->
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="site-nav" aria-label="Main navigation" role="navigation">
+    <div class="container nav-inner">
+
+      <a href="/" class="logo" aria-label="PromptImageLab home">
+        <img src="/images/logo.png" alt="PromptImageLab" width="40" height="40">
+        <span>PromptImageLab</span>
+      </a>
+
+      <!-- Desktop links -->
+      <ul class="nav-links" id="nav-links" role="list">
+        <li><a href="/">Home</a></li>
+        <li><a href="/#categories">Prompts</a></li>
+        <li><a href="/search">Search</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/privacy-policy">Privacy</a></li>
+      </ul>
+
+      <!-- Hamburger button (mobile) -->
+      <button
+        class="nav-toggle"
+        id="nav-toggle"
+        aria-controls="nav-links"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
+
+    </div>
+  </nav>
+
+
+  <main id="main" role="main">
+
+    
+<div class="container">
+<section class="hero">
+<div class="hero-grid">
+<div>
+<span class="badge">About</span>
+<h1 class="fade-up">We make AI image prompts <span>predictable</span> and reusable</h1>
+<p class="muted">PromptImageLab provides structured, tested prompt frameworks for avatars, portraits, and
+              stylized characters — compatible with popular image generation models.</p>
+<div class="hero-cta">
+<a class="btn btn-primary" href="/">Explore Prompts</a>
+<a class="btn btn-ghost" href="/contact">Get in touch</a>
+</div>
+</div>
+<div aria-hidden="true" class="mockup">
+<img alt="Prompt mockup" loading="lazy" src="/images/mockup-sample.svg" style="width:100%;border-radius:12px;display:block"/>
+<div class="mockup-header">Example Prompt</div>
+<pre>"Studio portrait, soft rim light, 35mm lens, ultra-detailed, beautiful eyes, cinematic color grading"</pre>
+</div>
+</div>
+</section>
+<section>
+<div class="split">
+<div>
+<h2>What we do</h2>
+<p class="muted">We don't generate images — we craft predictable prompt templates, best-practice modifiers,
+              and usage notes that help creators get consistent results across tools.</p>
+<ul class="seo-list muted">
+<li>Structured prompt templates for avatars, anime, and realistic portraits</li>
+<li>Modifiers for lighting, camera, color, and mood</li>
+<li>Cross-model compatibility tips and example outputs</li>
+</ul>
+</div>
+<div>
+<div class="prompt-grid">
+<article class="prompt-card">
+<div class="prompt-type">Profiles</div>
+<h3>Avatar-ready prompts</h3>
+<div class="prompt-box">Balanced, compact prompts tuned for avatar crops.</div>
+</article>
+<article class="prompt-card">
+<div class="prompt-type">Portraits</div>
+<h3>Photoreal templates</h3>
+<div class="prompt-box">Lighting and camera modifiers for realistic results.</div>
+</article>
+<article class="prompt-card">
+<div class="prompt-type">Stylized</div>
+<h3>Anime &amp; Cartoon</h3>
+<div class="prompt-box">Character style tokens and expressive details.</div>
+</article>
+</div>
+</div>
+</div>
+</section>
+<section>
+<h2>Why PromptImageLab</h2>
+<p class="muted">Our library is curated from real-world usage and community feedback so you can iterate faster
+          and spend less time guessing which modifiers produce the best results.</p>
+<div style="margin-top:24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px;">
+<div class="prompt-card">
+<h3>Consistency</h3>
+<p class="muted">Reusable templates that scale across projects.</p>
+</div>
+<div class="prompt-card">
+<h3>Compatibility</h3>
+<p class="muted">Works with major image models and APIs.</p>
+</div>
+<div class="prompt-card">
+<h3>Community</h3>
+<p class="muted">Examples and feedback from real creators.</p>
+</div>
+</div>
+</section>
+<section>
+<h2>Meet the team</h2>
+<p class="muted">Creators and prompt engineers behind PromptImageLab.</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:18px;">
+<div class="prompt-card" style="text-align:center;">
+<img alt="Dhanush - Founder" height="88" loading="lazy" src="/images/team-1.svg" style="border-radius:12px;margin:auto;display:block" width="88"/>
+<h3 style="margin-top:12px">Dhanush</h3>
+<p class="muted">Founder &amp; Prompt Engineer</p>
+</div>
+<div class="prompt-card" style="text-align:center;">
+<img alt="ShriRaam S" height="88" loading="lazy" src="/images/team-2.svg" style="border-radius:12px;margin:auto;display:block" width="88"/>
+<h3 style="margin-top:12px">ShriRaam S</h3>
+<p class="muted">Prompt &amp; Engineer</p>
+</div>
+</div>
+</section>
+<!-- [HIDDEN AD]
+<!!-- AdSense Zone: Mid Content --!!>
+      <div style="text-align: center; padding: 40px 0;">
+        <div
+          style="max-width: 728px; margin: 0 auto; min-height: 90px; background: rgba(255,255,255,0.02); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 0.85rem;">
+          [Advertisement Space]
+        </div>
+      </div>
+-->
+<section>
+<h2>Our Mission</h2>
+<p class="muted" style="max-width: 800px;">
+          Our mission is to standardize AI image generation workflows by providing reusable, predictable prompt
+          frameworks.
+          We believe that AI creativity tools should be accessible, reliable, and produce consistent results across
+          different platforms.
+        </p>
+<div style="margin-top:24px; display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:18px;">
+<div class="prompt-card">
+<h3>Accessibility</h3>
+<p class="muted">Making professional-grade AI prompts free and accessible to everyone, from beginners to
+              experts.</p>
+</div>
+<div class="prompt-card">
+<h3>Reliability</h3>
+<p class="muted">Delivering tested, predictable prompt frameworks that produce consistent results across AI
+              platforms.</p>
+</div>
+<div class="prompt-card">
+<h3>Innovation</h3>
+<p class="muted">Continuously exploring and refining prompt engineering techniques to push creative
+              boundaries.</p>
+</div>
+</div>
+</section>
+<section style="text-align:center;">
+<h2>Ready to get better results?</h2>
+<p class="muted">Browse prompts or reach out — we love helping creators improve their outputs.</p>
+<div style="margin-top:18px;">
+<a class="btn btn-primary" href="/">Browse Prompts</a>
+<a class="btn btn-ghost" href="/contact" style="margin-left:12px;">Contact Us</a>
+</div>
+</section>
+</div>
+
+
+    <!-- Related Pages -->
+    <section class="related-links container" aria-label="Related AI Prompt Pages">
+      <h2>Related AI Prompt Pages</h2>
+      <ul>
+    <li>
+      <a href="/valentine-instagram-caption-prompts">Valentine&#x27;s Instagram Caption AI Prompts – Romantic Caption Generator</a>
+    </li>
+    <li>
+      <a href="/realistic-ai-portrait-prompts">Realistic AI Portrait Prompts – Photorealistic Photo Generation</a>
+    </li>
+    <li>
+      <a href="/romantic-anime-prompts">Romantic Anime AI Prompts – Couple Anime Art Generator</a>
+    </li>
+    <li>
+      <a href="/instagram-dp-couple-ai-prompts">Instagram Couple DP AI Prompts – Romantic Profile Picture Generator</a>
+    </li>
+    <li>
+      <a href="/contact">Contact PromptImageLab – Get in Touch</a>
+    </li>
+    <li>
+      <a href="/valentine-love-letter-prompts">Valentine&#x27;s Love Letter AI Prompts – Romantic Message Generator</a>
+    </li></ul>
+    </section>
+
+  </main>
+
+  
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <p class="muted">&copy; 2026 PromptImageLab &bull; All Rights Reserved</p>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="/">Home</a>
+        <a href="/#categories">Prompts</a>
+        <a href="/search">Search</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+        <a href="/privacy-policy">Privacy Policy</a>
+        <a href="/sitemap.xml">Sitemap</a>
+      </nav>
+    </div>
+  </footer>
+
+
+  <!-- ===== SCRIPTS ===== -->
+  <script src="/script.js" defer></script>
+
+</body>
+
+</html>

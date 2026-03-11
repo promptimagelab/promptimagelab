@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+
+  <title>Contact PromptImageLab – Get in Touch</title>
+  <meta name="description" content="Contact the PromptImageLab team with questions, feedback, or collaboration inquiries. We&#x27;re here to help you master AI image generation and prompt engineering.">
+  <link rel="canonical" href="https://promptimagelab.com/contact">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://promptimagelab.com/contact">
+  <meta property="og:title"       content="Contact PromptImageLab – Get in Touch">
+  <meta property="og:description" content="Contact the PromptImageLab team with questions, feedback, or collaboration inquiries. We&#x27;re here to help you master AI image generation and prompt engineering.">
+  <meta property="og:image"       content="https://promptimagelab.com/images/og-default.png">
+  <meta property="og:site_name"   content="PromptImageLab">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="Contact PromptImageLab – Get in Touch">
+  <meta name="twitter:description" content="Contact the PromptImageLab team with questions, feedback, or collaboration inquiries. We&#x27;re here to help you master AI image generation and prompt engineering.">
+  <meta name="twitter:image"       content="https://promptimagelab.com/images/og-default.png">
+
+  <!-- Preload critical CSS -->
+  <link rel="preload" href="/style.css" as="style">
+  <link rel="stylesheet" href="/style.css">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://promptimagelab.com"},{"@type":"ListItem","position":2,"name":"Contact PromptImageLab – Get in Touch","item":"https://promptimagelab.com/contact"}]},{"@type":"WebPage","url":"https://promptimagelab.com/contact","name":"Contact PromptImageLab – Get in Touch","description":"Contact the PromptImageLab team with questions, feedback, or collaboration inquiries. We're here to help you master AI image generation and prompt engineering.","inLanguage":"en","publisher":{"@type":"Organization","name":"PromptImageLab","url":"https://promptimagelab.com"}}]}</script>
+
+  
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MGTDGLQPSH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-MGTDGLQPSH');
+  </script>
+
+  
+  <!-- Google AdSense -->
+  <!-- ⚠️  REPLACE ca-pub-XXXXXXXX with your real AdSense Publisher ID from:
+       https://www.google.com/adsense → Account → Account information -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXX"
+          crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+  
+  <!-- Skip link for accessibility -->
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="site-nav" aria-label="Main navigation" role="navigation">
+    <div class="container nav-inner">
+
+      <a href="/" class="logo" aria-label="PromptImageLab home">
+        <img src="/images/logo.png" alt="PromptImageLab" width="40" height="40">
+        <span>PromptImageLab</span>
+      </a>
+
+      <!-- Desktop links -->
+      <ul class="nav-links" id="nav-links" role="list">
+        <li><a href="/">Home</a></li>
+        <li><a href="/#categories">Prompts</a></li>
+        <li><a href="/search">Search</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/privacy-policy">Privacy</a></li>
+      </ul>
+
+      <!-- Hamburger button (mobile) -->
+      <button
+        class="nav-toggle"
+        id="nav-toggle"
+        aria-controls="nav-links"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
+
+    </div>
+  </nav>
+
+
+  <main id="main" role="main">
+
+    
+<div class="container">
+<section class="hero" style="padding: 80px 0 60px;">
+<div class="container" style="max-width: 800px;">
+<span class="badge">Contact</span>
+<h1 class="fade-up" style="margin-top: 18px;">Get in <span>Touch</span></h1>
+<p class="muted" style="margin-top: 20px;">
+            Have questions about our AI prompts? Want to collaborate or provide feedback?
+            We'd love to hear from you!
+          </p>
+</div>
+</section>
+<section style="padding: 40px 0; border-top: 1px solid var(--border);">
+<div class="container" style="max-width: 900px;">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+<div class="prompt-card">
+<div style="font-size: 2rem; margin-bottom: 12px;">📧</div>
+<h3>Email Us</h3>
+<p class="muted" style="margin-top: 8px;">Send us an email for inquiries, feedback, or collaborations.</p>
+<p style="margin-top: 12px;">
+<a href="mailto:promptimagelab@gmail.com" style="color: var(--primary); font-weight: 600;">promptimagelab@gmail.com</a>
+</p>
+</div>
+<div class="prompt-card">
+<div style="font-size: 2rem; margin-bottom: 12px;">⏱️</div>
+<h3>Response Time</h3>
+<p class="muted" style="margin-top: 8px;">We typically respond within 24-48 hours during business days.
+              </p>
+</div>
+<div class="prompt-card">
+<div style="font-size: 2rem; margin-bottom: 12px;">💼</div>
+<h3>Business Inquiries</h3>
+<p class="muted" style="margin-top: 8px;">Interested in partnerships or collaborations? Reach out via
+                email with your proposal.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- [HIDDEN AD]
+<!!-- AdSense Zone: Mid Content --!!>
+      <div style="text-align: center; padding: 40px 0; background: var(--surface);">
+        <div
+          style="max-width: 728px; margin: 0 auto; min-height: 90px; background: rgba(255,255,255,0.02); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 0.85rem;">
+          [Advertisement Space]
+        </div>
+      </div>
+-->
+<section style="padding: 40px 0;">
+<div class="container" style="max-width: 700px;">
+<h2 style="text-align: center; margin-bottom: 24px;">Frequently Asked Questions</h2>
+<div class="prompt-card" style="margin-bottom: 16px;">
+<h3 style="font-size: 1.1rem;">What type of inquiries do you handle?</h3>
+<p class="muted">
+              We welcome all questions about AI image prompts, technical support, collaborations,
+              partnerships, and general feedback about our platform.
+            </p>
+</div>
+<div class="prompt-card" style="margin-bottom: 16px;">
+<h3 style="font-size: 1.1rem;">Do you offer custom prompt creation services?</h3>
+<p class="muted">
+              Currently, we focus on providing free, standardized prompt frameworks. For custom work,
+              please reach out via email to discuss your specific needs.
+            </p>
+</div>
+<div class="prompt-card">
+<h3 style="font-size: 1.1rem;">Can I contribute prompts to your library?</h3>
+<p class="muted">
+              Yes! We love community contributions. Contact us with your tested prompt frameworks,
+              and we'll review them for inclusion in our library.
+            </p>
+</div>
+</div>
+</section>
+</div>
+
+
+    <!-- Related Pages -->
+    <section class="related-links container" aria-label="Related AI Prompt Pages">
+      <h2>Related AI Prompt Pages</h2>
+      <ul>
+    <li>
+      <a href="/about">About PromptImageLab – AI Image Prompt Education Platform</a>
+    </li>
+    <li>
+      <a href="/valentine-whatsapp-messages">Valentine&#x27;s Day WhatsApp Messages AI Prompts – Romantic Text Generator</a>
+    </li>
+    <li>
+      <a href="/corporate-portrait-prompts">Corporate Portrait AI Prompts – Business Headshot Generator</a>
+    </li>
+    <li>
+      <a href="/linkedin-profile-picture-prompts">LinkedIn Profile Picture Prompts – Professional AI Headshot Generator</a>
+    </li>
+    <li>
+      <a href="/valentine-ai-image-prompts">Valentine&#x27;s Day AI Image Prompts – Romantic Photo Generator</a>
+    </li>
+    <li>
+      <a href="/anime-avatars">Anime Avatar AI Prompts – Convert Photo to Anime Style Avatar</a>
+    </li></ul>
+    </section>
+
+  </main>
+
+  
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <p class="muted">&copy; 2026 PromptImageLab &bull; All Rights Reserved</p>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="/">Home</a>
+        <a href="/#categories">Prompts</a>
+        <a href="/search">Search</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+        <a href="/privacy-policy">Privacy Policy</a>
+        <a href="/sitemap.xml">Sitemap</a>
+      </nav>
+    </div>
+  </footer>
+
+
+  <!-- ===== SCRIPTS ===== -->
+  <script src="/script.js" defer></script>
+
+</body>
+
+</html>

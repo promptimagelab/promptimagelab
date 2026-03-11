@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+
+  <title>Valentine&#x27;s Day DP AI Prompts – Romantic Profile Picture Generator</title>
+  <meta name="description" content="Use these Valentine&#x27;s Day DP AI prompts to create heart-themed, romantic profile pictures for Instagram and WhatsApp. From minimalist hearts to anime avatars — perfect Valentine DPs.">
+  <link rel="canonical" href="https://promptimagelab.com/valentine-dp-prompts">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://promptimagelab.com/valentine-dp-prompts">
+  <meta property="og:title"       content="Valentine&#x27;s Day DP AI Prompts – Romantic Profile Picture Generator">
+  <meta property="og:description" content="Use these Valentine&#x27;s Day DP AI prompts to create heart-themed, romantic profile pictures for Instagram and WhatsApp. From minimalist hearts to anime avatars — perfect Valentine DPs.">
+  <meta property="og:image"       content="https://promptimagelab.com/images/og-default.png">
+  <meta property="og:site_name"   content="PromptImageLab">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="Valentine&#x27;s Day DP AI Prompts – Romantic Profile Picture Generator">
+  <meta name="twitter:description" content="Use these Valentine&#x27;s Day DP AI prompts to create heart-themed, romantic profile pictures for Instagram and WhatsApp. From minimalist hearts to anime avatars — perfect Valentine DPs.">
+  <meta name="twitter:image"       content="https://promptimagelab.com/images/og-default.png">
+
+  <!-- Preload critical CSS -->
+  <link rel="preload" href="/prompt.css" as="style">
+  <link rel="stylesheet" href="/prompt.css">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://promptimagelab.com"},{"@type":"ListItem","position":2,"name":"Valentine's Day DP AI Prompts – Romantic Profile Picture Generator","item":"https://promptimagelab.com/valentine-dp-prompts"}]},{"@type":"WebPage","url":"https://promptimagelab.com/valentine-dp-prompts","name":"Valentine's Day DP AI Prompts – Romantic Profile Picture Generator","description":"Use these Valentine's Day DP AI prompts to create heart-themed, romantic profile pictures for Instagram and WhatsApp. From minimalist hearts to anime avatars — perfect Valentine DPs.","inLanguage":"en","publisher":{"@type":"Organization","name":"PromptImageLab","url":"https://promptimagelab.com"}}]}</script>
+
+  
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MGTDGLQPSH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-MGTDGLQPSH');
+  </script>
+
+  
+  <!-- Google AdSense -->
+  <!-- ⚠️  REPLACE ca-pub-XXXXXXXX with your real AdSense Publisher ID from:
+       https://www.google.com/adsense → Account → Account information -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXX"
+          crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+  
+  <!-- Skip link for accessibility -->
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="site-nav" aria-label="Main navigation" role="navigation">
+    <div class="container nav-inner">
+
+      <a href="/" class="logo" aria-label="PromptImageLab home">
+        <img src="/images/logo.png" alt="PromptImageLab" width="40" height="40">
+        <span>PromptImageLab</span>
+      </a>
+
+      <!-- Desktop links -->
+      <ul class="nav-links" id="nav-links" role="list">
+        <li><a href="/">Home</a></li>
+        <li><a href="/prompts-hub">Prompts Hub</a></li>
+        <li><a href="/search">Search</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/privacy-policy">Privacy</a></li>
+      </ul>
+
+      <!-- Hamburger button (mobile) -->
+      <button
+        class="nav-toggle"
+        id="nav-toggle"
+        aria-controls="nav-links"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
+
+    </div>
+  </nav>
+
+
+  <main id="main" role="main">
+
+    
+
+
+<article>
+<section class="hero">
+<div class="container">
+<h1>Valentine DP / Profile Picture Prompts</h1>
+<p>
+                    Create creative and stylish Valentine-themed profile pictures
+                    with these AI prompts.
+                </p>
+<!-- Author and Trust Signals -->
+<div class="author-box" style="max-width: 900px; margin: 2rem auto;">
+<div class="author-info">
+<p><strong>Written by:</strong> PromptImageLab Team</p>
+<p>Expert AI prompt engineers specializing in professional image generation prompts</p>
+</div>
+<div class="trust-signals">
+<span>✓ Tested across MidJourney, DALL-E, ChatGPT</span>
+<span>✓ Updated: February 17, 2026</span>
+<span>✓ 10,000+ Users</span>
+</div>
+</div>
+</div>
+</section>
+<section class="py-5">
+<div class="container">
+<h2 class="mb-4 text-center">Valentine Avatar Ideas</h2>
+<div class="row g-4">
+<!-- 1 -->
+<div class="col-md-6 col-lg-4">
+<div class="card">
+<img alt="minimal heart dp" class="img-fluid" decoding="async" height="800" loading="lazy" onerror="this.style.display='none'" src="images/valentine/dp-minimal-heart.webp" title="Minimalist Heart" width="800"/>
+<h5>Minimalist Heart DP</h5>
+<small>Clean · Simple</small>
+<div class="prompt-box" id="p1">
+                                A clean, minimalist vector art profile picture featuring a solid pastel pink background
+                                with
+                                a single elegant white line-art heart drawn in the exact center. The heart is rendered
+                                with
+                                a continuous, flowing brushstroke line of consistent weight — smooth, confident, and
+                                perfectly symmetrical. The pastel pink background is a soft, uniform matte color without
+                                gradients or texture. The white line has subtle anti-aliasing for a clean, digital
+                                finish.
+                                The overall composition is perfectly centered and balanced, creating an instantly
+                                recognizable, modern, and aesthetically pleasing profile picture that communicates love
+                                and
+                                romance with minimal visual elements. Square aspect ratio optimized for social media
+                                avatars.
+                            </div>
+<button class="copy-btn" onclick="copyText('p1')">COPY PROMPT</button>
+</div>
+</div>
+<!-- 2 -->
+<div class="col-md-6 col-lg-4">
+<div class="card">
+<img alt="couple hands dp" class="img-fluid" decoding="async" height="800" loading="lazy" onerror="this.style.display='none'" src="images/valentine/dp-couple-hands.webp" title="Couple Hands" width="800"/>
+<h5>Couple Hands DP</h5>
+<small>Romantic · Detail</small>
+<div class="prompt-box" id="p2">
+                                An intimate, extreme close-up photograph focused entirely on a couple's interlocked
+                                hands —
+                                fingers intertwined with gentle tension, showing the tenderness and security of their
+                                connection. The skin texture is beautifully detailed with soft, warm tones. The
+                                background
+                                is a dreamy, blurred bokeh of golden city lights at night, creating warm circular orbs
+                                that
+                                frame the hands in a romantic glow. Warm color grading shifts the entire image toward
+                                golden
+                                amber and soft rose tones. Shallow depth of field keeps only the hands in crisp focus
+                                while
+                                everything else melts into soft, luminous bokeh. Cropped square for a profile picture
+                                with
+                                the hands filling the center of the frame. The mood is romantic, intimate, and deeply
+                                personal.
+                            </div>
+<button class="copy-btn" onclick="copyText('p2')">COPY PROMPT</button>
+</div>
+</div>
+<!-- 3 -->
+<div class="col-md-6 col-lg-4">
+<div class="card">
+<img alt="cute anime girl dp" class="img-fluid" decoding="async" height="800" loading="lazy" onerror="this.style.display='none'" src="images/valentine/dp-cute-anime.webp" title="Cute Anime Girl" width="800"/>
+<h5>Cute Anime Girl Valentine</h5>
+<small>Kawaii · Anime</small>
+<div class="prompt-box" id="p3">
+                                An adorable, kawaii-style anime girl profile picture with large, sparkling eyes full of
+                                warmth and affection. She holds up both hands in front of her face, forming a heart
+                                shape
+                                with her index fingers and thumbs, and winks playfully at the viewer with one eye closed
+                                and
+                                a sweet, mischievous smile. The background is a cheerful, vivid pink gradient with
+                                dozens of
+                                floating translucent hearts in various sizes drifting gently around her. Her hair is
+                                soft
+                                and colorful with pastel highlights, adorned with small accessories. The art style is
+                                pure
+                                kawaii anime — clean outlines, bright colors, smooth cel-shading, and an irresistibly
+                                cute
+                                expression. Perfect as a Valentine's Day social media avatar.
+                            </div>
+<button class="copy-btn" onclick="copyText('p3')">COPY PROMPT</button>
+</div>
+</div>
+<!-- 4 -->
+<div class="col-md-6 col-lg-4">
+<div class="card">
+<img alt="cyberpunk heart dp" class="img-fluid" decoding="async" height="800" loading="lazy" onerror="this.style.display='none'" src="images/valentine/dp-cyberpunk.webp" title="Cyberpunk Heart" width="800"/>
+<h5>Cyberpunk Heart</h5>
+<small>Edgy · Neon</small>
+<div class="prompt-box" id="p4">
+                                A striking, futuristic cyberpunk-style digital heart rendered as a complex circuit board
+                                structure, pulsing with vivid neon pink and electric blue light that flows through
+                                intricate
+                                circuitry pathways. The heart shape is formed by interconnected glowing circuit traces,
+                                microchips, and digital nodes, each junction point emitting a bright spark of light. The
+                                background is a deep, dark futuristic cityscape in near-black with faint digital grid
+                                lines.
+                                High contrast lighting makes the neon elements pop dramatically against the darkness.
+                                Subtle
+                                atmospheric haze catches the neon glow, creating volumetric light effects around the
+                                heart.
+                                The overall aesthetic is edgy, modern, and tech-forward — a Valentine's symbol
+                                reimagined
+                                for the digital age.
+                            </div>
+<button class="copy-btn" onclick="copyText('p4')">COPY PROMPT</button>
+</div>
+</div>
+<!-- 5 -->
+<div class="col-md-6 col-lg-4">
+<div class="card">
+<img alt="paper cutout love dp" class="img-fluid" decoding="async" height="800" loading="lazy" onerror="this.style.display='none'" src="images/valentine/dp-paper-cutout.webp" title="Paper Cutout" width="800"/>
+<h5>Paper Cutout Style</h5>
+<small>Artistic · Craft</small>
+<div class="prompt-box" id="p5">
+                                An artistic, handcrafted paper cutout style profile picture featuring multiple layered
+                                hearts cut from rich red, soft pink, and cream-colored textured paper, arranged in a
+                                beautiful overlapping composition. Each heart layer is slightly offset, creating
+                                realistic
+                                soft shadows between them that give a sense of tactile three-dimensional depth. The
+                                paper
+                                textures are visible — subtle fiber patterns, gentle creases, and torn edges add
+                                authentic
+                                craft charm. The background is a clean, warm cream with a subtle paper grain texture.
+                                The
+                                lighting is soft and even, casting delicate drop shadows that enhance the layered
+                                effect.
+                                The overall aesthetic is warm, artistic, and whimsical — a handmade Valentine craft
+                                elevated
+                                to fine art.
+                            </div>
+<button class="copy-btn" onclick="copyText('p5')">COPY PROMPT</button>
+</div>
+</div>
+<!-- 6 -->
+<div class="col-md-6 col-lg-4">
+<div class="card">
+<img alt="neon initials dp" class="img-fluid" decoding="async" height="800" loading="lazy" onerror="this.style.display='none'" src="images/valentine/dp-neon-initials.webp" title="Neon Initials" width="800"/>
+<h5>Neon Initials</h5>
+<small>Personalized · Cool</small>
+<div class="prompt-box" id="p6">
+                                A vibrant, eye-catching neon sign profile picture featuring a glowing letter '[Your
+                                Initial]' encased within a heart shape, both rendered as realistic neon tube lights. The
+                                letter burns bright in vivid magenta neon with a soft pink glow radiating outward, while
+                                the
+                                heart outline glows in warm red. They're mounted on a dark, textured exposed brick wall
+                                with
+                                visible mortar lines and weathered patina. The neon tubes cast vivid colored reflections
+                                on
+                                the rough brick surface, creating a warm atmospheric halo. The surrounding area is dimly
+                                lit
+                                with dramatic shadows that make the neon pop. The overall style is trendy, personalized,
+                                and
+                                romantically edgy — perfect for a unique Valentine's Day profile picture.
+                            </div>
+<button class="copy-btn" onclick="copyText('p6')">COPY PROMPT</button>
+</div>
+</div>
+<!-- 7 -->
+<div class="col-md-6 col-lg-4">
+<div class="card">
+<img alt="watercolor couple dp" class="img-fluid" decoding="async" height="800" loading="lazy" onerror="this.style.display='none'" src="images/valentine/dp-watercolor-couple.webp" title="Watercolor Portrait" width="800"/>
+<h5>Watercolor Couple Portrait</h5>
+<small>Soft · Artistic</small>
+<div class="prompt-box" id="p7">
+                                A beautiful, ethereal watercolor painting style profile picture depicting the silhouette
+                                of
+                                a couple sharing a tender kiss. The silhouettes are rendered in deep, saturated indigo
+                                that
+                                bleeds softly into the surrounding watercolor washes. Flowing, organic color bleeds of
+                                soft
+                                pink, warm coral, burnt orange, and golden yellow spread outward from the silhouettes
+                                like
+                                paint dropped in water, creating beautiful, unpredictable patterns. The background is
+                                clean
+                                white paper with visible watercolor paper texture. Paint splatters and tiny droplets add
+                                dynamic energy and artistic spontaneity. The overall effect is soft, romantic, and
+                                deeply
+                                artistic — a hand-painted valentine that doubles as a stunning profile picture.
+                            </div>
+<button class="copy-btn" onclick="copyText('p7')">COPY PROMPT</button>
+</div>
+</div>
+<!-- 8 -->
+<div class="col-md-6 col-lg-4">
+<div class="card">
+<img alt="pixel art heart dp" class="img-fluid" decoding="async" height="800" loading="lazy" onerror="this.style.display='none'" src="images/valentine/dp-pixel-heart.webp" title="Pixel Heart" width="800"/>
+<h5>Pixel Art Heart</h5>
+<small>Retro · Gaming</small>
+<div class="prompt-box" id="p8">
+                                A nostalgic, retro pixel art profile picture featuring a large, perfectly shaped red
+                                heart
+                                rendered in classic 8-bit blocky pixels at the center of the composition. Below the
+                                heart, a
+                                pixelated 'lives bar' shows three small red hearts in a row, mimicking a classic video
+                                game
+                                health meter. The background is pure black, creating maximum contrast with the vibrant
+                                red
+                                pixels. The pixel grid is clearly visible with each square block sharply defined. A
+                                subtle
+                                CRT scanline effect overlays the entire image for authentic retro television aesthetics.
+                                The
+                                overall style is pure nostalgia — a love letter to classic gaming culture reimagined as
+                                a
+                                Valentine's Day profile picture.
+                            </div>
+<button class="copy-btn" onclick="copyText('p8')">COPY PROMPT</button>
+</div>
+</div>
+<!-- 9 -->
+<div class="col-md-6 col-lg-4">
+<div class="card">
+<img alt="vintage floral dp" class="img-fluid" decoding="async" height="800" loading="lazy" onerror="this.style.display='none'" src="images/valentine/dp-vintage-floral.webp" title="Vintage Floral" width="800"/>
+<h5>Vintage Floral Initial</h5>
+<small>Classic · Elegant</small>
+<div class="prompt-box" id="p9">
+                                An elegant, vintage botanical illustration style profile picture featuring the letter
+                                '[Your
+                                Initial]' rendered in ornate serif font, beautifully intertwined with climbing red
+                                roses,
+                                thorny green vines, and delicate leaves. The roses are painted in rich crimson and deep
+                                burgundy with detailed petal structures and visible stamens. The vines wrap organically
+                                around and through the letter, creating a natural, harmonious composition. The
+                                background is
+                                aged, cream-colored parchment paper with subtle brown staining and foxing marks for
+                                authentic antique character. The illustration style mimics 18th-century botanical
+                                engravings
+                                with fine line work and hand-tinted watercolor fills. The overall aesthetic is classic,
+                                elegant, and timelessly romantic.
+                            </div>
+<button class="copy-btn" onclick="copyText('p9')">COPY PROMPT</button>
+</div>
+</div>
+<!-- 10 -->
+<div class="col-md-6 col-lg-4">
+<div class="card">
+<img alt="abstract love dp" class="img-fluid" decoding="async" height="800" loading="lazy" onerror="this.style.display='none'" src="images/valentine/dp-abstract-love.webp" title="Abstract Love" width="800"/>
+<h5>Abstract Love Symbol</h5>
+<small>Modern · Graphic</small>
+<div class="prompt-box" id="p10">
+                                A bold, contemporary abstract art profile picture featuring a stylized, modern
+                                interpretation of a love symbol created from intersecting geometric shapes — circles,
+                                triangles, and angular forms that merge to form a recognizable heart silhouette. The
+                                color
+                                palette is luxurious and refined — rich gold leaf accents, deep crimson red, and warm
+                                rose
+                                tones against a dark charcoal background. Clean vector lines and sharp geometric edges
+                                contrast with organic ink splatter effects for visual dynamism. The composition is
+                                centered
+                                and balanced with a strong graphic design sensibility. The overall style is modern,
+                                sophisticated, and logo-like — an abstract expression of love that works perfectly as a
+                                distinctive, artistic Valentine's Day profile picture.
+                            </div>
+<button class="copy-btn" onclick="copyText('p10')">COPY PROMPT</button>
+</div>
+</div>
+</div>
+<!-- Related Valentine Pages -->
+<div class="related-section">
+<h2>More Valentine AI Prompts</h2>
+<p>Explore more creative Valentine's Day AI prompts for messages, images, and social media:</p>
+<div class="related-links">
+<a class="related-link" href="/valentine-ai-image-prompts">
+<strong>Valentine AI Image Prompts</strong>
+<span>Romantic AI-generated images</span>
+</a>
+<a class="related-link" href="/valentine-couple-photo-prompts">
+<strong>Couple Photo Prompts</strong>
+<span>Perfect romantic couple pictures</span>
+</a>
+<a class="related-link" href="/valentine-love-letter-prompts">
+<strong>Love Letter Prompts</strong>
+<span>Heartfelt love letters</span>
+</a>
+<a class="related-link" href="/valentine-whatsapp-messages">
+<strong>WhatsApp Messages</strong>
+<span>Sweet Valentine messages</span>
+</a>
+<a class="related-link" href="/valentine-instagram-caption-prompts">
+<strong>Instagram Captions</strong>
+<span>Romantic Instagram captions</span>
+</a>
+<a class="related-link" href="/valentine-gift-message-prompts">
+<strong>Gift Messages</strong>
+<span>Thoughtful gift messages</span>
+</a>
+</div>
+<a class="back-to-categories" href="/#categories">← Back to All Categories</a>
+</div>
+</div>
+</section>
+<!-- Methodology Section -->
+<section style="background: rgba(255,255,255,0.01); padding: 3rem 0; margin-top: 3rem;">
+<div class="container">
+<h2 style="text-align: center; margin-bottom: 2rem; font-size: 2rem;">📚 How We Create These AI Prompt
+                    Examples</h2>
+<div style="max-width: 900px; margin: 0 auto;">
+<div style="background: rgba(255,255,255,0.02); border-radius: 16px; padding: 2.5rem;">
+<p style="line-height: 1.8; margin-bottom: 1.5rem;">
+                            At PromptImageLab, our research team develops and tests AI prompt examples through a
+                            systematic
+                            evaluation process to ensure quality and effectiveness across multiple AI platforms.
+                        </p>
+<h3 style="color: #60a5fa; margin: 2rem 0 1rem; font-size: 1.3rem;">Development Process</h3>
+<ul style="line-height: 1.9; margin-bottom: 2rem;">
+<li><strong>Multi-Platform Testing:</strong> Each prompt is tested across MidJourney, DALL-E
+                                3,
+                                and Stable Diffusion to ensure broad compatibility and consistent quality</li>
+<li><strong>Iterative Refinement:</strong> Prompts are refined based on output quality,
+                                consistency,
+                                and ease of customization for different use cases</li>
+<li><strong>Real-World Application:</strong> Examples are informed by practical use cases,
+                                photography
+                                principles, and current AI platform capabilities</li>
+<li><strong>Educational Focus:</strong> Each prompt includes educational context explaining
+                                why
+                                specific elements work and how to adapt them</li>
+</ul>
+<h3 style="color: #60a5fa; margin: 2rem 0 1rem; font-size: 1.3rem;">Quality Standards</h3>
+<ul style="line-height: 1.9; margin-bottom: 2rem;">
+<li><strong>Consistency:</strong> Prompts must produce reliable, high-quality results across
+                                different AI platforms and versions</li>
+<li><strong>Clarity:</strong> Examples use clear, descriptive language that's accessible to
+                                beginners while offering depth for advanced users</li>
+<li><strong>Customizability:</strong> Prompts are structured as templates that users can
+                                easily
+                                modify for their specific needs</li>
+<li><strong>Technical Accuracy:</strong> Photography and design terminology is used
+                                precisely
+                                to guide AI output effectively</li>
+</ul>
+<h3 style="color: #60a5fa; margin: 2rem 0 1rem; font-size: 1.3rem;">Limitations &amp; Transparency
+                        </h3>
+<p style="line-height: 1.8; margin-bottom: 1rem;">
+<strong>Platform Variability:</strong> AI outputs vary based on the specific platform,
+                            version,
+                            model, and even the input image quality. These prompts serve as educational starting points
+                            requiring user customization.
+                        </p>
+<p style="line-height: 1.8; margin-bottom: 1rem;">
+<strong>No Guarantees:</strong> Results depend on multiple factors including source image
+                            quality,
+                            AI platform capabilities, and individual platform updates or changes.
+                        </p>
+<p style="line-height: 1.8;">
+<strong>Attribution:</strong> Content is developed by the PromptImageLab Research Team with
+                            input
+                            from photography, design, and AI prompting best practices. We do not claim to be
+                            professional
+                            photographers or AI engineers, but rather educators helping users learn effective prompting
+                            techniques.
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Disclaimer Section -->
+<section style="padding: 3rem 0; margin-bottom: 2rem;">
+<div class="container">
+<div style="max-width: 900px; margin: 0 auto;">
+<div style="background: rgba(239, 68, 68, 0.05); border-left: 4px solid #ef4444; border-radius: 12px; padding: 2rem;">
+<h2 style="color: #ef4444; margin-bottom: 1.5rem; font-size: 1.5rem;">⚠️ Educational Resource
+                            Disclaimer</h2>
+<h3 style="font-size: 1.1rem; margin: 1.5rem 0 1rem; color: rgba(255,255,255,0.9);">Purpose of
+                            This Site</h3>
+<p style="line-height: 1.8; margin-bottom: 1.5rem;">
+<strong>PromptImageLab is an educational resource</strong> designed to help users understand
+                            and
+                            effectively use AI image generation tools. Our mission is to teach prompting techniques,
+                            explain
+                            how different AI platforms work, and provide learning resources for creative AI
+                            applications.
+                        </p>
+<h3 style="font-size: 1.1rem; margin: 1.5rem 0 1rem; color: rgba(255,255,255,0.9);">What We Do
+                            NOT Do</h3>
+<ul style="line-height: 1.8; margin-bottom: 1.5rem;">
+<li><strong>We do not generate images:</strong> This site provides educational guidance
+                                only.
+                                Users must use their own AI platform accounts (MidJourney, ChatGPT, etc.) to create
+                                images</li>
+<li><strong>We do not sell prompts:</strong> All content is provided for educational
+                                purposes.
+                                We do not sell prompt packs, courses, or related products</li>
+<li><strong>We do not guarantee results:</strong> AI outputs vary significantly. We cannot
+                                guarantee specific outcomes from any AI platform</li>
+</ul>
+<h3 style="font-size: 1.1rem; margin: 1.5rem 0 1rem; color: rgba(255,255,255,0.9);">AI
+                            Limitations &amp; Ethical Use</h3>
+<p style="line-height: 1.8; margin-bottom: 1.5rem;">
+<strong>Understand AI Limitations:</strong> AI-generated images can vary in quality,
+                            accuracy,
+                            and appropriateness. Users should critically evaluate all AI outputs and understand that AI
+                            tools have inherent biases and limitations.
+                        </p>
+<p style="line-height: 1.8; margin-bottom: 1.5rem;">
+<strong>Use AI Responsibly:</strong> Users are responsible for using AI tools ethically and
+                            legally. This includes respecting copyright, avoiding harmful content generation, and
+                            complying
+                            with the terms of service of whichever AI platform they choose to use.
+                        </p>
+<h3 style="font-size: 1.1rem; margin: 1.5rem 0 1rem; color: rgba(255,255,255,0.9);">Intended Use
+                        </h3>
+<p style="line-height: 1.8; margin: 0;">
+                            This content is intended for <strong>educational and personal learning purposes</strong>.
+                            If you plan to use AI-generated content commercially, ensure you comply with the specific
+                            terms of service and licensing requirements of the AI platform you're using.
+                        </p>
+</div>
+</div>
+</div>
+</section>
+</article>
+
+<script>
+        function copyText(id) {
+            navigator.clipboard.writeText(document.getElementById(id).innerText);
+            alert("Prompt copied!");
+        }
+    </script>
+<!-- ===== RELATED PROMPTS ===== -->
+<section aria-label="Related AI Prompt Pages" class="related-prompts">
+<div class="container">
+<h2>Related AI Prompt Pages</h2>
+<ul class="related-list">
+<li><a href="/valentine-ai-image-prompts">Valentine's AI Image Prompts</a></li>
+<li><a href="/valentine-couple-photo-prompts">Valentine's Couple Photo Prompts</a></li>
+<li><a href="/valentine-gift-message-prompts">Valentine's Gift Message Prompts</a></li>
+<li><a href="/valentine-instagram-caption-prompts">Valentine's Instagram Captions</a></li>
+<li><a href="/valentine-love-letter-prompts">Valentine's Love Letters</a></li>
+<li><a href="/valentine-whatsapp-messages">Valentine's WhatsApp Messages</a></li>
+</ul>
+</div>
+</section>
+
+
+    
+
+    <!-- Related Pages -->
+    <section class="related-links container" aria-label="Related AI Prompt Pages">
+      <h2>Related AI Prompt Pages</h2>
+      <ul>
+    <li>
+      <a href="/corporate-portrait-prompts">Corporate Portrait AI Prompts – Business Headshot Generator</a>
+    </li>
+    <li>
+      <a href="/ai-profile-picture-dp-prompts">AI Profile Picture Prompts – Create Stunning DP Photos with AI</a>
+    </li>
+    <li>
+      <a href="/whatsapp-dp-for-girls-ai-prompts">WhatsApp DP for Girls AI Prompts – Cute Female Profile Pictures</a>
+    </li>
+    <li>
+      <a href="/whatsapp-dp-tamil-ai-prompts">WhatsApp DP Tamil AI Prompts – Tamil Style Profile Pictures</a>
+    </li>
+    <li>
+      <a href="/instagram-dp-black-white-ai-prompts">Black &amp; White Instagram DP AI Prompts – Monochrome Profile Pictures</a>
+    </li>
+    <li>
+      <a href="/linkedin-profile-women">LinkedIn Profile Picture Prompts for Women – Professional AI Headshots</a>
+    </li></ul>
+    </section>
+
+  </main>
+
+  
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <p class="muted">&copy; 2026 PromptImageLab &bull; All Rights Reserved</p>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="/">Home</a>
+        <a href="/prompts-hub">Prompts Hub</a>
+        <a href="/search">Search</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+        <a href="/privacy-policy">Privacy Policy</a>
+        <a href="/sitemap.xml">Sitemap</a>
+      </nav>
+    </div>
+  </footer>
+
+
+  <!-- ===== SCRIPTS ===== -->
+  <script src="/script.js" defer></script>
+
+</body>
+
+</html>

@@ -1,0 +1,1 @@
+This folder contains the built output assets for the worker "pil" generated at 2026-03-11T08:36:29.230Z.
