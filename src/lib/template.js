@@ -214,7 +214,8 @@ const PROMPTS_HUB_CTA = /* html */`
 
 export function buildPageHTML({ page, slug, bodyContent, relatedHTML, ldJson, cssFile }) {
 
-  const canonicalUrl = `https://promptimagelab.com/${slug === 'index' ? '' : slug}`
+  const cleanSlug = slug.replace(/\.html$/, '')
+  const canonicalUrl = `https://promptimagelab.com/${cleanSlug === 'index' ? '' : cleanSlug}`
   const ogImage      = `https://promptimagelab.com/images/og-default.png`
 
   return `<!DOCTYPE html>

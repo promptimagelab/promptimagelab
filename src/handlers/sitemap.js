@@ -33,7 +33,8 @@ export async function serveSitemap(request, env, ctx) {
   const urls = pages.map(p => {
     const lastmod  = (p.updated_at || p.created_at || '').substring(0, 10) || today
     const priority = p.slug === 'index' ? '1.0' : '0.8'
-    const loc      = `https://promptimagelab.com/${p.slug === 'index' ? '' : p.slug}`
+    const cleanSlug = p.slug.replace(/\.html$/, '')
+    const loc      = `https://promptimagelab.com/${cleanSlug === 'index' ? '' : cleanSlug}`
     return `
   <url>
     <loc>${esc(loc)}</loc>

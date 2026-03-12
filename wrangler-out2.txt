@@ -1,0 +1,28 @@
+
+ ⛅️ wrangler 4.72.0
+───────────────────
+Your Worker has access to the following bindings:
+Binding                             Resource         Mode
+env.DB (promptimagelab_db)          D1 Database      local
+env.ASSETS                          Assets           local
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mBuild failed with 1 error:[0m
+
+  [31mX [41;31m[[41;97mERROR[41;31m][0m [1mExpected ";" but found "class"[0m
+  
+      src/handlers/admin.js:1035:59:
+  [37m      1035 │ ...results').innerHTML = `<div [32mclass[37m="sql-welcome"><div class="s...
+             │                                [32m~~~~~[37m
+             ╵                                [32m;[0m
+  
+  
+
+
+Error [ERR_IPC_CHANNEL_CLOSED]: Channel closed
+    at target.send (node:internal/child_process:753:16)
+    at C:\Users\Dhanush\AppData\Roaming\npm\node_modules\wrangler\wrangler-dist\cli.js:298789:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'ERR_IPC_CHANNEL_CLOSED'
+}
+🪵  Logs were written to "C:\Users\Dhanush\AppData\Roaming\xdg.config\.wrangler\logs\wrangler-2026-03-12_01-17-52_207.log"

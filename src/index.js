@@ -8,6 +8,8 @@ import { serveSitemap } from './handlers/sitemap.js'
 import { getRelatedHTML } from './handlers/related.js'
 import { serveSearchJson, serveSearchPage } from './handlers/search.js'
 import { servePromptsHub } from './handlers/prompts-hub.js'
+import { handleAdmin, verifyAdminSession } from './handlers/admin.js'
+import { handleAdminApi } from './handlers/admin-api.js'
 
 export default {
   async fetch(request, env, ctx) {
@@ -30,6 +32,52 @@ async function handleRequest(request, env, ctx) {
   const url  = new URL(request.url)
   const path = url.pathname
 
+  /* ---- Strict Redirect Engine --------------------------------- */
+  let hostname = url.hostname
+  let protocol = url.protocol
+  let pathname = path
+  let needsRedirect = false
+
+  // 1. HTTP -> HTTPS
+  if (protocol === 'http:' && hostname !== 'localhost' && hostname !== '127.0.0.1') {
+    protocol = 'https:'
+    needsRedirect = true
+  }
+
+  // 2. www -> non-www
+  if (hostname.startsWith('www.')) {
+    hostname = hostname.replace('www.', '')
+    needsRedirect = true
+  }
+
+  // 3 & 4. .html and /index.html
+  if (pathname.endsWith('index.html')) {
+    pathname = pathname.replace(/\/index\.html$/, '')
+    if (pathname === '') pathname = '/'
+    needsRedirect = true
+  } else if (pathname.endsWith('.html')) {
+    pathname = pathname.replace(/\.html$/, '')
+    needsRedirect = true
+  }
+
+  // 4a. /index -> /
+  if (pathname.endsWith('/index')) {
+    pathname = pathname.replace(/\/index$/, '')
+    if (pathname === '') pathname = '/'
+    needsRedirect = true
+  }
+
+  // 5. Trailing slash normalization
+  if (pathname !== '/' && pathname.endsWith('/')) {
+    pathname = pathname.replace(/\/+$/, '')
+    needsRedirect = true
+  }
+
+  if (needsRedirect) {
+    const redirectUrl = `${protocol}//${hostname}${pathname}${url.search}`
+    return Response.redirect(redirectUrl, 301)
+  }
+
   /* ---- Static assets ------------------------------------------ */
   if (
     path.startsWith('/assets') ||
@@ -47,6 +95,10 @@ async function handleRequest(request, env, ctx) {
       { headers: secureHeaders({ 'content-type': 'text/plain' }) }
     )
   }
+
+  /* ---- Admin routes ------------------------------------------- */
+  if (path.startsWith('/admin/api/')) return handleAdminApi(request, env)
+  if (path.startsWith('/admin'))     return handleAdmin(request)
 
   /* ---- API & Specialized Routes ------------------------------- */
   if (path === '/sitemap.xml') return await serveSitemap(request, env, ctx)

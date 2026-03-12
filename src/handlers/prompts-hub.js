@@ -659,8 +659,9 @@ export function servePromptsHub() {
         cats.all++;
       });
 
+      // 'general' category is intentionally hidden from the filter pills
       var order = ['all'].concat(
-        Object.keys(cats).filter(function (k) { return k !== 'all'; }).sort()
+        Object.keys(cats).filter(function (k) { return k !== 'all' && k !== 'general'; }).sort()
       );
 
       pillsEl.innerHTML = order.map(function (c) {

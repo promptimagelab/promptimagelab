@@ -1,6 +1,32 @@
 var __defProp = Object.defineProperty;
 var __name = (target, value) => __defProp(target, "name", { value, configurable: true });
 
+// .wrangler/tmp/bundle-sG31MH/checked-fetch.js
+var urls = /* @__PURE__ */ new Set();
+function checkURL(request, init) {
+  const url = request instanceof URL ? request : new URL(
+    (typeof request === "string" ? new Request(request, init) : request).url
+  );
+  if (url.port && url.port !== "443" && url.protocol === "https:") {
+    if (!urls.has(url.toString())) {
+      urls.add(url.toString());
+      console.warn(
+        `WARNING: known issue with \`fetch()\` requests to custom HTTPS ports in published Workers:
+ - ${url.toString()} - the custom port will be ignored when the Worker is published using the \`wrangler deploy\` command.
+`
+      );
+    }
+  }
+}
+__name(checkURL, "checkURL");
+globalThis.fetch = new Proxy(globalThis.fetch, {
+  apply(target, thisArg, argArray) {
+    const [request, init] = argArray;
+    checkURL(request, init);
+    return Reflect.apply(target, thisArg, argArray);
+  }
+});
+
 // src/lib/helpers.js
 function esc(str) {
   return String(str ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#x27;");
@@ -268,7 +294,8 @@ var PROMPTS_HUB_CTA = (
   </section>`
 );
 function buildPageHTML({ page, slug, bodyContent, relatedHTML, ldJson, cssFile }) {
-  const canonicalUrl = `https://promptimagelab.com/${slug === "index" ? "" : slug}`;
+  const cleanSlug = slug.replace(/\.html$/, "");
+  const canonicalUrl = `https://promptimagelab.com/${cleanSlug === "index" ? "" : cleanSlug}`;
   const ogImage = `https://promptimagelab.com/images/og-default.png`;
   return `<!DOCTYPE html>
 <html lang="en">
@@ -417,10 +444,11 @@ async function serveSitemap(request, env, ctx) {
     }
   }
   const today = (/* @__PURE__ */ new Date()).toISOString().substring(0, 10);
-  const urls = pages.map((p) => {
+  const urls2 = pages.map((p) => {
     const lastmod = (p.updated_at || p.created_at || "").substring(0, 10) || today;
     const priority = p.slug === "index" ? "1.0" : "0.8";
-    const loc = `https://promptimagelab.com/${p.slug === "index" ? "" : p.slug}`;
+    const cleanSlug = p.slug.replace(/\.html$/, "");
+    const loc = `https://promptimagelab.com/${cleanSlug === "index" ? "" : cleanSlug}`;
     return `
   <url>
     <loc>${esc(loc)}</loc>
@@ -442,7 +470,7 @@ async function serveSitemap(request, env, ctx) {
     <priority>0.6</priority>
     <changefreq>weekly</changefreq>
   </url>
-${urls}
+${urls2}
 </urlset>`;
   const response = new Response(xml, {
     headers: secureHeaders({
@@ -924,10 +952,13 @@ function serveSearchPage() {
       fetch('/search.json')
         .then(function (r) { return r.json(); })
         .then(function (data) {
-          ALL_PAGES = data;
+          ALL_PAGES = data.filter(function (p) {
+            // Exclude 'general' category items from search
+            return (p.category || 'general') !== 'general';
+          });
           skeletonGrid.style.display = 'none';
           resultsGrid.style.display  = 'grid';
-          buildCategoryPills(data);
+          buildCategoryPills(ALL_PAGES);
           /* Apply ?q= from URL if present */
           var params = new URLSearchParams(window.location.search);
           var q = params.get('q') || '';
@@ -1701,8 +1732,10 @@ function servePromptsHub() {
           ALL_PAGES = data.filter(function (p) {
             // Exclude static pages from the hub
             var staticSlugs = ['', 'about', 'contact', 'privacy-policy'];
-            var slug = (p.url || '').replace(/^\\//, '');
-            return staticSlugs.indexOf(slug) === -1;
+            var slug = (p.url || '').replace(/^/+/, '');
+            if (staticSlugs.indexOf(slug) !== -1) return false;
+            // Also exclude 'general' category items
+            return (p.category || 'general') !== 'general';
           });
           skelEl.style.display = 'none';
           gridEl.style.display = 'grid';
@@ -1736,8 +1769,9 @@ function servePromptsHub() {
         cats.all++;
       });
 
+      // 'general' category is intentionally hidden from the filter pills
       var order = ['all'].concat(
-        Object.keys(cats).filter(function (k) { return k !== 'all'; }).sort()
+        Object.keys(cats).filter(function (k) { return k !== 'all' && k !== 'general'; }).sort()
       );
 
       pillsEl.innerHTML = order.map(function (c) {
@@ -1837,8 +1871,10 @@ function servePromptsHub() {
       gridEl.innerHTML = slice.map(function (p) {
         var title = q ? highlight(p.title, q)       : esc(p.title);
         var desc  = q ? highlight(p.description, q) : esc(p.description);
+        var catName = p.category || 'general';
+        var catHtml = catName !== 'general' ? '<span class="hub-card-cat">' + esc(catName) + '</span>' : '';
         return '<a class="hub-card" href="' + esc(p.url) + '" role="listitem">' +
-               '<span class="hub-card-cat">' + esc(p.category || 'general') + '</span>' +
+               catHtml +
                '<h3>' + title + '</h3>' +
                '<p>' + desc + '</p>' +
                '<span class="hub-card-arrow">View Prompt &rarr;</span>' +
@@ -2132,8 +2168,11 @@ ${ADMIN_CSS}
       <button class="nav-btn" data-tab="prompts" onclick="showTab('prompts')">
         <span>\u2728</span> Prompts
       </button>
-      <button class="nav-btn" data-tab="categories" onclick="showTab('categories')">
-        <span>\u{1F3F7}\uFE0F</span> Categories
+      <button class="nav-btn" data-tab="sitemap" onclick="showTab('sitemap')">
+        <span>\u{1F310}</span> Sitemap XML
+      </button>
+      <button class="nav-btn" data-tab="sql" onclick="showTab('sql')">
+        <span>\u{1F5C4}\uFE0F</span> SQL Execute
       </button>
     </nav>
     <div class="sidebar-footer">
@@ -2213,16 +2252,70 @@ ${ADMIN_CSS}
       <div class="pagination" id="prompts-pagination"></div>
     </section>
 
-    <!-- CATEGORIES TAB -->
-    <section class="tab" id="tab-categories">
-      <div class="tab-toolbar">
-        <button class="btn btn-primary" onclick="openCategoryModal()">+ New Category</button>
+    <!-- SITEMAP TAB -->
+    <section class="tab" id="tab-sitemap">
+      <div class="card mt-24">
+        <h3 class="card-title">Sitemap XML Viewer</h3>
+        <p>
+          <a href="/sitemap.xml" target="_blank" style="color:var(--primary);text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:8px;">
+            https://promptimagelab.com/sitemap.xml 
+            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+          </a>
+        </p>
+        <div style="margin-top:20px;">
+          <button class="btn btn-secondary" onclick="loadSitemapXml()">\u21BB Refresh Sitemap content</button>
+        </div>
+        <div style="margin-top:16px;">
+          <textarea id="sitemap-content" class="sql-editor" style="min-height:400px;max-height:600px;font-family:monospace;white-space:pre;" readonly placeholder="Loading sitemap.xml..."></textarea>
+        </div>
       </div>
-      <div class="table-wrap">
-        <table class="data-table" id="cats-table">
-          <thead><tr><th>ID</th><th>Slug</th><th>Name</th><th>Description</th><th>Position</th><th>Actions</th></tr></thead>
-          <tbody id="cats-tbody"><tr><td colspan="6" class="loading-row">Loading\u2026</td></tr></tbody>
-        </table>
+    </section>
+
+    <!-- SQL EXECUTE TAB -->
+    <section class="tab" id="tab-sql">
+      <div class="sql-editor-wrap">
+        <div class="sql-toolbar">
+          <span class="sql-label">\u{1F5C4}\uFE0F SQL Console \u2014 Cloudflare D1</span>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <select id="sql-preset" class="select-input" style="font-size:.82rem;" onchange="loadSqlPreset()">
+              <option value="">\u2014 Quick Queries \u2014</option>
+              <option value="SELECT * FROM pages ORDER BY updated_at DESC LIMIT 20;">List recent pages</option>
+              <option value="SELECT * FROM categories ORDER BY position ASC;">List categories</option>
+              <option value="SELECT * FROM prompts ORDER BY id DESC LIMIT 20;">List prompts</option>
+              <option value="SELECT COUNT(*) AS pages, (SELECT COUNT(*) FROM categories) AS categories, (SELECT COUNT(*) FROM prompts) AS prompts FROM pages;">DB stats</option>
+              <option value="SELECT p.id, p.slug, p.title, COUNT(pr.id) AS prompt_count FROM pages p LEFT JOIN prompts pr ON pr.page_id = p.id GROUP BY p.id ORDER BY prompt_count DESC LIMIT 15;">Pages by prompt count</option>
+              <option value="PRAGMA table_list;">List tables</option>
+              <option value="PRAGMA table_info(pages);">Schema: pages</option>
+              <option value="PRAGMA table_info(prompts);">Schema: prompts</option>
+              <option value="PRAGMA table_info(categories);">Schema: categories</option>
+            </select>
+            <button class="btn btn-primary" onclick="runSql()" id="run-sql-btn">\u25B6 Run</button>
+            <button class="btn btn-secondary" onclick="clearSql()">\u2715 Clear</button>
+          </div>
+        </div>
+        <div class="sql-editor-container">
+          <textarea id="sql-editor" class="sql-editor" placeholder="Enter SQL query\u2026
+Examples:
+  SELECT * FROM pages LIMIT 10;
+  INSERT INTO categories (slug, name) VALUES ('art', 'Art');
+  UPDATE pages SET status='published' WHERE id=1;" spellcheck="false"></textarea>
+        </div>
+        <div id="sql-status-bar" class="sql-status-bar"></div>
+        <div id="sql-results" class="sql-results">
+          <div class="sql-welcome">
+            <div class="sql-welcome-icon">\u{1F5C4}\uFE0F</div>
+            <h3>SQL Console</h3>
+            <p>Write any SQL query above and press <strong>\u25B6 Run</strong> to execute it against your Cloudflare D1 database.</p>
+            <p style="margin-top:8px;font-size:.82rem;">Supports SELECT, INSERT, UPDATE, DELETE, PRAGMA statements, and more.</p>
+          </div>
+        </div>
+        <div id="sql-history-wrap" class="sql-history-wrap">
+          <div class="sql-history-header">
+            <span>\u{1F4CB} Query History</span>
+            <button class="btn btn-sm btn-secondary" onclick="clearSqlHistory()">Clear</button>
+          </div>
+          <div id="sql-history-list" class="sql-history-list"></div>
+        </div>
       </div>
     </section>
   </main>
@@ -2340,9 +2433,9 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 .btn-icon{padding:6px 10px;font-size:.8rem}
 
 /* Table */
-.table-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--border)}
+.table-wrap{overflow-x:auto;overflow-y:auto;max-height:600px;border-radius:12px;border:1px solid var(--border);position:relative}
 .data-table{width:100%;border-collapse:collapse;font-size:.88rem}
-.data-table th{padding:12px 14px;text-align:left;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);background:var(--surface2);border-bottom:1px solid var(--border)}
+.data-table th{position:sticky;top:0;z-index:2;padding:12px 14px;text-align:left;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);background:var(--surface2);border-bottom:1px solid var(--border)}
 .data-table td{padding:12px 14px;border-bottom:1px solid var(--border);vertical-align:middle}
 .data-table tr:last-child td{border-bottom:none}
 .data-table tr:hover td{background:rgba(56,189,248,.03)}
@@ -2411,6 +2504,37 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
   .form-row{grid-template-columns:1fr}
 }
 @media(max-width:500px){.stats-grid{grid-template-columns:1fr}}
+
+/* SQL Execute */
+.sql-editor-wrap{display:flex;flex-direction:column;gap:14px;height:calc(100vh - 120px)}
+.sql-toolbar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:12px 16px;background:var(--surface);border:1px solid var(--border);border-radius:12px}
+.sql-label{font-size:.88rem;font-weight:700;color:var(--primary);display:flex;align-items:center;gap:6px}
+.sql-editor-container{position:relative;flex-shrink:0}
+.sql-editor{width:100%;min-height:140px;max-height:280px;padding:14px 16px;background:#0a1628;border:1px solid rgba(56,189,248,.25);border-radius:12px;color:#e2e8f0;font-family:'Fira Code','Cascadia Code','Consolas',monospace;font-size:.9rem;line-height:1.65;resize:vertical;outline:none;transition:border-color .2s;tab-size:2}
+.sql-editor:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(56,189,248,.12)}
+.sql-editor::placeholder{color:#334155;font-style:italic}
+.sql-status-bar{font-size:.8rem;padding:6px 14px;border-radius:8px;min-height:30px;display:flex;align-items:center;gap:10px;font-weight:600;letter-spacing:.2px}
+.sql-status-bar.ok{background:rgba(74,222,128,.07);border:1px solid rgba(74,222,128,.2);color:var(--success)}
+.sql-status-bar.err{background:rgba(248,113,113,.07);border:1px solid rgba(248,113,113,.2);color:var(--danger)}
+.sql-status-bar.running{background:rgba(251,191,36,.06);border:1px solid rgba(251,191,36,.18);color:var(--warning)}
+.sql-results{flex:1;overflow:auto;border-radius:12px;border:1px solid var(--border);background:var(--surface);min-height:160px}
+.sql-welcome{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 24px;text-align:center;color:var(--muted)}
+.sql-welcome-icon{font-size:2.5rem;margin-bottom:16px;opacity:.5}
+.sql-welcome h3{font-size:1.1rem;font-weight:700;color:var(--muted2);margin-bottom:8px}
+.sql-welcome p{font-size:.85rem;line-height:1.6;max-width:420px}
+.sql-result-table-wrap{overflow:auto;max-height:340px}
+.sql-result-table{width:100%;border-collapse:collapse;font-size:.82rem;font-family:'Fira Code','Consolas',monospace}
+.sql-result-table th{padding:8px 12px;text-align:left;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--primary);background:rgba(56,189,248,.05);border-bottom:1px solid var(--border);white-space:nowrap;position:sticky;top:0;z-index:1}
+.sql-result-table td{padding:8px 12px;border-bottom:1px solid rgba(255,255,255,.04);color:var(--text);white-space:nowrap;max-width:300px;overflow:hidden;text-overflow:ellipsis}
+.sql-result-table tr:hover td{background:rgba(56,189,248,.04)}
+.sql-result-table td.null-val{color:var(--muted);font-style:italic}
+.sql-empty-result{padding:32px;text-align:center;color:var(--muted);font-size:.88rem}
+.sql-history-wrap{border:1px solid var(--border);border-radius:12px;background:var(--surface);overflow:hidden;flex-shrink:0;max-height:180px;display:flex;flex-direction:column}
+.sql-history-header{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--border);font-size:.8rem;font-weight:700;color:var(--muted2);flex-shrink:0}
+.sql-history-list{overflow-y:auto;flex:1}
+.sql-history-item{padding:8px 14px;font-size:.78rem;font-family:'Fira Code','Consolas',monospace;color:var(--muted2);cursor:pointer;border-bottom:1px solid rgba(255,255,255,.04);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:all .15s}
+.sql-history-item:hover{background:rgba(56,189,248,.06);color:var(--text)}
+.sql-history-item:last-child{border-bottom:none}
 `;
 var ADMIN_JS = `
 'use strict';
@@ -2426,8 +2550,9 @@ document.addEventListener('DOMContentLoaded', () => {
   loadStats();
   loadPages();
   loadPrompts();
-  loadCategories();
+  loadSitemapXml();
   loadPagesDropdown();
+  renderSqlHistory();
 });
 
 /* ---- Tab switching ----------------------------------- */
@@ -2483,6 +2608,21 @@ function openModal(title, bodyHTML) {
 function closeModal(e) {
   if (e && e.target !== document.getElementById('modal-overlay')) return;
   document.getElementById('modal-overlay').classList.remove('open');
+}
+
+/* ==== SITEMAP VIEWER =============================== */
+async function loadSitemapXml() {
+  const el = document.getElementById('sitemap-content');
+  if (!el) return;
+  el.value = 'Loading sitemap.xml...';
+  try {
+    const res = await fetch('/sitemap.xml?t=' + Date.now());
+    if (!res.ok) throw new Error(res.status + ' ' + res.statusText);
+    const text = await res.text();
+    el.value = text;
+  } catch(e) {
+    el.value = 'Error loading sitemap: ' + e.message;
+  }
 }
 
 /* ==== DASHBOARD ==================================== */
@@ -2909,6 +3049,123 @@ async function deleteCategory(id) {
   });
 }
 
+/* ==== SQL EXECUTE ================================== */
+let sqlHistory = JSON.parse(localStorage.getItem('admin_sql_history') || '[]');
+
+function loadSqlPreset() {
+  const sel = document.getElementById('sql-preset');
+  if (sel.value) {
+    document.getElementById('sql-editor').value = sel.value;
+    sel.value = '';
+  }
+}
+
+function clearSql() {
+  document.getElementById('sql-editor').value = '';
+  document.getElementById('sql-status-bar').className = 'sql-status-bar';
+  document.getElementById('sql-status-bar').textContent = '';
+  document.getElementById('sql-results').innerHTML = '<div class="sql-welcome"><div class="sql-welcome-icon">\u{1F5C4}\uFE0F</div><h3>SQL Console</h3><p>Write any SQL query above and press <strong>\u25B6 Run</strong> to execute it.</p></div>';
+}
+
+async function runSql() {
+  const editor = document.getElementById('sql-editor');
+  const sql = editor.value.trim();
+  if (!sql) { toast('Enter a SQL query first', 'error'); return; }
+
+  const statusBar = document.getElementById('sql-status-bar');
+  const resultsEl = document.getElementById('sql-results');
+  const btn = document.getElementById('run-sql-btn');
+
+  btn.disabled = true;
+  btn.textContent = '\u23F3 Running\u2026';
+  statusBar.className = 'sql-status-bar running';
+  statusBar.textContent = 'Executing query\u2026';
+  resultsEl.innerHTML = '<div class="sql-empty-result">Running SQL\u2026</div>';
+
+  const t0 = Date.now();
+  try {
+    const res = await fetch('/admin/api/sql', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ sql })
+    });
+    const elapsed = Date.now() - t0;
+    const data = await res.json();
+
+    if (!res.ok) throw new Error(data.error || 'Query failed');
+
+    // Save to history
+    sqlHistory = [sql, ...sqlHistory.filter(h => h !== sql)].slice(0, 30);
+    localStorage.setItem('admin_sql_history', JSON.stringify(sqlHistory));
+    renderSqlHistory();
+
+    const rows = data.results || [];
+    const rowsChanged = data.rowsAffected ?? null;
+
+    if (rows.length === 0 && rowsChanged === null) {
+      statusBar.className = 'sql-status-bar ok';
+      statusBar.textContent = \`\u2713 Query executed successfully \xB7 0 rows \xB7 \${elapsed}ms\`;
+      resultsEl.innerHTML = '<div class="sql-empty-result">\u2713 Query executed \u2014 no rows returned.</div>';
+    } else if (rows.length > 0) {
+      statusBar.className = 'sql-status-bar ok';
+      statusBar.textContent = \`\u2713 \${rows.length} row\${rows.length !== 1 ? 's' : ''} returned \xB7 \${elapsed}ms\`;
+      resultsEl.innerHTML = renderSqlTable(rows);
+    } else {
+      statusBar.className = 'sql-status-bar ok';
+      statusBar.textContent = \`\u2713 \${rowsChanged ?? 0} row\${rowsChanged !== 1 ? 's' : ''} affected \xB7 \${elapsed}ms\`;
+      resultsEl.innerHTML = \`<div class="sql-empty-result">\u2713 \${rowsChanged ?? 0} row(s) affected.</div>\`;
+    }
+  } catch(e) {
+    const elapsed = Date.now() - t0;
+    statusBar.className = 'sql-status-bar err';
+    statusBar.textContent = \`\u2717 Error \xB7 \${elapsed}ms\`;
+    resultsEl.innerHTML = \`<div class="sql-empty-result" style="color:var(--danger)">\u26A0\uFE0F \${esc(e.message)}</div>\`;
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '\u25B6 Run';
+  }
+}
+
+function renderSqlTable(rows) {
+  const cols = Object.keys(rows[0]);
+  const thead = '<tr>' + cols.map(c => \`<th>\${esc(c)}</th>\`).join('') + '</tr>';
+  const tbody = rows.map(r =>
+    '<tr>' + cols.map(c => {
+      const v = r[c];
+      if (v === null || v === undefined) return '<td class="null-val">NULL</td>';
+      return \`<td title="\${esc(String(v))}">\${esc(String(v))}</td>\`;
+    }).join('') + '</tr>'
+  ).join('');
+  return \`<div class="sql-result-table-wrap"><table class="sql-result-table"><thead>\${thead}</thead><tbody>\${tbody}</tbody></table></div>\`;
+}
+
+function renderSqlHistory() {
+  const el = document.getElementById('sql-history-list');
+  if (!el) return;
+  if (!sqlHistory.length) { el.innerHTML = '<div class="sql-empty-result" style="padding:16px">No history yet.</div>'; return; }
+  el.innerHTML = sqlHistory.map((h, i) =>
+    \`<div class="sql-history-item" onclick="loadFromHistory(\${i})" title="\${esc(h)}">\${esc(h)}</div>\`
+  ).join('');
+}
+
+function loadFromHistory(i) {
+  document.getElementById('sql-editor').value = sqlHistory[i];
+}
+
+function clearSqlHistory() {
+  sqlHistory = [];
+  localStorage.removeItem('admin_sql_history');
+  renderSqlHistory();
+}
+
+// Ctrl+Enter to run SQL
+document.addEventListener('keydown', function(e) {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+    const active = document.querySelector('.tab.active');
+    if (active && active.id === 'tab-sql') runSql();
+  }
+});
+
 /* ==== HELPERS ====================================== */
 function renderPagination(ns, current, total) {
   const el = document.getElementById(ns + '-pagination');
@@ -3101,6 +3358,8 @@ async function handleAdminApi(request, env) {
   }
   if (path === "/admin/api/pages-list" && method === "GET")
     return getPagesList(env);
+  if (path === "/admin/api/sql" && method === "POST")
+    return executeSql(request, env);
   return json({ error: "Not Found" }, 404);
 }
 __name(handleAdminApi, "handleAdminApi");
@@ -3412,9 +3671,36 @@ async function deletePrompt(id, env) {
   }
 }
 __name(deletePrompt, "deletePrompt");
+async function executeSql(request, env) {
+  try {
+    const body = await request.json();
+    const sql = (body.sql || "").trim();
+    if (!sql) return json({ error: "sql is required" }, 400);
+    const isSelect = /^\s*(SELECT|PRAGMA|EXPLAIN|WITH)/i.test(sql);
+    if (isSelect) {
+      const result = await env.DB.prepare(sql).all();
+      return json({
+        results: result.results || [],
+        rowsAffected: null,
+        duration: result.meta?.duration ?? null
+      });
+    } else {
+      const result = await env.DB.prepare(sql).run();
+      return json({
+        results: [],
+        rowsAffected: result.meta?.changes ?? 0,
+        lastInsertId: result.meta?.last_row_id ?? null,
+        duration: result.meta?.duration ?? null
+      });
+    }
+  } catch (err) {
+    return json({ error: err.message }, 500);
+  }
+}
+__name(executeSql, "executeSql");
 
 // src/index.js
-var index_default = {
+var src_default = {
   async fetch(request, env, ctx) {
     try {
       return await handleRequest(request, env, ctx);
@@ -3433,6 +3719,39 @@ var index_default = {
 async function handleRequest(request, env, ctx) {
   const url = new URL(request.url);
   const path = url.pathname;
+  let hostname = url.hostname;
+  let protocol = url.protocol;
+  let pathname = path;
+  let needsRedirect = false;
+  if (protocol === "http:" && hostname !== "localhost" && hostname !== "127.0.0.1") {
+    protocol = "https:";
+    needsRedirect = true;
+  }
+  if (hostname.startsWith("www.")) {
+    hostname = hostname.replace("www.", "");
+    needsRedirect = true;
+  }
+  if (pathname.endsWith("index.html")) {
+    pathname = pathname.replace(/\/index\.html$/, "");
+    if (pathname === "") pathname = "/";
+    needsRedirect = true;
+  } else if (pathname.endsWith(".html")) {
+    pathname = pathname.replace(/\.html$/, "");
+    needsRedirect = true;
+  }
+  if (pathname.endsWith("/index")) {
+    pathname = pathname.replace(/\/index$/, "");
+    if (pathname === "") pathname = "/";
+    needsRedirect = true;
+  }
+  if (pathname !== "/" && pathname.endsWith("/")) {
+    pathname = pathname.replace(/\/+$/, "");
+    needsRedirect = true;
+  }
+  if (needsRedirect) {
+    const redirectUrl = `${protocol}//${hostname}${pathname}${url.search}`;
+    return Response.redirect(redirectUrl, 301);
+  }
   if (path.startsWith("/assets") || path.startsWith("/images") || path.match(/\.(css|js|png|jpg|jpeg|svg|webp|gif|ico|woff2|woff|ttf)$/)) {
     if (env.ASSETS) return env.ASSETS.fetch(request);
     return errorResponse(404, "Asset not found");
@@ -3495,7 +3814,178 @@ Sitemap: https://promptimagelab.com/sitemap.xml
   });
 }
 __name(handleRequest, "handleRequest");
+
+// ../../../AppData/Roaming/npm/node_modules/wrangler/templates/middleware/middleware-ensure-req-body-drained.ts
+var drainBody = /* @__PURE__ */ __name(async (request, env, _ctx, middlewareCtx) => {
+  try {
+    return await middlewareCtx.next(request, env);
+  } finally {
+    try {
+      if (request.body !== null && !request.bodyUsed) {
+        const reader = request.body.getReader();
+        while (!(await reader.read()).done) {
+        }
+      }
+    } catch (e) {
+      console.error("Failed to drain the unused request body.", e);
+    }
+  }
+}, "drainBody");
+var middleware_ensure_req_body_drained_default = drainBody;
+
+// ../../../AppData/Roaming/npm/node_modules/wrangler/templates/middleware/middleware-miniflare3-json-error.ts
+function reduceError(e) {
+  return {
+    name: e?.name,
+    message: e?.message ?? String(e),
+    stack: e?.stack,
+    cause: e?.cause === void 0 ? void 0 : reduceError(e.cause)
+  };
+}
+__name(reduceError, "reduceError");
+var jsonError = /* @__PURE__ */ __name(async (request, env, _ctx, middlewareCtx) => {
+  try {
+    return await middlewareCtx.next(request, env);
+  } catch (e) {
+    const error = reduceError(e);
+    return Response.json(error, {
+      status: 500,
+      headers: { "MF-Experimental-Error-Stack": "true" }
+    });
+  }
+}, "jsonError");
+var middleware_miniflare3_json_error_default = jsonError;
+
+// .wrangler/tmp/bundle-sG31MH/middleware-insertion-facade.js
+var __INTERNAL_WRANGLER_MIDDLEWARE__ = [
+  middleware_ensure_req_body_drained_default,
+  middleware_miniflare3_json_error_default
+];
+var middleware_insertion_facade_default = src_default;
+
+// ../../../AppData/Roaming/npm/node_modules/wrangler/templates/middleware/common.ts
+var __facade_middleware__ = [];
+function __facade_register__(...args) {
+  __facade_middleware__.push(...args.flat());
+}
+__name(__facade_register__, "__facade_register__");
+function __facade_invokeChain__(request, env, ctx, dispatch, middlewareChain) {
+  const [head, ...tail] = middlewareChain;
+  const middlewareCtx = {
+    dispatch,
+    next(newRequest, newEnv) {
+      return __facade_invokeChain__(newRequest, newEnv, ctx, dispatch, tail);
+    }
+  };
+  return head(request, env, ctx, middlewareCtx);
+}
+__name(__facade_invokeChain__, "__facade_invokeChain__");
+function __facade_invoke__(request, env, ctx, dispatch, finalMiddleware) {
+  return __facade_invokeChain__(request, env, ctx, dispatch, [
+    ...__facade_middleware__,
+    finalMiddleware
+  ]);
+}
+__name(__facade_invoke__, "__facade_invoke__");
+
+// .wrangler/tmp/bundle-sG31MH/middleware-loader.entry.ts
+var __Facade_ScheduledController__ = class ___Facade_ScheduledController__ {
+  constructor(scheduledTime, cron, noRetry) {
+    this.scheduledTime = scheduledTime;
+    this.cron = cron;
+    this.#noRetry = noRetry;
+  }
+  static {
+    __name(this, "__Facade_ScheduledController__");
+  }
+  #noRetry;
+  noRetry() {
+    if (!(this instanceof ___Facade_ScheduledController__)) {
+      throw new TypeError("Illegal invocation");
+    }
+    this.#noRetry();
+  }
+};
+function wrapExportedHandler(worker) {
+  if (__INTERNAL_WRANGLER_MIDDLEWARE__ === void 0 || __INTERNAL_WRANGLER_MIDDLEWARE__.length === 0) {
+    return worker;
+  }
+  for (const middleware of __INTERNAL_WRANGLER_MIDDLEWARE__) {
+    __facade_register__(middleware);
+  }
+  const fetchDispatcher = /* @__PURE__ */ __name(function(request, env, ctx) {
+    if (worker.fetch === void 0) {
+      throw new Error("Handler does not export a fetch() function.");
+    }
+    return worker.fetch(request, env, ctx);
+  }, "fetchDispatcher");
+  return {
+    ...worker,
+    fetch(request, env, ctx) {
+      const dispatcher = /* @__PURE__ */ __name(function(type, init) {
+        if (type === "scheduled" && worker.scheduled !== void 0) {
+          const controller = new __Facade_ScheduledController__(
+            Date.now(),
+            init.cron ?? "",
+            () => {
+            }
+          );
+          return worker.scheduled(controller, env, ctx);
+        }
+      }, "dispatcher");
+      return __facade_invoke__(request, env, ctx, dispatcher, fetchDispatcher);
+    }
+  };
+}
+__name(wrapExportedHandler, "wrapExportedHandler");
+function wrapWorkerEntrypoint(klass) {
+  if (__INTERNAL_WRANGLER_MIDDLEWARE__ === void 0 || __INTERNAL_WRANGLER_MIDDLEWARE__.length === 0) {
+    return klass;
+  }
+  for (const middleware of __INTERNAL_WRANGLER_MIDDLEWARE__) {
+    __facade_register__(middleware);
+  }
+  return class extends klass {
+    #fetchDispatcher = /* @__PURE__ */ __name((request, env, ctx) => {
+      this.env = env;
+      this.ctx = ctx;
+      if (super.fetch === void 0) {
+        throw new Error("Entrypoint class does not define a fetch() function.");
+      }
+      return super.fetch(request);
+    }, "#fetchDispatcher");
+    #dispatcher = /* @__PURE__ */ __name((type, init) => {
+      if (type === "scheduled" && super.scheduled !== void 0) {
+        const controller = new __Facade_ScheduledController__(
+          Date.now(),
+          init.cron ?? "",
+          () => {
+          }
+        );
+        return super.scheduled(controller);
+      }
+    }, "#dispatcher");
+    fetch(request) {
+      return __facade_invoke__(
+        request,
+        this.env,
+        this.ctx,
+        this.#dispatcher,
+        this.#fetchDispatcher
+      );
+    }
+  };
+}
+__name(wrapWorkerEntrypoint, "wrapWorkerEntrypoint");
+var WRAPPED_ENTRY;
+if (typeof middleware_insertion_facade_default === "object") {
+  WRAPPED_ENTRY = wrapExportedHandler(middleware_insertion_facade_default);
+} else if (typeof middleware_insertion_facade_default === "function") {
+  WRAPPED_ENTRY = wrapWorkerEntrypoint(middleware_insertion_facade_default);
+}
+var middleware_loader_entry_default = WRAPPED_ENTRY;
 export {
-  index_default as default
+  __INTERNAL_WRANGLER_MIDDLEWARE__,
+  middleware_loader_entry_default as default
 };
 //# sourceMappingURL=index.js.map
