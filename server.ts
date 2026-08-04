@@ -1,12 +1,9 @@
-import express from 'express';
-import path from 'path';
+import { Hono } from 'hono';
 import { GoogleGenAI, Type } from '@google/genai';
 import OpenAI from 'openai';
+import { INITIAL_LIBRARY_PROMPTS } from './src/data/libraryData';
 
-const app = express();
-const PORT = 3000;
-
-app.use(express.json({ limit: '10mb' }));
+const app = new Hono();
 
 // ── SDK factory helpers ──────────────────────────────────────────────────────
 function geminiClient(apiKey: string) {
@@ -16,11 +13,9 @@ function openaiClient(apiKey: string, baseURL?: string) {
   return new OpenAI({ apiKey, ...(baseURL ? { baseURL } : {}) });
 }
 
-import { INITIAL_LIBRARY_PROMPTS } from './src/data/libraryData';
-
 // ==================== HEALTH & DB STATUS ====================
-app.get('/api/health', (_req, res) => {
-  res.json({
+app.get('/api/health', (c) => {
+  return c.json({
     status: 'ok',
     service: 'PromptImageLab Multi-Provider Engine',
     d1Database: {
@@ -33,8 +28,8 @@ app.get('/api/health', (_req, res) => {
   });
 });
 
-app.get('/api/d1/status', (_req, res) => {
-  res.json({
+app.get('/api/d1/status', (c) => {
+  return c.json({
     database_name: 'backend-db',
     database_id: '161f312b-338c-45fa-ac67-c97025625623',
     engine: 'Cloudflare D1 SQLite',
@@ -52,8 +47,9 @@ app.get('/api/d1/status', (_req, res) => {
 // DYNAMIC SITEMAP.XML GENERATOR (RENDERED FROM SYSTEM DB / DATA ITEMS)
 // Fulfills Google Search Console Indexing & AdSense Requirements
 // ═══════════════════════════════════════════════════════════════════════════════
-app.get('/sitemap.xml', (req, res) => {
-  const host = `${req.protocol}://${req.headers.host || 'localhost:3000'}`;
+app.get('/sitemap.xml', (c) => {
+  const urlObj = new URL(c.req.url);
+  const host = `${urlObj.protocol}//${urlObj.host}`;
   const today = new Date().toISOString().split('T')[0];
 
   const staticRoutes = [
@@ -75,7 +71,6 @@ app.get('/sitemap.xml', (req, res) => {
     { path: 'security', priority: '0.6', changefreq: 'monthly' },
   ];
 
-  // Dynamic Prompts & Workflows DB items
   const promptRoutes = (INITIAL_LIBRARY_PROMPTS || []).map(p => ({
     path: `prompt-detail-${p.id}`,
     priority: '0.8',
@@ -100,33 +95,30 @@ app.get('/sitemap.xml', (req, res) => {
 ${urlsXml}
 </urlset>`;
 
-  res.setHeader('Content-Type', 'application/xml');
-  res.status(200).send(sitemapXml);
+  return c.text(sitemapXml, 200, { 'Content-Type': 'application/xml; charset=utf-8' });
 });
 
-app.get('/robots.txt', (req, res) => {
-  const host = req.headers.host || 'localhost:3000';
-  const protocol = req.protocol || 'http';
+app.get('/robots.txt', (c) => {
+  const urlObj = new URL(c.req.url);
   const content = `User-agent: *
 Allow: /
 
-Sitemap: ${protocol}://${host}/sitemap.xml
+Sitemap: ${urlObj.protocol}//${urlObj.host}/sitemap.xml
 `;
-  res.setHeader('Content-Type', 'text/plain');
-  res.status(200).send(content);
+  return c.text(content, 200, { 'Content-Type': 'text/plain; charset=utf-8' });
 });
 
 // ═══════════════════════════════════════════════════════════════════════════════
-// SERVICENOW ENTERPRISE INTEGRATION ENDPOINTS (Reference: Startup/pro1.py)
-// Configures ServiceNow Instance URL, Username, and Password for live incident sync
+// SERVICENOW ENTERPRISE INTEGRATION ENDPOINTS
 // ═══════════════════════════════════════════════════════════════════════════════
-app.post('/api/opspilot/snow/test', async (req, res) => {
+app.post('/api/opspilot/snow/test', async (c) => {
   try {
+    const body = await c.req.json().catch(() => ({})) as any;
     const {
       instanceUrl = process.env.SERVICENOW_URL || 'https://dev306702.service-now.com',
       username = process.env.SERVICENOW_USER || 'admin',
       password = process.env.SERVICENOW_PWD || 'v9/Vq@TnJ4qI'
-    } = req.body;
+    } = body;
 
     const cleanUrl = instanceUrl.replace(/\/+$/, '');
     const authHeader = 'Basic ' + Buffer.from(`${username}:${password}`).toString('base64');
@@ -141,7 +133,7 @@ app.post('/api/opspilot/snow/test', async (req, res) => {
 
     if (snowResp.ok) {
       const data = await snowResp.json() as any;
-      res.json({
+      return c.json({
         status: 'ok',
         message: 'Successfully authenticated with ServiceNow REST Table API',
         instanceUrl: cleanUrl,
@@ -149,24 +141,25 @@ app.post('/api/opspilot/snow/test', async (req, res) => {
       });
     } else {
       const errText = await snowResp.text();
-      res.status(snowResp.status).json({
+      return c.json({
         error: `ServiceNow authentication failed (HTTP ${snowResp.status})`,
         details: errText.substring(0, 300)
-      });
+      }, snowResp.status as any);
     }
   } catch (err: any) {
-    res.status(500).json({ error: 'Failed to connect to ServiceNow instance endpoint', details: err.message });
+    return c.json({ error: 'Failed to connect to ServiceNow instance endpoint', details: err.message }, 500);
   }
 });
 
-app.post('/api/opspilot/snow/incidents', async (req, res) => {
+app.post('/api/opspilot/snow/incidents', async (c) => {
   try {
+    const body = await c.req.json().catch(() => ({})) as any;
     const {
       instanceUrl = process.env.SERVICENOW_URL || 'https://dev306702.service-now.com',
       username = process.env.SERVICENOW_USER || 'admin',
       password = process.env.SERVICENOW_PWD || 'v9/Vq@TnJ4qI',
       limit = 10
-    } = req.body;
+    } = body;
 
     const cleanUrl = instanceUrl.replace(/\/+$/, '');
     const authHeader = 'Basic ' + Buffer.from(`${username}:${password}`).toString('base64');
@@ -183,7 +176,6 @@ app.post('/api/opspilot/snow/incidents', async (req, res) => {
       const data = await snowResp.json() as any;
       const rawIncidents = data.result || [];
 
-      // Transform ServiceNow incidents to OpsPilot incident format
       const formattedIncidents = rawIncidents.map((inc: any) => {
         const priorityMap: Record<string, 'P1' | 'P2' | 'P3' | 'P4'> = {
           '1': 'P1',
@@ -211,17 +203,18 @@ app.post('/api/opspilot/snow/incidents', async (req, res) => {
         };
       });
 
-      res.json({ status: 'ok', incidents: formattedIncidents });
+      return c.json({ status: 'ok', incidents: formattedIncidents });
     } else {
-      res.status(snowResp.status).json({ error: `ServiceNow request failed with HTTP ${snowResp.status}` });
+      return c.json({ error: `ServiceNow request failed with HTTP ${snowResp.status}` }, snowResp.status as any);
     }
   } catch (err: any) {
-    res.status(500).json({ error: 'ServiceNow API proxy failed', details: err.message });
+    return c.json({ error: 'ServiceNow API proxy failed', details: err.message }, 500);
   }
 });
 
-app.post('/api/opspilot/snow/update', async (req, res) => {
+app.post('/api/opspilot/snow/update', async (c) => {
   try {
+    const body = await c.req.json().catch(() => ({})) as any;
     const {
       instanceUrl = process.env.SERVICENOW_URL || 'https://dev306702.service-now.com',
       username = process.env.SERVICENOW_USER || 'admin',
@@ -229,13 +222,12 @@ app.post('/api/opspilot/snow/update', async (req, res) => {
       sysId,
       incidentNumber,
       workNotes,
-      state = '6', // 6 = Resolved in ServiceNow
+      state = '6',
       closeNotes = 'Resolved automatically by OpsPilot Multi-Agent Swarm'
-    } = req.body;
+    } = body;
 
     if (!sysId && !incidentNumber) {
-      res.status(400).json({ error: 'sysId or incidentNumber is required' });
-      return;
+      return c.json({ error: 'sysId or incidentNumber is required' }, 400);
     }
 
     const cleanUrl = instanceUrl.replace(/\/+$/, '');
@@ -262,35 +254,34 @@ app.post('/api/opspilot/snow/update', async (req, res) => {
 
     if (snowResp.ok) {
       const data = await snowResp.json() as any;
-      res.json({
+      return c.json({
         status: 'ok',
         message: `Successfully updated ServiceNow incident ${incidentNumber || sysId}`,
         result: data.result
       });
     } else {
       const errText = await snowResp.text();
-      res.status(snowResp.status).json({
+      return c.json({
         error: `ServiceNow update failed with HTTP ${snowResp.status}`,
         details: errText.substring(0, 300)
-      });
+      }, snowResp.status as any);
     }
   } catch (err: any) {
-    res.status(500).json({ error: 'ServiceNow update proxy failed', details: err.message });
+    return c.json({ error: 'ServiceNow update proxy failed', details: err.message }, 500);
   }
 });
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // LIVE DYNAMIC MODEL LISTING ENDPOINT
-// Queries the provider's API live using the user's key to get valid models
 // ═══════════════════════════════════════════════════════════════════════════════
-app.post('/api/models/list', async (req, res) => {
+app.post('/api/models/list', async (c) => {
   try {
-    const { apiKey = '', provider = 'Google AI', endpointUrl = '' } = req.body;
+    const body = await c.req.json().catch(() => ({})) as any;
+    const { apiKey = '', provider = 'Google AI', endpointUrl = '' } = body;
     const userKey = (apiKey || process.env.GEMINI_API_KEY || '').trim();
 
     if (provider !== 'Localhost' && provider !== 'Ollama' && (!userKey || userKey.length < 15)) {
-      res.status(400).json({ error: 'Valid API Key required to list live models.' });
-      return;
+      return c.json({ error: 'Valid API Key required to list live models.' }, 400);
     }
 
     let modelSlugs: string[] = [];
@@ -298,7 +289,6 @@ app.post('/api/models/list', async (req, res) => {
     if (provider === 'Google AI' || provider === 'Google') {
       const ai = geminiClient(userKey);
       const listPager = await ai.models.list();
-      // listPager is an AsyncIterable or Array of models
       for await (const m of listPager) {
         if (m.name) {
           const cleanName = m.name.replace('models/', '');
@@ -331,20 +321,20 @@ app.post('/api/models/list', async (req, res) => {
       }
     }
 
-    res.json({ success: true, provider, models: modelSlugs });
+    return c.json({ success: true, provider, models: modelSlugs });
   } catch (err: any) {
     console.warn('Live model listing error:', err.message);
-    res.status(500).json({ error: err.message || 'Failed to list models live.' });
+    return c.json({ error: err.message || 'Failed to list models live.' }, 500);
   }
 });
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // AGENT PIPELINE — Multi-Provider Router
-// Supports: Google AI (Gemini SDK), OpenAI (OpenAI SDK), Groq, DeepSeek, Anthropic, Ollama
 // ═══════════════════════════════════════════════════════════════════════════════
-app.post('/api/agent/run', async (req, res) => {
+app.post('/api/agent/run', async (c) => {
   const startTime = Date.now();
   try {
+    const body = await c.req.json().catch(() => ({})) as any;
     const {
       rolePersona = 'Senior AI Software Architect',
       promptText = '',
@@ -354,7 +344,7 @@ app.post('/api/agent/run', async (req, res) => {
       apiKey = '',
       provider = 'Google AI',
       endpointUrl = ''
-    } = req.body;
+    } = body;
 
     const userKey = (apiKey || process.env.GEMINI_API_KEY || '').trim();
     const temp = Math.min(Math.max(Number(temperature) || 0.2, 0), 1);
@@ -362,18 +352,16 @@ app.post('/api/agent/run', async (req, res) => {
 
     const isOllama = provider === 'Localhost' || provider === 'Ollama';
     if (!isOllama && (!userKey || userKey.length < 15 || userKey.includes('...'))) {
-      res.status(400).json({
+      return c.json({
         error: `Missing or incomplete API key for ${provider}. Go to AI Connections and paste your full ${provider} key.`,
         latencyMs: Date.now() - startTime
-      });
-      return;
+      }, 400);
     }
 
     let outputText = '';
     let usedModel = targetModel;
     let lastError = '';
 
-    // ── ROUTE 1: GOOGLE AI — @google/genai SDK ────────────────────────────────
     if (provider === 'Google AI' || provider === 'Google' || targetModel.startsWith('gemini')) {
       const models = [targetModel, 'gemini-1.5-flash-8b', 'gemini-2.0-flash-lite', 'gemini-2.0-flash']
         .filter((m, i, a) => a.indexOf(m) === i);
@@ -394,10 +382,7 @@ app.post('/api/agent/run', async (req, res) => {
           if (lastError.toLowerCase().includes('api key') || lastError.includes('UNAUTHENTICATED')) break;
         }
       }
-    }
-
-    // ── ROUTE 2: OPENAI — official openai SDK ─────────────────────────────────
-    else if (provider === 'OpenAI' || targetModel.startsWith('gpt') || targetModel.startsWith('o1') || targetModel.startsWith('o3')) {
+    } else if (provider === 'OpenAI' || targetModel.startsWith('gpt') || targetModel.startsWith('o1') || targetModel.startsWith('o3')) {
       try {
         const model = targetModel || 'gpt-4o-mini';
         const oai = openaiClient(userKey);
@@ -417,10 +402,7 @@ app.post('/api/agent/run', async (req, res) => {
         lastError = `[OpenAI] ${e.message}`;
         console.warn('OpenAI:', lastError);
       }
-    }
-
-    // ── ROUTE 3: GROQ — OpenAI-compatible ────────────────────────────────────
-    else if (provider === 'Groq Cloud') {
+    } else if (provider === 'Groq Cloud') {
       try {
         const model = targetModel || 'llama-3.3-70b-versatile';
         const groq = openaiClient(userKey, 'https://api.groq.com/openai/v1');
@@ -433,10 +415,7 @@ app.post('/api/agent/run', async (req, res) => {
         if (text) { outputText = text; usedModel = model; }
         else { lastError = `Groq returned empty content`; }
       } catch (e: any) { lastError = `[Groq] ${e.message}`; }
-    }
-
-    // ── ROUTE 4: DEEPSEEK — OpenAI-compatible ────────────────────────────────
-    else if (provider === 'DeepSeek' || targetModel.startsWith('deepseek')) {
+    } else if (provider === 'DeepSeek' || targetModel.startsWith('deepseek')) {
       try {
         const model = targetModel || 'deepseek-chat';
         const ds = openaiClient(userKey, 'https://api.deepseek.com/v1');
@@ -449,10 +428,7 @@ app.post('/api/agent/run', async (req, res) => {
         if (text) { outputText = text; usedModel = model; }
         else { lastError = `DeepSeek returned empty content`; }
       } catch (e: any) { lastError = `[DeepSeek] ${e.message}`; }
-    }
-
-    // ── ROUTE 5: ANTHROPIC — REST ─────────────────────────────────────────────
-    else if (provider === 'Anthropic' || targetModel.startsWith('claude')) {
+    } else if (provider === 'Anthropic' || targetModel.startsWith('claude')) {
       try {
         const model = targetModel || 'claude-3-haiku-20240307';
         const httpRes = await fetch('https://api.anthropic.com/v1/messages', {
@@ -468,10 +444,7 @@ app.post('/api/agent/run', async (req, res) => {
           else { lastError = `Anthropic returned no content`; }
         }
       } catch (e: any) { lastError = `[Anthropic] ${e.message}`; }
-    }
-
-    // ── ROUTE 6: LOCAL OLLAMA ─────────────────────────────────────────────────
-    else if (isOllama) {
+    } else if (isOllama) {
       try {
         const model = targetModel || 'llama3.2';
         const base = endpointUrl || 'http://localhost:11434';
@@ -484,45 +457,41 @@ app.post('/api/agent/run', async (req, res) => {
         if (data.response) { outputText = data.response; usedModel = model; }
         else { lastError = data.error || `Ollama returned no response. Run 'ollama serve' first.`; }
       } catch (e: any) { lastError = `Ollama failed: ${e.message}. Run 'ollama serve'.`; }
-    }
-
-    else {
+    } else {
       lastError = `Provider "${provider}" is not supported. Use Google AI, OpenAI, Groq, DeepSeek, Anthropic, or Ollama.`;
     }
 
     if (!outputText) {
-      res.status(400).json({ error: lastError || `${provider} API call failed.`, latencyMs: Date.now() - startTime });
-      return;
+      return c.json({ error: lastError || `${provider} API call failed.`, latencyMs: Date.now() - startTime }, 400);
     }
 
     const latencyMs = Date.now() - startTime;
     const tokensUsed = Math.max(80, Math.ceil((fullPrompt.length + outputText.length) / 3.8));
     const cost = `$${((tokensUsed / 1000) * 0.00012).toFixed(5)}`;
 
-    res.json({ success: true, agentName: usedModel, model: usedModel, provider, latencyMs, cost, tokensUsed, content: outputText, timestamp: new Date().toLocaleTimeString() });
+    return c.json({ success: true, agentName: usedModel, model: usedModel, provider, latencyMs, cost, tokensUsed, content: outputText, timestamp: new Date().toLocaleTimeString() });
 
   } catch (err: any) {
     console.error('Agent API Fatal Error:', err);
-    res.status(500).json({ error: err.message || 'Pipeline execution failed.', latencyMs: Date.now() - startTime });
+    return c.json({ error: err.message || 'Pipeline execution failed.', latencyMs: Date.now() - startTime }, 500);
   }
 });
 
 // ═══════════════════════════════════════════════════════════════════════════════
-// PROMPT OPTIMIZER — uses user's saved key (Gemini or OpenAI)
+// PROMPT OPTIMIZER
 // ═══════════════════════════════════════════════════════════════════════════════
-app.post('/api/tools/optimize', async (req, res) => {
+app.post('/api/tools/optimize', async (c) => {
   try {
-    const { prompt, targetModel = 'chatgpt', tone = 'professional', includeVariables = true, addGuardrails = true, apiKey = '', provider = 'Google AI' } = req.body;
+    const body = await c.req.json().catch(() => ({})) as any;
+    const { prompt, targetModel = 'chatgpt', tone = 'professional', includeVariables = true, addGuardrails = true, apiKey = '', provider = 'Google AI' } = body;
 
     if (!prompt || typeof prompt !== 'string') {
-      res.status(400).json({ error: 'Please provide a valid prompt string to optimize.' });
-      return;
+      return c.json({ error: 'Please provide a valid prompt string to optimize.' }, 400);
     }
 
     const userKey = (apiKey || process.env.GEMINI_API_KEY || '').trim();
     if (!userKey) {
-      res.status(400).json({ error: 'No API key available. Add your key in AI Connections.' });
-      return;
+      return c.json({ error: 'No API key available. Add your key in AI Connections.' }, 400);
     }
 
     const systemInstruction = `You are the Lead AI Prompt Engineer at PromptImageLab.com.
@@ -569,29 +538,28 @@ Return ONLY valid JSON matching the required schema.`;
       result = JSON.parse(response.text || '{}');
     }
 
-    res.json({ originalPrompt: prompt, targetModel, ...result });
+    return c.json({ originalPrompt: prompt, targetModel, ...result });
   } catch (err: any) {
     console.error('Optimizer error:', err);
-    res.status(500).json({ error: err.message || 'Failed to optimize prompt.' });
+    return c.json({ error: err.message || 'Failed to optimize prompt.' }, 500);
   }
 });
 
 // ═══════════════════════════════════════════════════════════════════════════════
-// PROMPT GENERATOR — uses user's saved key (Gemini or OpenAI)
+// PROMPT GENERATOR
 // ═══════════════════════════════════════════════════════════════════════════════
-app.post('/api/tools/generate', async (req, res) => {
+app.post('/api/tools/generate', async (c) => {
   try {
-    const { taskDescription, domain = 'general', targetModel = 'claude', apiKey = '', provider = 'Google AI' } = req.body;
+    const body = await c.req.json().catch(() => ({})) as any;
+    const { taskDescription, domain = 'general', targetModel = 'claude', apiKey = '', provider = 'Google AI' } = body;
 
     if (!taskDescription) {
-      res.status(400).json({ error: 'Task description is required.' });
-      return;
+      return c.json({ error: 'Task description is required.' }, 400);
     }
 
     const userKey = (apiKey || process.env.GEMINI_API_KEY || '').trim();
     if (!userKey) {
-      res.status(400).json({ error: 'No API key available. Add your key in AI Connections.' });
-      return;
+      return c.json({ error: 'No API key available. Add your key in AI Connections.' }, 400);
     }
 
     const systemInstruction = `You are a Master Prompt Architect. Generate an elite system prompt for ${targetModel}. Include persona, task breakdown, {{variables}}, and output format.`;
@@ -617,36 +585,25 @@ app.post('/api/tools/generate', async (req, res) => {
       generatedPrompt = response.text || '';
     }
 
-    res.json({ generatedPrompt });
+    return c.json({ generatedPrompt });
   } catch (err: any) {
-    res.status(500).json({ error: err.message || 'Failed to generate prompt.' });
+    return c.json({ error: err.message || 'Failed to generate prompt.' }, 500);
   }
 });
 
-// ==================== VITE / STATIC SERVING ====================
-async function startServer() {
-  if (process.env.NODE_ENV !== 'production') {
-    const { createServer: createViteServer } = await import('vite');
-    const vite = await createViteServer({ server: { middlewareMode: true }, appType: 'spa' });
-    app.use(vite.middlewares);
-
-    app.listen(PORT, '0.0.0.0', () => {
-      console.log(`\nPromptImageLab Multi-Provider Platform — http://0.0.0.0:${PORT}`);
-      console.log(`  ✓ Google AI  (Gemini 1.5 / 2.0 / 2.5) via @google/genai SDK`);
-      console.log(`  ✓ OpenAI     (GPT-4o / GPT-4o-mini)   via openai SDK`);
-      console.log(`  ✓ Groq Cloud (Llama 3.3)              via OpenAI-compatible`);
-      console.log(`  ✓ DeepSeek   (V3 / R1)                via OpenAI-compatible`);
-      console.log(`  ✓ Anthropic  (Claude 3.x)             via REST`);
-      console.log(`  ✓ Ollama     (local models)           via REST\n`);
-    });
-  } else {
-    const distPath = path.join(process.cwd(), 'dist');
-    app.use(express.static(distPath));
-    app.get('*', (_req, res) => { res.sendFile(path.join(distPath, 'index.html')); });
+// ==================== NODE DEV SERVER ====================
+if (typeof process !== 'undefined' && process.env && process.env.NODE_ENV !== 'production') {
+  async function startDevServer() {
+    try {
+      const { serve } = await import('@hono/node-server');
+      serve({ fetch: app.fetch, port: 3000 }, (info) => {
+        console.log(`\nPromptImageLab Multi-Provider Platform — http://localhost:${info.port}`);
+      });
+    } catch {
+      // Dev server optional in Cloudflare Workers
+    }
   }
+  startDevServer();
 }
 
-startServer();
-
 export default app;
-
