@@ -591,6 +591,21 @@ app.post('/api/tools/generate', async (c) => {
   }
 });
 
+// ==================== SPA FALLBACK ====================
+app.notFound(async (c) => {
+  // If we're in Cloudflare Workers and have the ASSETS binding
+  if (c.env && (c.env as any).ASSETS) {
+    try {
+      const url = new URL(c.req.url);
+      url.pathname = '/index.html'; // Always fetch the root index.html for SPA routes
+      return await (c.env as any).ASSETS.fetch(new Request(url.toString(), c.req.raw));
+    } catch (e) {
+      return c.text('Not Found', 404);
+    }
+  }
+  return c.text('Not Found', 404);
+});
+
 // ==================== NODE DEV SERVER ====================
 if (typeof process !== 'undefined' && process.env && process.env.NODE_ENV !== 'production') {
   async function startDevServer() {
