@@ -1,0 +1,9 @@
+flask
+requests
+gunicorn
+waitress
+langchain_core
+langchain_ollama
+langchain-openai
+cryptography
+python-dotenv

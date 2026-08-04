@@ -1,0 +1,6 @@
+{
+  "name": "PromptImageLab",
+  "description": "Enterprise AI Prompt Engineering Platform with prompt tools, searchable library, AI workflows, playground, and analytics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

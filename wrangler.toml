@@ -1,0 +1,10 @@
+# Cloudflare Workers & D1 Database Configuration
+name = "promptimagelab-backend"
+main = "server.ts"
+compatibility_date = "2026-08-04"
+
+# Cloudflare D1 SQLite Database Binding
+[[d1_databases]]
+binding = "DB"
+database_name = "backend-db"
+database_id = "161f312b-338c-45fa-ac67-c97025625623"
