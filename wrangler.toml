@@ -1,5 +1,5 @@
 # Cloudflare Workers & D1 Database Configuration
-name = "promptimagelab-backend"
+name = "promptimagelab"
 main = "server.ts"
 compatibility_date = "2026-08-04"
 
