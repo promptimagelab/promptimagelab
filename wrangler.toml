@@ -2,6 +2,7 @@
 name = "promptimagelab"
 main = "server.ts"
 compatibility_date = "2026-08-04"
+compatibility_flags = [ "nodejs_compat" ]
 
 # Cloudflare D1 SQLite Database Binding
 [[d1_databases]]

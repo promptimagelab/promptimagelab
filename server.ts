@@ -2,7 +2,6 @@ import express from 'express';
 import path from 'path';
 import { GoogleGenAI, Type } from '@google/genai';
 import OpenAI from 'openai';
-import { createServer as createViteServer } from 'vite';
 
 const app = express();
 const PORT = 3000;
@@ -123,7 +122,7 @@ Sitemap: ${protocol}://${host}/sitemap.xml
 // ═══════════════════════════════════════════════════════════════════════════════
 app.post('/api/opspilot/snow/test', async (req, res) => {
   try {
-    const { 
+    const {
       instanceUrl = process.env.SERVICENOW_URL || 'https://dev306702.service-now.com',
       username = process.env.SERVICENOW_USER || 'admin',
       password = process.env.SERVICENOW_PWD || 'v9/Vq@TnJ4qI'
@@ -162,7 +161,7 @@ app.post('/api/opspilot/snow/test', async (req, res) => {
 
 app.post('/api/opspilot/snow/incidents', async (req, res) => {
   try {
-    const { 
+    const {
       instanceUrl = process.env.SERVICENOW_URL || 'https://dev306702.service-now.com',
       username = process.env.SERVICENOW_USER || 'admin',
       password = process.env.SERVICENOW_PWD || 'v9/Vq@TnJ4qI',
@@ -195,7 +194,7 @@ app.post('/api/opspilot/snow/incidents', async (req, res) => {
         const priorityStr = priorityMap[String(inc.priority)] || 'P2';
 
         return {
-          id: inc.number || inc.sys_id || `INC${Math.floor(Math.random()*90000+10000)}`,
+          id: inc.number || inc.sys_id || `INC${Math.floor(Math.random() * 90000 + 10000)}`,
           sys_id: inc.sys_id,
           title: inc.short_description || 'ServiceNow Unspecified Incident',
           priority: priorityStr,
@@ -223,7 +222,7 @@ app.post('/api/opspilot/snow/incidents', async (req, res) => {
 
 app.post('/api/opspilot/snow/update', async (req, res) => {
   try {
-    const { 
+    const {
       instanceUrl = process.env.SERVICENOW_URL || 'https://dev306702.service-now.com',
       username = process.env.SERVICENOW_USER || 'admin',
       password = process.env.SERVICENOW_PWD || 'v9/Vq@TnJ4qI',
@@ -247,7 +246,7 @@ app.post('/api/opspilot/snow/update', async (req, res) => {
     if (state) updateBody.state = state;
     if (closeNotes) updateBody.close_notes = closeNotes;
 
-    const targetUrl = sysId 
+    const targetUrl = sysId
       ? `${cleanUrl}/api/now/table/incident/${sysId}`
       : `${cleanUrl}/api/now/table/incident?sysparm_query=number=${incidentNumber}`;
 
@@ -627,23 +626,27 @@ app.post('/api/tools/generate', async (req, res) => {
 // ==================== VITE / STATIC SERVING ====================
 async function startServer() {
   if (process.env.NODE_ENV !== 'production') {
+    const { createServer: createViteServer } = await import('vite');
     const vite = await createViteServer({ server: { middlewareMode: true }, appType: 'spa' });
     app.use(vite.middlewares);
+
+    app.listen(PORT, '0.0.0.0', () => {
+      console.log(`\nPromptImageLab Multi-Provider Platform — http://0.0.0.0:${PORT}`);
+      console.log(`  ✓ Google AI  (Gemini 1.5 / 2.0 / 2.5) via @google/genai SDK`);
+      console.log(`  ✓ OpenAI     (GPT-4o / GPT-4o-mini)   via openai SDK`);
+      console.log(`  ✓ Groq Cloud (Llama 3.3)              via OpenAI-compatible`);
+      console.log(`  ✓ DeepSeek   (V3 / R1)                via OpenAI-compatible`);
+      console.log(`  ✓ Anthropic  (Claude 3.x)             via REST`);
+      console.log(`  ✓ Ollama     (local models)           via REST\n`);
+    });
   } else {
     const distPath = path.join(process.cwd(), 'dist');
     app.use(express.static(distPath));
     app.get('*', (_req, res) => { res.sendFile(path.join(distPath, 'index.html')); });
   }
-
-  app.listen(PORT, '0.0.0.0', () => {
-    console.log(`\nPromptImageLab Multi-Provider Platform — http://0.0.0.0:${PORT}`);
-    console.log(`  ✓ Google AI  (Gemini 1.5 / 2.0 / 2.5) via @google/genai SDK`);
-    console.log(`  ✓ OpenAI     (GPT-4o / GPT-4o-mini)   via openai SDK`);
-    console.log(`  ✓ Groq Cloud (Llama 3.3)              via OpenAI-compatible`);
-    console.log(`  ✓ DeepSeek   (V3 / R1)                via OpenAI-compatible`);
-    console.log(`  ✓ Anthropic  (Claude 3.x)             via REST`);
-    console.log(`  ✓ Ollama     (local models)           via REST\n`);
-  });
 }
 
 startServer();
+
+export default app;
+
